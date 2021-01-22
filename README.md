@@ -15,7 +15,7 @@
 - Muhammad Shah Newaz (ID: 25067022)(GitHub Username: abirshah)
 - Pasha Pishad (ID:)
 - Piravien Suntharalingam (ID:40035136) (Github Username: pirasunt)
-- Julien Xu (ID:)
+- Julien Xu (ID: 40095332)
 
 
 ## Technologies
