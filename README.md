@@ -12,6 +12,7 @@
 - Daniel Gauvin (ID:)
 - Michael Lee (ID:)
 - Armando Mancino (ID:)
+- Muhammad Shah Newaz (ID: 25067022)(GitHub Username: abirshah)
 - Pasha Pishad (ID:)
 - Piravien Suntharalingam (ID:)
 - Julien Xu (ID:)
