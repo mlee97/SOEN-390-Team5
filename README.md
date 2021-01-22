@@ -13,7 +13,7 @@
 - Michael Lee (ID: 40054375)
 - Armando Mancino (ID:)
 - Muhammad Shah Newaz (ID: 25067022)(GitHub Username: abirshah)
-- Pasha Pishad (ID:)
+- Pasha Pishdad (ID: 40042599)
 - Piravien Suntharalingam (ID:40035136) (Github Username: pirasunt)
 - Julien Xu (ID:)
 
