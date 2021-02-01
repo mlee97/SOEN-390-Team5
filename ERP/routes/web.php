@@ -15,4 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})
+    ->middleware('auth')
+    ->name('home');
+
+Route::get('/user-management', [\App\Http\Controllers\UserController::class, 'getAllUsers'])
+    ->middleware('auth')
+    ->name('user.management');
+
+//TODO: Group routes together
+Route::get('/create-user', [\App\Http\Controllers\UserController::class, 'createUserPage'])
+    ->middleware('auth');
+
+Route::post('/create-user', [\App\Http\Controllers\UserController::class, 'createUser'])
+    ->name('create.user');
+
+require __DIR__ . '/auth.php';
