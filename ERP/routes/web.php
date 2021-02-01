@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,15 +20,24 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
-Route::get('/user-management', [\App\Http\Controllers\UserController::class, 'getAllUsers'])
+//IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
+Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
+    Route::get('/create-user', [UserController::class, 'goToCreateUser']);
+
+    Route::post('/create-user', [UserController::class, 'createUser'])
+        ->name('create.user');
+
+    Route::get('/user-management', [UserController::class, 'goToUserManagement'])
+        ->name('user.management');
+});
+
+Route::get('/login', [UserController::class, 'goToLogin'])
+    ->middleware('guest')
+    ->name('login');
+
+Route::post('/login', [UserController::class, 'loginUser'])
+    ->middleware('guest');
+
+Route::post('/logout', [UserController::class, 'logoutUser'])
     ->middleware('auth')
-    ->name('user.management');
-
-//TODO: Group routes together
-Route::get('/create-user', [\App\Http\Controllers\UserController::class, 'createUserPage'])
-    ->middleware('auth');
-
-Route::post('/create-user', [\App\Http\Controllers\UserController::class, 'createUser'])
-    ->name('create.user');
-
-require __DIR__ . '/auth.php';
+    ->name('logout');
