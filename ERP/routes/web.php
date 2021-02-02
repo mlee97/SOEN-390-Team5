@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
 
     Route::get('/user-management', [UserController::class, 'goToUserManagement'])
         ->name('user.management');
+
+    Route::post('/update-user', [UserController::class, 'updateUser'])
+        ->name('update.user');
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
