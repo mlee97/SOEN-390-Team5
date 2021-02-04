@@ -22,3 +22,9 @@ assignees: ''
 
 **Screenshots**
 (Delete this) If applicable, add screenshots to help explain your problem.
+
+**Related User Story:**
+(Delete this) Specify the issue number (eg: #1).
+
+**Other Related Issue:**
+(Delete this) If applicable, specify the issue number (eg: #1, #2, ...).
