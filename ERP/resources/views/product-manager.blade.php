@@ -1,28 +1,23 @@
 @extends('layouts.master')
 @section('inside-body-tag')
-
+<!-- Container for the whole page -->
 <div class="container-fluid">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary"> <!-- Panel for the buttons -->
         <div class="panel-heading">
             <h3 class="panel-title">Panel title</h3>
         </div>
-        <div class="panel-body">
-
+        <div class="panel-body"> <!-- Begining of the button panel body -->
             <div class="row">
                 <div class="col-4">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
                         Add a new Bicyle
                     </button>
                 </div>
-
                 <div class="col-4">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
                         Materials
                     </button>
                 </div>
-
-               
-
             </div>
             <div class="row mt-1">
                 <div class="col-4">
@@ -30,10 +25,8 @@
                         Add a new Part
                     </button>
                 </div>
-
-            </div>
-
-            <div class="row">
+            </div> <!-- End of adding button at the panel -->
+            <div class="row"> <!-- Begining of the Bicycle table -->
                 <div class="col-7" id="bicycles">
                     <h3>Bicycles</h3>
                     <table class="table table-bordered">
@@ -46,17 +39,13 @@
                             <th class="sort pointer-cursor" data-sort="quantity">Quantity</th>
                             <th>Operations</th>
                         </thead>
-                        <tbody class="list">
-
+                        <tbody class="list">  <!-- Edit and Delete button -->
                         </tbody>
                     </table>
-
-                    <ul class="pagination">
-
+                    <ul class="pagination"> <!-- Pagination for pages -->
                     </ul>
                 </div>
-
-                <div class="col-5" id="parts">
+                <div class="col-5" id="parts"> <!-- Table for parts -->
                     <h3>Parts</h3>
                     <table class="table table-bordered">
                         <thead>
@@ -64,35 +53,19 @@
                             <th class="sort pointer-cursor" data-sort="color">Color</th>
                             <th class="sort pointer-cursor" data-sort="quantity">Quantity</th>
                             <th>Operations</th>
-                        </thead>
+                        </thead>                 <!-- Edit and Delete in the table -->
                         <tbody class="list">
-
-
                         </tbody>
                     </table>
-
-                    <ul class="pagination">
-
+                    <ul class="pagination">   <!-- Pagination for pages -->
                     </ul>
-
-
                 </div>
-
             </div>
-
-
-
         </div>
     </div>
-
-
-
-
-
 </div>
 
-
-<!-- Modal -->
+<!-- Modal the popup when click to add or edit a bicycles -->
 <div class="modal fade" id="bicycle_modal" tabindex="-1" role="dialog" aria-labelledby="bicycle_modal_lable" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -102,7 +75,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> <!-- Modal body for the input -->
                 <form>
                     <div class="form-group">
                         <label for="bicyle_type_input">Type</label>
@@ -127,18 +100,18 @@
                     <div class="form-group">
                         <label for="bicyle_quantity_input">Quantity</label>
                         <input id="bicyle_quantity_input" type="text" class="form-control" placeholder="Quantity">
-                    </div>
+                    </div>  <!-- End of Modal body for input -->
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer"> <!-- Modal or Popup footer -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+</div> <-- End of the bicycle modal -->
 
-
+<!-- Modal for the bicycle material -->
 <div class="modal fade" id="materials_modal" tabindex="-1" role="dialog" aria-labelledby="materials_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -157,9 +130,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> <!-- End of the modal for the bycycle -->
 
-
+<!-- Beginning of the Modal for the bicycle parts -->
 <div class="modal fade" id="part_modal" tabindex="-1" role="dialog" aria-labelledby="part_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -169,7 +142,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> <!-- Modal body for the input or form -->
                 <form>
                     <div class="form-group">
                         <label for="part_type_input">Type</label>
@@ -186,8 +159,8 @@
                         <input id="part_quantity_input" type="text" class="form-control" placeholder="Quantity">
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
+            </div>  <!-- End of the form input modal -->
+            <div class="modal-footer"> <!-- Footer of the modal with button -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>
@@ -195,13 +168,13 @@
     </div>
 </div>
 
-
+<!-- Javascript for edit bicycle button -->
 <script>
     function editBicycle(id){
         $('#bicycle_modal').modal('show');
         alert('edit bicycle id ' + id);
     }
-
+  //Option based on the column
     bicycleOptions = {
         valueNames: ["type", "size", "color", "finishes", "grade", "quantity"],
         item: function(item) {
@@ -212,22 +185,22 @@
         <td class="color" ></td>
         <td class="finishes"></td>
         <td class="grade"></td>
-        <td class="quantity"></td>                            
+        <td class="quantity"></td>
         <td>
                 <button class="btn btn-primary" onClick="editBicycle(${item.id})">
-                Edit
+                Edit    <!-- Button for the edit -->
                 </button>
                 <button class="btn btn-danger" onClick="alert('delete id ' + ${item.id})">
-                Delete
+                Delete   <!-- Button the delete -->
                 </button>
             </td>
-        </tr>      
+        </tr>
         `
         },
         pagination: true,
         page: 5
     }
-
+ //Some value to fill  should be data from database
     const bicycles = [{
             id:1,
             type: "mountain",
@@ -287,13 +260,14 @@
     var bicyleList = new List('bicycles', bicycleOptions, bicycles);
 </script>
 
+<!-- Java script for editing parts -->
 <script>
-    function editParts(id) {
+    function editParts(id) {  //Java script fucntion for edit parts
         $('#part_modal').modal('show');
         alert('edit bicyle id ' + id);
     }
 
-    partsOptions = {
+    partsOptions = { // Parts option from the table column.
         valueNames: ["type", "color", "quantity"],
         item: function(item) {
             return `
@@ -309,13 +283,13 @@
                 Delete
                 </button>
             </td>
-        </tr>    
+        </tr>
         `
         },
         pagination: true,
         page: 5
     }
-
+// Variable array should be  data from database.
     const parts = [{
             id: 1,
             type: "mountain",
@@ -351,11 +325,5 @@
 
     var bicyleList = new List('parts', partsOptions, parts);
 </script>
-
-
-
-
-
-
 
 @endsection
