@@ -149,8 +149,12 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="part_type_input">Type</label>
-                        <input id="part_type_input" type="text" class="form-control" placeholder="material-name">
+                        <label for="material_name_input">Material Name</label>
+                        <input id="material_name_input" type="text" class="form-control" placeholder="material-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="material_quantity_input">Quantity</label>
+                        <input id="material_quantity_input" type="text" class="form-control" placeholder="Quantity">
                     </div>
                 </form>
                 <div class="modal-footer">
@@ -176,6 +180,10 @@
                     <div class="form-group">
                         <label for="part_type_input">Part Name</label>
                         <input id="part_type_input" type="text" class="form-control" placeholder="Type">
+                    </div>
+                    <div class="form-group">
+                        <label for="parts_quantity_input">Quantity</label>
+                        <input id="parts_quantity_input" type="text" class="form-control" placeholder="Quantity">
                     </div>
                 </form>
             </div>
