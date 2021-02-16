@@ -16,6 +16,9 @@
                 @endif
                 @if(Auth::user() != null)
                 <li class="nav-item">
+                    <a class="nav-link active" href="/product-manager">Product Manager's Page</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">Logout </a>
 

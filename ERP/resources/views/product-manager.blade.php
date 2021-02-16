@@ -4,36 +4,13 @@
 <div class="container-fluid">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
+            <h1 class="panel-title">Product Manager's Page</h1>
         </div>
         <div class="panel-body">
 
-            <div class="row">
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
-                        Add a new Bicyle
-                    </button>
-                </div>
-
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
-                        Materials
-                    </button>
-                </div>
-
-               
-
-            </div>
-            <div class="row mt-1">
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
-                        Add a new Part
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="row">
+        <div class="row">
+        <!-- Bicycles Tables-->
+            
                 <div class="col-7" id="bicycles">
                     <h3>Bicycles</h3>
                     <table class="table table-bordered">
@@ -51,48 +28,64 @@
                         </tbody>
                     </table>
 
+                    
+
+                    <!--new bicycle Button-->
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
+                                Add a new Bicyle
+                            </button>
+                        </div>
+                    </div>
+
                     <ul class="pagination">
 
                     </ul>
                 </div>
 
+        <!-- Parts Table-->
                 <div class="col-5" id="parts">
                     <h3>Parts</h3>
                     <table class="table table-bordered">
                         <thead>
-                            <th class="sort pointer-cursor" data-sort="type">Type</th>
-                            <th class="sort pointer-cursor" data-sort="color">Color</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity</th>
+                            <th class="sort pointer-cursor" data-sort="type">PartID</th>
+                            <th class="sort pointer-cursor" data-sort="color">Part Name</th>
+                            <th class="sort pointer-cursor" data-sort="quantity">Required Materials</th>
                             <th>Operations</th>
                         </thead>
                         <tbody class="list">
 
-
                         </tbody>
                     </table>
+
+                    <div class="row mt-1">
+                        <!-- New Part button-->
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
+                                Add a new Part
+                            </button>   
+                        </div>
+
+                        <!-- Materials Button-->
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
+                                Materials List
+                            </button>
+                        </div>
+                    </div>
 
                     <ul class="pagination">
 
                     </ul>
-
-
                 </div>
-
             </div>
-
-
-
         </div>
     </div>
-
-
-
-
-
 </div>
 
 
-<!-- Modal -->
+<!-- Add a new Bicycle popup -->
 <div class="modal fade" id="bicycle_modal" tabindex="-1" role="dialog" aria-labelledby="bicycle_modal_lable" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -138,28 +131,36 @@
     </div>
 </div>
 
-
+<!-- Materials popup window-->
 <div class="modal fade" id="materials_modal" tabindex="-1" role="dialog" aria-labelledby="materials_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="materials_modal_label">Materials</h5>
+                <h5 class="modal-title" id="materials_modal_label"> Materials</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                 <table class="table table-bordered">
+                        <thead>
+                            <th class="sort pointer-cursor" data-sort="requiredMaterial">Required Materials</th>
+                            <th class="sort pointer-cursor" data-sort="quantityRemaining">Quantity Remaining</th>
+                        </thead>
+                        <tbody class="list">
+
+
+                        </tbody>
+                    </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
-
+<!--Add New Part POP up window-->
 <div class="modal fade" id="part_modal" tabindex="-1" role="dialog" aria-labelledby="part_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -195,7 +196,8 @@
     </div>
 </div>
 
-
+<!-- Everything After This point to be deleted-->
+<!-------------------------------------------------------------------------------------------------------------------------->
 <script>
     function editBicycle(id){
         $('#bicycle_modal').modal('show');
