@@ -148,8 +148,6 @@
                             <th class="sort pointer-cursor" data-sort="quantityRemaining">Quantity Remaining</th>
                         </thead>
                         <tbody class="list">
-
-
                         </tbody>
                     </table>
             </div>
