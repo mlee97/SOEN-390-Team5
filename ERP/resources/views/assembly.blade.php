@@ -4,82 +4,52 @@
 <div class="container-fluid">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h1 class="panel-title">Product Manager's Page</h1>
+            <h1 class="panel-title">ASSEMBLY</h1>
+            <!--TO BE REMOVED-->
+            <p>TO BE REMOVED -- this page is to know what bicycle needs what part + what parts need what materials</p>
+            <p>table content is irrelevant, but they are there to show what itd look when all is said and done</p>
         </div>
         <div class="panel-body">
 
-        <div class="row">
-        <!-- Bicycles Tables-->
-            
-                <div class="col-7" id="bicycles">
-                    <h3>Bicycles</h3>
-                    <table class="table table-bordered">
-                        <thead>
-                            <th class="sort pointer-cursor" data-sort="type">Type</th>
-                            <th class="sort pointer-cursor" data-sort="size">Size</th>
-                            <th class="sort pointer-cursor" data-sort="color">Color</th>
-                            <th class="sort pointer-cursor" data-sort="finishes">Finishes</th>
-                            <th class="sort pointer-cursor" data-sort="grade">Grade</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity</th>
-                            <th>Operations</th>
-                        </thead>
-                        <tbody class="list">
+            <div class="row">
 
-                        </tbody>
-                    </table>
+            <!-- Bicycles Tables-->
+                <div class="col-10" id="bicycles">
+                    <h3>Bicycle Requirements</h3>
 
-                    
-
-                    <!--new bicycle Button-->
-                    <div class="row">
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
-                                Add a new Bicyle
-                            </button>
-                        </div>
-                    </div>
-
-                    <ul class="pagination">
-
-                    </ul>
-                </div>
-
-        <!-- Parts Table-->
-                <div class="col-5" id="parts">
-                    <h3>Parts</h3>
                     <table class="table table-bordered">
                         <thead>
                             <th class="sort pointer-cursor" data-sort="type">PartID</th>
                             <th class="sort pointer-cursor" data-sort="color">Part Name</th>
                             <th class="sort pointer-cursor" data-sort="quantity">Required Materials</th>
+                            <th>Quantity Needed</th>
                             <th>Operations</th>
                         </thead>
                         <tbody class="list">
 
                         </tbody>
                     </table>
-
-                    <div class="row mt-1">
-                        <!-- New Part button-->
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
-                                Add a new Part
-                            </button>   
-                        </div>
-
-                        <!-- Materials Button-->
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
-                                Materials List
-                            </button>
-                        </div>
-                    </div>
-
-                    <ul class="pagination">
-
-                    </ul>
                 </div>
             </div>
+            <br>
+            <div class="row">
+
+            <!-- Parts Table-->
+                <div class="col-10" id="parts">
+                    <h3>Parts Requirements</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <th class="sort pointer-cursor" data-sort="type">MaterialID</th>
+                            <th class="sort pointer-cursor" data-sort="color">Material Name</th>
+                            <th>Quantity Required</th>
+                        </thead>
+                        <tbody class="list">
+
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+            <br>
         </div>
     </div>
 </div>
