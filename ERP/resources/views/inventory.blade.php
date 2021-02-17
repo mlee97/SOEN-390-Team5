@@ -1,14 +1,13 @@
 @extends('layouts.master')
 @section('inside-body-tag')
-
+<!-- Container for the whole page -->
 <div class="container-fluid">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary"> <!-- Panel for the buttons -->
         <div class="panel-heading">
             <h1 class="panel-title">INVENTORY</h1>
             <p>TO BE REMOVED -- this page is to know what is currently in stock of the company</p>
         </div>
-        <div class="panel-body">
-
+        <div class="panel-body"> <!-- Begining of the button panel body -->
             <div class="row">
 
             <!-- Bicycles Tables-->
@@ -24,8 +23,7 @@
                             <th class="sort pointer-cursor" data-sort="quantity">Quantity In Stock</th>
                             <th>Operations</th>
                         </thead>
-                        <tbody class="list">
-
+                        <tbody class="list">  <!-- Edit and Delete button -->
                         </tbody>
                     </table>
 
@@ -50,9 +48,8 @@
                             <th class="sort pointer-cursor" data-sort="color">Part Name</th>
                             <th class="sort pointer-cursor" data-sort="quantity">Quantity In Stock</th>
                             <th>Operations</th>
-                        </thead>
+                        </thead>                 <!-- Edit and Delete in the table -->
                         <tbody class="list">
-
                         </tbody>
                     </table>
 
@@ -98,7 +95,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> <!-- Modal body for the input -->
                 <form>
                     <div class="form-group">
                         <label for="bicyle_type_input">Type</label>
@@ -172,7 +169,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> <!-- Modal body for the input or form -->
                 <form>
                     <div class="form-group">
                         <label for="part_type_input">Part Name</label>
@@ -190,7 +187,6 @@
         </div>
     </div>
 </div>
-
 <!-- Javascript for edit bicycle button -->
 
 <!-- Everything After This point to be deleted-->
@@ -200,7 +196,7 @@
         $('#bicycle_modal').modal('show');
         alert('edit bicycle id ' + id);
     }
-
+  //Option based on the column
     bicycleOptions = {
         valueNames: ["type", "size", "color", "finishes", "grade", "quantity"],
         item: function(item) {
@@ -211,22 +207,22 @@
         <td class="color" ></td>
         <td class="finishes"></td>
         <td class="grade"></td>
-        <td class="quantity"></td>                            
+        <td class="quantity"></td>
         <td>
                 <button class="btn btn-primary" onClick="editBicycle(${item.id})">
-                Edit
+                Edit    <!-- Button for the edit -->
                 </button>
                 <button class="btn btn-danger" onClick="alert('delete id ' + ${item.id})">
-                Delete
+                Delete   <!-- Button the delete -->
                 </button>
             </td>
-        </tr>      
+        </tr>
         `
         },
         pagination: true,
         page: 5
     }
-
+ //Some value to fill  should be data from database
     const bicycles = [{
             id:1,
             type: "mountain",
@@ -286,13 +282,14 @@
     var bicyleList = new List('bicycles', bicycleOptions, bicycles);
 </script>
 
+<!-- Java script for editing parts -->
 <script>
-    function editParts(id) {
+    function editParts(id) {  //Java script fucntion for edit parts
         $('#part_modal').modal('show');
         alert('edit bicyle id ' + id);
     }
 
-    partsOptions = {
+    partsOptions = { // Parts option from the table column.
         valueNames: ["type", "color", "quantity"],
         item: function(item) {
             return `
@@ -308,13 +305,13 @@
                 Delete
                 </button>
             </td>
-        </tr>    
+        </tr>
         `
         },
         pagination: true,
         page: 5
     }
-
+// Variable array should be  data from database.
     const parts = [{
             id: 1,
             type: "mountain",
@@ -350,11 +347,5 @@
 
     var bicyleList = new List('parts', partsOptions, parts);
 </script>
-
-
-
-
-
-
 
 @endsection
