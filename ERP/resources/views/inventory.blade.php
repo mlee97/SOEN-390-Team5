@@ -60,8 +60,6 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
                         Add a new Part
                     </button>   
-
-                    
                 </div>
             </div>
             <br>
@@ -90,8 +88,7 @@
     </div>
 </div>
 
-
-<!-- Add a new Bicycle popup -->
+<!-- Modal Add a new Bicycle popup -->
 <div class="modal fade" id="bicycle_modal" tabindex="-1" role="dialog" aria-labelledby="bicycle_modal_lable" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -165,7 +162,7 @@
     </div>
 </div>
 
-<!--Add New Part POP up window-->
+<!--Add New Part POP up window Modal-->
 <div class="modal fade" id="part_modal" tabindex="-1" role="dialog" aria-labelledby="part_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -193,6 +190,8 @@
         </div>
     </div>
 </div>
+
+<!-- Javascript for edit bicycle button -->
 
 <!-- Everything After This point to be deleted-->
 <!-------------------------------------------------------------------------------------------------------------------------->
