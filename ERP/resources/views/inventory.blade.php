@@ -105,27 +105,27 @@
                 <form>
                     <div class="form-group">
                         <label for="bicyle_type_input">Type</label>
-                        <input id="bicyle_type_input" type="text" class="form-control" placeholder="Type">
+                        <input id="bicyle_type_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_size_input">Size</label>
-                        <input id="bicyle_size_input" type="text" class="form-control" placeholder="Size">
+                        <input id="bicyle_size_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_color_input">Color</label>
-                        <input id="bicyle_color_input" type="text" class="form-control" placeholder="Color">
+                        <input id="bicyle_color_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_finishes_input">Finishes</label>
-                        <input id="bicyle_finishes_input" type="text" class="form-control" placeholder="Finishes">
+                        <input id="bicyle_finishes_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_grade_input">Grade</label>
-                        <input id="bicyle_grade_input" type="text" class="form-control" placeholder="Grade">
+                        <input id="bicyle_grade_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_quantity_input">Quantity</label>
-                        <input id="bicyle_quantity_input" type="text" class="form-control" placeholder="Quantity">
+                        <input id="bicyle_quantity_input" type="text" class="form-control" >
                     </div>
                 </form>
             </div>
@@ -150,11 +150,11 @@
                 <form>
                     <div class="form-group">
                         <label for="material_name_input">Material Name</label>
-                        <input id="material_name_input" type="text" class="form-control" placeholder="material-name">
+                        <input id="material_name_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="material_quantity_input">Quantity</label>
-                        <input id="material_quantity_input" type="text" class="form-control" placeholder="Quantity">
+                        <input id="material_quantity_input" type="text" class="form-control">
                     </div>
                 </form>
                 <div class="modal-footer">
@@ -179,11 +179,11 @@
                 <form>
                     <div class="form-group">
                         <label for="part_type_input">Part Name</label>
-                        <input id="part_type_input" type="text" class="form-control" placeholder="Type">
+                        <input id="part_type_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="parts_quantity_input">Quantity</label>
-                        <input id="parts_quantity_input" type="text" class="form-control" placeholder="Quantity">
+                        <input id="parts_quantity_input" type="text" class="form-control">
                     </div>
                 </form>
             </div>
