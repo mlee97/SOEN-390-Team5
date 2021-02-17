@@ -4,30 +4,14 @@
 <div class="container-fluid">
     <div class="panel panel-primary"> <!-- Panel for the buttons -->
         <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
+            <h1 class="panel-title">INVENTORY</h1>
+            <p>TO BE REMOVED -- this page is to know what is currently in stock of the company</p>
         </div>
         <div class="panel-body"> <!-- Begining of the button panel body -->
             <div class="row">
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
-                        Add a new Bicyle
-                    </button>
-                </div>
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
-                        Materials
-                    </button>
-                </div>
-            </div>
-            <div class="row mt-1">
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
-                        Add a new Part
-                    </button>
-                </div>
-            </div> <!-- End of adding button at the panel -->
-            <div class="row"> <!-- Begining of the Bicycle table -->
-                <div class="col-7" id="bicycles">
+
+            <!-- Bicycles Tables-->
+                <div class="col-10" id="bicycles">
                     <h3>Bicycles</h3>
                     <table class="table table-bordered">
                         <thead>
@@ -36,36 +20,72 @@
                             <th class="sort pointer-cursor" data-sort="color">Color</th>
                             <th class="sort pointer-cursor" data-sort="finishes">Finishes</th>
                             <th class="sort pointer-cursor" data-sort="grade">Grade</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity</th>
+                            <th class="sort pointer-cursor" data-sort="quantity">Quantity In Stock</th>
                             <th>Operations</th>
                         </thead>
                         <tbody class="list">  <!-- Edit and Delete button -->
                         </tbody>
                     </table>
-                    <ul class="pagination"> <!-- Pagination for pages -->
-                    </ul>
+
+                    <!--new bicycle Button-->
+                    <div class="row">
+                        <div class="col-5">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
+                                Add a new Bicyle
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-5" id="parts"> <!-- Table for parts -->
+            </div>
+            <br>
+            <div class="row">
+            <!-- Parts Table-->
+                <div class="col-10" id="parts">
                     <h3>Parts</h3>
                     <table class="table table-bordered">
                         <thead>
-                            <th class="sort pointer-cursor" data-sort="type">Type</th>
-                            <th class="sort pointer-cursor" data-sort="color">Color</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity</th>
+                            <th class="sort pointer-cursor" data-sort="type">PartID</th>
+                            <th class="sort pointer-cursor" data-sort="color">Part Name</th>
+                            <th class="sort pointer-cursor" data-sort="quantity">Quantity In Stock</th>
                             <th>Operations</th>
                         </thead>                 <!-- Edit and Delete in the table -->
                         <tbody class="list">
                         </tbody>
                     </table>
-                    <ul class="pagination">   <!-- Pagination for pages -->
-                    </ul>
+
+                    <!-- New Part button-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
+                        Add a new Part
+                    </button>   
+                </div>
+            </div>
+            <br>
+            <div class="row">
+            <!-- Materials Table-->
+                <div class="col-10" id="materials">
+                    <h3>Materials</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <th class="sort pointer-cursor" data-sort="type">MaterialID</th>
+                            <th class="sort pointer-cursor" data-sort="color">Material Name</th>
+                            <th class="sort pointer-cursor" data-sort="quantity">Quantity in stock</th>
+                            <th>Operations</th>
+                        </thead>
+                        <tbody class="list">
+
+                        </tbody>
+                    </table>
+                    <!-- Materials Button-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
+                        Add New Materials
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal the popup when click to add or edit a bicycles -->
+<!-- Modal Add a new Bicycle popup -->
 <div class="modal fade" id="bicycle_modal" tabindex="-1" role="dialog" aria-labelledby="bicycle_modal_lable" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -79,60 +99,67 @@
                 <form>
                     <div class="form-group">
                         <label for="bicyle_type_input">Type</label>
-                        <input id="bicyle_type_input" type="text" class="form-control" placeholder="Type">
+                        <input id="bicyle_type_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_size_input">Size</label>
-                        <input id="bicyle_size_input" type="text" class="form-control" placeholder="Size">
+                        <input id="bicyle_size_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_color_input">Color</label>
-                        <input id="bicyle_color_input" type="text" class="form-control" placeholder="Color">
+                        <input id="bicyle_color_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_finishes_input">Finishes</label>
-                        <input id="bicyle_finishes_input" type="text" class="form-control" placeholder="Finishes">
+                        <input id="bicyle_finishes_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_grade_input">Grade</label>
-                        <input id="bicyle_grade_input" type="text" class="form-control" placeholder="Grade">
+                        <input id="bicyle_grade_input" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bicyle_quantity_input">Quantity</label>
-                        <input id="bicyle_quantity_input" type="text" class="form-control" placeholder="Quantity">
-                    </div>  <!-- End of Modal body for input -->
+                        <input id="bicyle_quantity_input" type="text" class="form-control" >
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer"> <!-- Modal or Popup footer -->
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
-</div> <-- End of the bicycle modal -->
+</div>
 
-<!-- Modal for the bicycle material -->
+<!-- Materials popup window-->
 <div class="modal fade" id="materials_modal" tabindex="-1" role="dialog" aria-labelledby="materials_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="materials_modal_label">Materials</h5>
+                <h5 class="modal-title" id="materials_modal_label"> Materials</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <form>
+                    <div class="form-group">
+                        <label for="material_name_input">Material Name</label>
+                        <input id="material_name_input" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="material_quantity_input">Quantity</label>
+                        <input id="material_quantity_input" type="text" class="form-control">
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Add New Material</button>
+                </div>
             </div>
         </div>
     </div>
-</div> <!-- End of the modal for the bycycle -->
+</div>
 
-<!-- Beginning of the Modal for the bicycle parts -->
+<!--Add New Part POP up window Modal-->
 <div class="modal fade" id="part_modal" tabindex="-1" role="dialog" aria-labelledby="part_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -145,30 +172,25 @@
             <div class="modal-body"> <!-- Modal body for the input or form -->
                 <form>
                     <div class="form-group">
-                        <label for="part_type_input">Type</label>
-                        <input id="part_type_input" type="text" class="form-control" placeholder="Type">
+                        <label for="part_type_input">Part Name</label>
+                        <input id="part_type_input" type="text" class="form-control">
                     </div>
-
                     <div class="form-group">
-                        <label for="part_color_input">Color</label>
-                        <input id="part_color_input" type="text" class="form-control" placeholder="Color">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="part_quantity_input">Quantity</label>
-                        <input id="part_quantity_input" type="text" class="form-control" placeholder="Quantity">
+                        <label for="parts_quantity_input">Quantity</label>
+                        <input id="parts_quantity_input" type="text" class="form-control">
                     </div>
                 </form>
-            </div>  <!-- End of the form input modal -->
-            <div class="modal-footer"> <!-- Footer of the modal with button -->
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Add New Part</button>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Javascript for edit bicycle button -->
+
+<!-- Everything After This point to be deleted-->
+<!-------------------------------------------------------------------------------------------------------------------------->
 <script>
     function editBicycle(id){
         $('#bicycle_modal').modal('show');

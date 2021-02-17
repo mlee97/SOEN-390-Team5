@@ -13,11 +13,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/product-manager', function(){
-    return view ('product-manager');
+Route::get('/assembly', function(){
+    return view ('assembly');
 })
 ->middleware('auth')
-->name("productManager");
+->name("assembly");
+
+Route::get('/inventory', function(){
+    return view ('inventory');
+})
+->middleware('auth')
+->name("inventory");
 
 
 Route::get('/', function () {
