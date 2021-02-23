@@ -25,6 +25,8 @@ Route::get('/inventory', function(){
 ->middleware('auth')
 ->name("inventory");
 
+Route::post('/inventory', 'BikeController@test')
+        ->name('create.bike');
 
 Route::get('/', function () {
     return view('welcome');
