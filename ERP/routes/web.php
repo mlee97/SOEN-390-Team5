@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BikeController;
+use App\Http\Controllers\PartController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +23,21 @@ Route::get('/assembly', function(){
 ->middleware('auth')
 ->name("assembly");
 
+
 Route::get('/inventory', function(){
     return view ('inventory');
 })
 ->middleware('auth')
 ->name("inventory");
+
+Route::post('/inventory', [BikeController::class, 'createBike'])
+        ->name('create.bike');
+
+Route::post('/inventory', [PartController::class, 'createPart'])
+        ->name('create.part');
+
+Route::post('/inventory', [MaterialController::class, 'createMaterial'])
+->name('create.material');
 
 Route::get('/jobs', function(){
     return view ('jobs');
@@ -31,6 +45,8 @@ Route::get('/jobs', function(){
 ->middleware('auth')
 ->name("inventory");
 
+Route::post('/jobs', [JobController::class, 'createJob'])
+->name('create.job');
 
 Route::get('/', function () {
     return view('welcome');

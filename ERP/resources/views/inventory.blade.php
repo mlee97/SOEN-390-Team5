@@ -96,35 +96,36 @@
                 </button>
             </div>
             <div class="modal-body"> <!-- Modal body for the input -->
-                <form>
+                <form action={{route('inventory')}} method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="bicyle_type_input">Type</label>
-                        <input id="bicyle_type_input" type="text" class="form-control">
+                        <label for="type">Type</label>
+                        <input id="type" type="text" class="form-control" name="type">
                     </div>
                     <div class="form-group">
-                        <label for="bicyle_size_input">Size</label>
-                        <input id="bicyle_size_input" type="text" class="form-control">
+                        <label for="size">Size</label>
+                        <input id="size" type="text" class="form-control" name="size">
                     </div>
                     <div class="form-group">
-                        <label for="bicyle_color_input">Color</label>
-                        <input id="bicyle_color_input" type="text" class="form-control">
+                        <label for="color">Color</label>
+                        <input id="color" type="text" class="form-control" name="color">
                     </div>
                     <div class="form-group">
-                        <label for="bicyle_finishes_input">Finishes</label>
-                        <input id="bicyle_finishes_input" type="text" class="form-control">
+                        <label for="finish">Finishes</label>
+                        <input id="finish" type="text" class="form-control" name="finish">
                     </div>
                     <div class="form-group">
-                        <label for="bicyle_grade_input">Grade</label>
-                        <input id="bicyle_grade_input" type="text" class="form-control">
+                        <label for="grade">Grade</label>
+                        <input id="grade" type="text" class="form-control" name="grade">
                     </div>
                     <div class="form-group">
-                        <label for="bicyle_quantity_input">Quantity</label>
-                        <input id="bicyle_quantity_input" type="text" class="form-control" >
+                        <label for="quantity_in_stock">Quantity</label>
+                        <input id="quantity_in_stock" type="text" class="form-control" name="quantity_in_stock">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <input type="submit" class="btn btn-primary" value="create bike">
             </div>
         </div>
     </div>
