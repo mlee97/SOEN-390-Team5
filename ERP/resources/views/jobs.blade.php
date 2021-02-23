@@ -19,8 +19,9 @@
                     <table class="table table-bordered">
                         <thead>
                             <th class="sort pointer-cursor" data-sort="jobid">JobID</th>
-                            <th class="sort pointer-cursor" data-sort="color">status</th>
-                            <th>Date created</th>
+                            <th class="sort pointer-cursor" data-sort="status">Date Created</th>
+                            <th class="sort pointer-cursor" data-sort="status">Status</th>
+                            
                         </thead>
                         <tbody class="list">
 
