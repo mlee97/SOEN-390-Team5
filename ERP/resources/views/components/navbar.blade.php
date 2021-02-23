@@ -22,6 +22,9 @@
                     <a class="nav-link active" href="/inventory">Inventory</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" href="/jobs">Jobs</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">Logout </a>
 

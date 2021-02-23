@@ -25,6 +25,12 @@ Route::get('/inventory', function(){
 ->middleware('auth')
 ->name("inventory");
 
+Route::get('/jobs', function(){
+    return view ('jobs');
+})
+->middleware('auth')
+->name("inventory");
+
 
 Route::get('/', function () {
     return view('welcome');
