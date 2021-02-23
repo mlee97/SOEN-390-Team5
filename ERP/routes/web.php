@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,9 @@ Route::get('/assembly', function(){
 })
 ->middleware('auth')
 ->name("assembly");
+
+Route::post('/inventory', [JobController::class, 'createJob'])
+ ->name('create.job');
 
 Route::get('/inventory', function(){
     return view ('inventory');
