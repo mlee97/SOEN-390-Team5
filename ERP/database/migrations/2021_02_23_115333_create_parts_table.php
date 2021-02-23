@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InventoryMaterial extends Migration
+class CreatePartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class InventoryMaterial extends Migration
      */
     public function up()
     {
-        Schema::create('material', function (Blueprint $table) {
+        Schema::create('parts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('material_name');
-            $table->integer('material_quantity_in_stock');
+            $table->string('part_name');
+            $table->integer('part_quantity_in_stock');
         });
     }
 
@@ -28,6 +28,6 @@ class InventoryMaterial extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('parts');
     }
 }
