@@ -22,8 +22,6 @@ class DefaultBikeSeeder extends Seeder
         $defaultBike -> grade = 'Carbon';
         $defaultBike -> quantity_in_stock = 5;
 
-        if($bike == null)
-            $defaultBike->save();
-
+        $defaultBike->save();
     }
 }

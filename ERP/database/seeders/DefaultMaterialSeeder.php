@@ -19,7 +19,6 @@ class DefaultMaterialSeeder extends Seeder
         $defaultMaterial -> material_name = 'Leather';
         $defaultMaterial -> material_quantity_in_stock = 4;
 
-        if($material == null)
-            $defaultMaterial->save();
+        $defaultMaterial->save();
     }
 }

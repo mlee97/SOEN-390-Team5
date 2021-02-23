@@ -18,7 +18,6 @@ class DefaultJobSeeder extends Seeder
         $defaultJob = new Job();
         $defaultJob -> status = 'active';
 
-        if($job == null)
-            $defaultJob->save();
+        $defaultJob->save();
     }
 }

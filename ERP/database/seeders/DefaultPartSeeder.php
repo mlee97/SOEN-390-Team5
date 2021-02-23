@@ -17,9 +17,8 @@ class DefaultPartSeeder extends Seeder
         //
         $defaultPart = new Part();
         $defaultPart -> part_name = 'wheel';
-        $defaultBike -> part_quantity_in_stock = 2;
+        $defaultPart -> part_quantity_in_stock = '2';
 
-        if($part == null)
-            $defaultPart->save();
+        $defaultPart->save();
     }
 }
