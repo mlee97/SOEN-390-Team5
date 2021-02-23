@@ -20,12 +20,12 @@ class BikeController extends Controller
         ]);
 
         Bike::create([
-            'type' => $request->first_name,
-            'size' => $request->last_name,
-            'color' => $request->email,
-            'finish' => $request->user_type,
-            'grade' => Hash::make($request->password),
-            'quantity_in_stock' => Hash::make($request->password),
+            'type' => $request->type,
+            'size' => $request->size,
+            'color' => $request->color,
+            'finish' => $request->finish,
+            'grade' => $request->grade,
+            'quantity_in_stock' => $request->quantity_in_stock,
         ]);
 
         return redirect()->route('inventory')
