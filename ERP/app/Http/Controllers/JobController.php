@@ -18,7 +18,7 @@ class JobController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('assembly')
+        return redirect()->route('job')
         ->with('success_msg', 'Job has been successfully created!');
     }
 
@@ -33,7 +33,7 @@ class JobController extends Controller
 
         $status->save();
 
-        return redirect()->route('assembly')
+        return redirect()->route('job')
             ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
     }
 
