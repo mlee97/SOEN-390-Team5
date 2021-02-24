@@ -41,13 +41,14 @@ Route::get('/assembly', function(){
 // ->name('create.job');
 
 Route::get ('/jobs', [JobController::class, 'goToJobManagement'])
-    ->middleware('auth');;
+    ->middleware('auth')
+    ->name('jobs');
 Route::get('/create-job', [JobController::class, 'goToCreateJob'])
-    ->middleware('auth');;
-Route::post('/create-job', [JobController::class, 'createJob'])
-    ->name('create.job')
     ->middleware('auth');
-
+Route::post('/create-job', [JobController::class, 'createJob'])
+    ->middleware('auth')    
+    ->name('create.job');   
+Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);   
 
 Route::get('/', function () {
     return view('welcome');
