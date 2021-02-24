@@ -78,3 +78,6 @@ Route::post('/login', [UserController::class, 'loginUser'])
 Route::post('/logout', [UserController::class, 'logoutUser'])
     ->middleware('auth')
     ->name('logout');
+
+Route::get('/product-manager', [UserController::class, 'goToProductManager'])
+    ->name('product.manager');
