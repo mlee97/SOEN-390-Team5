@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('user.management')}}">User Management</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{route('logging.main')}}">Logs</a>
+                    </li>
                 @endif
                 @if(Auth::user() != null)
                 <li class="nav-item">
