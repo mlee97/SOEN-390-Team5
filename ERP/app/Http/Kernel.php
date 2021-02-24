@@ -53,7 +53,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'pm.access.only' => \App\Http\Middleware\PMAccessOnly::class,
+        'inventory.access.only' => \App\Http\Middleware\InventoryAccessOnly::class,
         'it.access.only' => \App\Http\Middleware\ITAccessOnly::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

@@ -61,7 +61,7 @@
                             @break
 
                             @case(4)
-                            Production Manager
+                            Inventory
                             @break
 
                             @default

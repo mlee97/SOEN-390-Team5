@@ -29,7 +29,7 @@ class User extends Authenticatable
      * 1 => Human Resources
      * 2 => Floor Worker
      * 3 => Shipping Department
-     * 4 => Production Manager
+     * 4 => Inventory
      */
 
     /**
