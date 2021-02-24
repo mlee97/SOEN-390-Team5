@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit" class="btn btn-primary" value="create bike">
+                                            <input type="submit" class="btn btn-primary" value="edit bike">
                                         </div>
                                     </form>
                                 </div>
@@ -166,7 +166,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body"> <!-- Modal body for the input -->
-                                            <form action="{{route('edit.part')}} method="POST">
+                                            <form action={{route('edit.part')}} method="POST">
                                             @csrf
                                                 <div class="form-group">
                                                     <label for="id">ID</label>
