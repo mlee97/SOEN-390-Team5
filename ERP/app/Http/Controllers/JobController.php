@@ -27,23 +27,25 @@ class JobController extends Controller
         ->with('success_msg', 'Job has been successfully created!');
     }
 
-    public function goToCreateJob() {
-        return view('create-job');
-    }
+    public function updateJobStatus($job_id){
 
-    public function updateJob(Request $request){
-
-        $request->validate([
-            'status' => 'required'
-        ]);
-
-        $status = Job::find($request->job_id);
-        $status->status = $request->status;
-
+        $status = Job::find($job_id);
+     
+        if($status->status == "Queued") {
+            $status->status = "Complete";
+        }
+        else {
+            $status->status = "Queued";
+        }
+     
         $status->save();
 
-        return redirect()->route('job')
+        return redirect()->route('jobs')
             ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+    }
+
+    public function goToCreateJob() {
+        return view('create-job');
     }
 
     public function goToJobManagement(){
