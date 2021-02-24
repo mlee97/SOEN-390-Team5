@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Bike;
+use App\Models\Part;
+use App\Models\Material;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class BikeController extends Controller
 {
@@ -63,4 +69,13 @@ class BikeController extends Controller
 
         return redirect('/');
     }
+
+    public function goToInventory()
+    {
+        $bikes = Bike::all();
+        $parts = Part::all();
+        $materials = Material::all();
+        return view('inventory', ['bikes' => $bikes, 'parts' => $parts, 'materials' => $materials]);
+    }
+
 }

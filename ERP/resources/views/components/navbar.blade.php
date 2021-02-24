@@ -22,7 +22,7 @@
                     <a class="nav-link active" href="/assembly">Assembly</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/inventory">Inventory</a>
+                    <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
                 </li>
                 
                 <li class="nav-item">

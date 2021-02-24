@@ -24,26 +24,17 @@ Route::get('/assembly', function(){
 ->name("assembly");
 
 
-Route::get('/inventory', function(){
+/*Route::get('/inventory', function(){
     return view ('inventory');
 })
 ->middleware('auth')
-->name("inventory");
-
-Route::post('/inventory', [BikeController::class, 'createBike'])
-        ->name('create.bike');
-
-Route::post('/inventory', [PartController::class, 'createPart'])
-        ->name('create.part');
-
-Route::post('/inventory', [MaterialController::class, 'createMaterial'])
-->name('create.material');
+->name("inventory");*/
 
 Route::get('/jobs', function(){
     return view ('jobs');
 })
 ->middleware('auth')
-->name("inventory");
+->name("jobs");
 
 Route::post('/jobs', [JobController::class, 'createJob'])
 ->name('create.job');
@@ -66,6 +57,19 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
 
     Route::post('/update-user', [UserController::class, 'updateUser'])
         ->name('update.user');
+
+    Route::post('/create-bike', [BikeController::class, 'createBike'])
+        ->name('create.bike');
+    
+    Route::post('/delete-bike', [UserController::class, 'deleteBike'])
+        ->name('delete.bike');
+
+    Route::post('/create-part', [PartController::class, 'createPart'])
+        ->name('create.part');
+
+    Route::post('/create-material', [MaterialController::class, 'createMaterial'])
+        ->name('create.material');
+
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
@@ -78,3 +82,6 @@ Route::post('/login', [UserController::class, 'loginUser'])
 Route::post('/logout', [UserController::class, 'logoutUser'])
     ->middleware('auth')
     ->name('logout');
+
+Route::get('/inventory', [BikeController::class, 'goToInventory'])
+    ->name('inventory');

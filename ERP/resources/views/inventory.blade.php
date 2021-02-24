@@ -5,38 +5,52 @@
     <div class="panel panel-primary"> <!-- Panel for the buttons -->
         <div class="panel-heading">
             <h1 class="panel-title">INVENTORY</h1>
-            <p>TO BE REMOVED -- this page is to know what is currently in stock of the company</p>
+            <br/>
         </div>
         <div class="panel-body"> <!-- Begining of the button panel body -->
-            <div class="row">
+        <div class="row">
+            <div class="col-10" id="bicycles">
+            <h3>Bicycles</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Finish</th>
+                            <th scope="col">Grade</th>
+                            <th scope="col">Quantity In Stock</th>
+                            <th scope="col">Stock Status</th>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($bikes as $bike)
+                        <tr>
+                            <td>{{$bike->type}}</td>
+                            <td>{{$bike->size}}</td>
+                            <td>{{$bike->color}}</td>
+                            <td>{{$bike->finish}}</td>
+                            <td>{{$bike->grade}}</td>
+                            <td>{{$bike->quantity_in_stock}}</td>
+                            @if($bike->quantity_in_stock > 10)
+                            <td style="background-color:#00FF00">Good</td>
+                            @else
+                            <td style="background-color:#FF0000">Low</td>
+                            @endif
+                            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBike{{$bike->id}}">Delete</button></td>
+                        </tr>
 
-            <!-- Bicycles Tables-->
-                <div class="col-10" id="bicycles">
-                    <h3>Bicycles</h3>
-                    <table class="table table-bordered">
-                        <thead>
-                            <th class="sort pointer-cursor" data-sort="type">Type</th>
-                            <th class="sort pointer-cursor" data-sort="size">Size</th>
-                            <th class="sort pointer-cursor" data-sort="color">Color</th>
-                            <th class="sort pointer-cursor" data-sort="finishes">Finishes</th>
-                            <th class="sort pointer-cursor" data-sort="grade">Grade</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity In Stock</th>
-                            <th>Operations</th>
-                        </thead>
-                        <tbody class="list">  <!-- Edit and Delete button -->
-                        </tbody>
-                    </table>
-
-                    <!--new bicycle Button-->
-                    <div class="row">
-                        <div class="col-5">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bicycle_modal">
-                                Add a new Bicyle
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                    </tbody>
+                </table>
+                <!--new bicycle Button-->
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bicycle_modal">
+                    Add a new Bicyle
+                </button>
             </div>
+        </div>
+            
             <br>
             <div class="row">
             <!-- Parts Table-->
@@ -44,17 +58,34 @@
                     <h3>Parts</h3>
                     <table class="table table-bordered">
                         <thead>
-                            <th class="sort pointer-cursor" data-sort="type">PartID</th>
-                            <th class="sort pointer-cursor" data-sort="color">Part Name</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity In Stock</th>
-                            <th>Operations</th>
-                        </thead>                 <!-- Edit and Delete in the table -->
-                        <tbody class="list">
+                            <tr>
+                                <th scope="col">PartID</th>
+                                <th scope="col">Part Name</th>
+                                <th scope="col">Quantity In Stock</th>
+                                <th scope="col">Stock Status</th>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($parts as $part)
+                            <tr>
+                                <td>{{$part->id}}</td>
+                                <td>{{$part->part_name}}</td>
+                                <td>{{$part->part_quantity_in_stock}}</td>
+                                @if($bike->quantity_in_stock > 10)
+                                <td style="background-color:#00FF00">Good</td>
+                                @else
+                                <td style="background-color:#FF0000">Low</td>
+                                @endif
+                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePart{{$part->id}}">Delete</button></td>
+                            </tr>
+
+                        @endforeach
                         </tbody>
                     </table>
 
                     <!-- New Part button-->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#part_modal">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#part_modal">
                         Add a new Part
                     </button>   
                 </div>
@@ -66,17 +97,33 @@
                     <h3>Materials</h3>
                     <table class="table table-bordered">
                         <thead>
-                            <th class="sort pointer-cursor" data-sort="type">MaterialID</th>
-                            <th class="sort pointer-cursor" data-sort="color">Material Name</th>
-                            <th class="sort pointer-cursor" data-sort="quantity">Quantity in stock</th>
-                            <th>Operations</th>
+                            <tr>
+                                <th scope="col">MaterialID</th>
+                                <th scope="col">Material Name</th>
+                                <th scope="col">Quantity In Stock</th>
+                                <th scope="col">Stock Status</th>
+                                <td></td>
+                            </tr>
                         </thead>
-                        <tbody class="list">
+                        <tbody>
+                        @foreach($materials as $material)
+                            <tr>
+                                <td>{{$material->id}}</td>
+                                <td>{{$material->material_name}}</td>
+                                <td>{{$material->material_quantity_in_stock}}</td>
+                                @if($bike->quantity_in_stock > 10)
+                                <td style="background-color:#00FF00">Good</td>
+                                @else
+                                <td style="background-color:#FF0000">Low</td>
+                                @endif
+                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{$material->id}}">Delete</button></td>
+                            </tr>
 
+                        @endforeach
                         </tbody>
                     </table>
                     <!-- Materials Button-->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materials_modal">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#materials_modal">
                         Add New Materials
                     </button>
                 </div>
@@ -96,37 +143,58 @@
                 </button>
             </div>
             <div class="modal-body"> <!-- Modal body for the input -->
-                <form action={{route('inventory')}} method="POST">
+                <form action={{route('create.bike')}} method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <input id="type" type="text" class="form-control" name="type">
+                        <select id="type" name="type" class="form-control">
+                            <option value="Mountain">Mountain</option>
+                            <option value="Racing">Racing</option>
+                            <option value="Recreational">Recreational</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="size">Size</label>
-                        <input id="size" type="text" class="form-control" name="size">
+                        <label for="size">Frame Size</label>
+                        <select id="size" name="size" class="form-control">
+                            <option value="18">18"</option>
+                            <option value="20">20"</option>
+                            <option value="22">22"</option>
+                            <option value="24">24"</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="color">Color</label>
-                        <input id="color" type="text" class="form-control" name="color">
+                        <select id="color" name="color" class="form-control">
+                            <option value="Red">red</option>
+                            <option value="Blue">blue</option>
+                            <option value="Green">green</option>
+                            <option value="Yellow">yellow</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="finish">Finishes</label>
-                        <input id="finish" type="text" class="form-control" name="finish">
+                        <select id="finish" name="finish" class="form-control">
+                            <option value="Matt">Matt</option>
+                            <option value="Chrome">Chrome</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="grade">Grade</label>
-                        <input id="grade" type="text" class="form-control" name="grade">
+                        <select id="grade" name="grade" class="form-control">
+                            <option value="Aluminium">Aluminium</option>
+                            <option value="Steel">Steel</option>
+                            <option value="Carbon">Carbon</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="quantity_in_stock">Quantity</label>
-                        <input id="quantity_in_stock" type="text" class="form-control" name="quantity_in_stock">
+                        <label for="quantity_in_stock">Quantity in Stock</label>
+                        <input id="quantity_in_stock" name="quantity_in_stock" class="form-control" type="text">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" class="btn btn-primary" value="create bike">
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="create bike">
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -142,19 +210,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action={{route('create.material')}} method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="material_name_input">Material Name</label>
-                        <input id="material_name_input" type="text" class="form-control">
+                        <label for="material_name">Material Name</label>
+                        <input name="material_name" id="material_name" type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="material_quantity_input">Quantity</label>
-                        <input id="material_quantity_input" type="text" class="form-control">
+                        <label for="material_quantity_in_stock">Quantity</label>
+                        <input name="material_quantity_in_stock" id="material_quantity_in_stock" type="text" class="form-control">
                     </div>
-                </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Add New Material</button>
+                    <input type="submit" class="btn btn-primary" value="create material">
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -171,182 +240,24 @@
                 </button>
             </div>
             <div class="modal-body"> <!-- Modal body for the input or form -->
-                <form>
+                <form action={{route('create.part')}} method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="part_type_input">Part Name</label>
-                        <input id="part_type_input" type="text" class="form-control">
+                        <label for="part_name">Part Name</label>
+                        <input name="part_name" id="part_name" type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="parts_quantity_input">Quantity</label>
-                        <input id="parts_quantity_input" type="text" class="form-control">
+                        <label for="part_quantity_in_stock">Quantity</label>
+                        <input name="part_quantity_in_stock" id="part_quantity_in_stock" type="text" class="form-control">
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Add New Part</button>
+                <input type="submit" class="btn btn-primary" value="create part">
             </div>
+            </form>
         </div>
     </div>
 </div>
-<!-- Javascript for edit bicycle button -->
 
-<!-- Everything After This point to be deleted-->
-<!-------------------------------------------------------------------------------------------------------------------------->
-<script>
-    function editBicycle(id){
-        $('#bicycle_modal').modal('show');
-        alert('edit bicycle id ' + id);
-    }
-  //Option based on the column
-    bicycleOptions = {
-        valueNames: ["type", "size", "color", "finishes", "grade", "quantity"],
-        item: function(item) {
-            return `
-        <tr>
-        <td class="type"></td>
-        <td class="size"></td>
-        <td class="color" ></td>
-        <td class="finishes"></td>
-        <td class="grade"></td>
-        <td class="quantity"></td>
-        <td>
-                <button class="btn btn-primary" onClick="editBicycle(${item.id})">
-                Edit    <!-- Button for the edit -->
-                </button>
-                <button class="btn btn-danger" onClick="alert('delete id ' + ${item.id})">
-                Delete   <!-- Button the delete -->
-                </button>
-            </td>
-        </tr>
-        `
-        },
-        pagination: true,
-        page: 5
-    }
- //Some value to fill  should be data from database
-    const bicycles = [{
-            id:1,
-            type: "mountain",
-            size: "big",
-            color: "red",
-            finishes: "good",
-            grade: "A",
-            quantity: 10
-        },
-        {
-            id:2,
-            type: "street",
-            size: "small",
-            color: "blue",
-            finishes: "bad",
-            grade: "C",
-            quantity: 1
-        },
-        {
-            id:3,
-            type: "street",
-            size: "medium",
-            color: "yellow",
-            finishes: "very good",
-            grade: "A+",
-            quantity: 12
-        },
-        {
-            id:4,
-            type: "mountain",
-            size: "big",
-            color: "red",
-            finishes: "good",
-            grade: "A",
-            quantity: 10
-        },
-        {
-            id:5,
-            type: "mountain",
-            size: "big",
-            color: "red",
-            finishes: "good",
-            grade: "A",
-            quantity: 10
-        },
-        {
-            id:6,
-            type: "mountain",
-            size: "big",
-            color: "red",
-            finishes: "good",
-            grade: "A",
-            quantity: 10
-        },
-    ]
-
-    var bicyleList = new List('bicycles', bicycleOptions, bicycles);
-</script>
-
-<!-- Java script for editing parts -->
-<script>
-    function editParts(id) {  //Java script fucntion for edit parts
-        $('#part_modal').modal('show');
-        alert('edit bicyle id ' + id);
-    }
-
-    partsOptions = { // Parts option from the table column.
-        valueNames: ["type", "color", "quantity"],
-        item: function(item) {
-            return `
-        <tr>
-            <td class="type"></td>
-            <td class="color"></td>
-            <td class="quantity"></td>
-            <td>
-                <button class="btn btn-primary" onClick="editParts(${item.id})">
-                Edit
-                </button>
-                <button class="btn btn-danger" onClick="alert('delete id ' + ${item.id})">
-                Delete
-                </button>
-            </td>
-        </tr>
-        `
-        },
-        pagination: true,
-        page: 5
-    }
-// Variable array should be  data from database.
-    const parts = [{
-            id: 1,
-            type: "mountain",
-            color: "red",
-            quantity: 10
-        },
-        {
-            id: 2,
-            type: "mountain",
-            color: "red",
-            quantity: 10
-        },
-        {
-            id: 3,
-            type: "mountain",
-            color: "red",
-            quantity: 10
-        },
-        {
-            id: 4,
-            type: "street",
-            color: "green",
-            quantity: 20
-        },
-        {
-            id: 5,
-            type: "mountain",
-            color: "red",
-            quantity: 10
-        },
-
-    ]
-
-    var bicyleList = new List('parts', partsOptions, parts);
-</script>
 
 @endsection
