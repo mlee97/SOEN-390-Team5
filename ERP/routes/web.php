@@ -78,3 +78,9 @@ Route::post('/login', [UserController::class, 'loginUser'])
 Route::post('/logout', [UserController::class, 'logoutUser'])
     ->middleware('auth')
     ->name('logout');
+
+//Inventory Routes given `inventory.access.only` middleware (prevents non-inventory or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
+    Route::get('/inventory', [UserController::class, 'goToInventory'])
+        ->name('inventory');
+});

@@ -45,6 +45,11 @@ class UserController extends Controller
         return view('User.user-management', ['users' => $users]);
     }
 
+    public function goToInventory()
+    {
+        return view('inventory');
+    }
+
     public function logoutUser(Request $request)
     {
         Auth::guard('web')->logout();
