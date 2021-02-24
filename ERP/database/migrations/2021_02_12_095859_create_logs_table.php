@@ -17,6 +17,7 @@ class CreateLogsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->enum('log_type',['INFO', 'WARNING', 'ERROR']);
+            $table->enum('request_type',['GET', 'POST']);
             $table->string('ip_address');
             $table->string('message');
             $table->timestamps();

@@ -17,6 +17,7 @@ class Log extends Model
         'user_id',
         'message',
         'ip_address',
-        'log_type'
+        'log_type',
+        'request_type'
     ];
 }
