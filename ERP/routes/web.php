@@ -66,6 +66,15 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
 
     Route::post('/create-material', [MaterialController::class, 'createMaterial'])
         ->name('create.material');
+    
+    Route::post('/edit-bike', [BikeController::class, 'editBike'])
+        ->name('edit.bike');
+
+    Route::post('/edit-part', [PartController::class, 'editPart'])
+        ->name('edit.part');
+
+    Route::post('/edit-material', [MaterialController::class, 'editMaterial'])
+        ->name('edit.material');
 
 });
 
@@ -88,3 +97,7 @@ Route::get('deleteBike/{id}',[BikeController::class, 'destroy']);
 Route::get('deletePart/{id}',[PartController::class, 'destroy']);
 
 Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);
+
+Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
+    ->name('update.bike');
+

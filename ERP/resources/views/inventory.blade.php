@@ -38,8 +38,81 @@
                             @else
                             <td style="background-color:#FF0000">Low</td>
                             @endif
-                            <td><a type="button" class="btn btn-danger" href="deleteBike/{{$bike->id}}">Delete</button></td>
+                            <td>
+                                <a class="btn btn-primary" data-placement="top" data-target="#modal-edit-bike{{ $bike->id }}" data-toggle="modal" id="modal-edit-bike">Edit</a>
+                                <a type="button" class="btn btn-danger" href="deleteBike/{{$bike->id}}">Delete</button>
+                            </td>
                         </tr>
+
+                        <div class="modal fade" id="modal-edit-bike{{ $bike->id }}" tabindex="-1" role="dialog" aria-labelledby="edit_bike_modal_lable" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="edit_bike_modal_lable">Bicycle</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body"> <!-- Modal body for the input -->
+                                        <form action={{route('edit.bike')}} method="POST">
+                                            @csrf
+                                            <div class="form-group">
+                                                    <label for="id">ID</label>
+                                                    <input name="id" id="id" type="text" class="form-control" value="{{ old('id')?: $bike->id }}" readonly>
+                                                </div>
+                                            <div class="form-group">
+                                                <label for="type">Type</label>
+                                                <select id="type" name="type" class="form-control" value="{{ old('type')?: $bike->type }}">
+                                                    <option value="Mountain">Mountain</option>
+                                                    <option value="Racing">Racing</option>
+                                                    <option value="Recreational">Recreational</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="size">Frame Size</label>
+                                                <select id="size" name="size" class="form-control" value="{{ old('size')?: $bike->size }}">
+                                                    <option value="18">18"</option>
+                                                    <option value="20">20"</option>
+                                                    <option value="22">22"</option>
+                                                    <option value="24">24"</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="color">Color</label>
+                                                <select id="color" name="color" class="form-control" value="{{ old('color') }}">
+                                                    <option value="Red">red</option>
+                                                    <option value="Blue">blue</option>
+                                                    <option value="Green">green</option>
+                                                    <option value="Yellow">yellow</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="finish">Finishes</label>
+                                                <select id="finish" name="finish" class="form-control" value="{{ old('finish') }}">
+                                                    <option value="Matt">Matt</option>
+                                                    <option value="Chrome">Chrome</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="grade">Grade</label>
+                                                <select id="grade" name="grade" class="form-control" value="{{ old('grade') }}">
+                                                    <option value="Aluminium">Aluminium</option>
+                                                    <option value="Steel">Steel</option>
+                                                    <option value="Carbon">Carbon</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="quantity_in_stock">Quantity in Stock</label>
+                                                <input id="quantity_in_stock" name="quantity_in_stock" class="form-control" type="text" value="{{ old('quantity_in_stock')?: $bike->quantity_in_stock }}">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" class="btn btn-primary" value="create bike">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
                     @endforeach
                     </tbody>
@@ -77,8 +150,44 @@
                                 @else
                                 <td style="background-color:#FF0000">Low</td>
                                 @endif
-                                <td><a type="button" class="btn btn-danger" href="deletePart/{{$part->id}}">Delete</button></td>
+                                <td>
+                                    <a class="btn btn-primary" data-placement="top" data-target="#modal-edit-part{{ $part->id }}" data-toggle="modal" id="modal-edit-part">Edit</a>
+                                    <a type="button" class="btn btn-danger" href="deletePart/{{$part->id}}">Delete</button>
+                                </td>
                             </tr>
+
+                            <div class="modal fade" id="modal-edit-part{{ $part->id }}" tabindex="-1" role="dialog" aria-labelledby="edit_part_modal_lable" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="edit_part_modal_lable">Part</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body"> <!-- Modal body for the input -->
+                                            <form action={{route('edit.part')}} method="POST">
+                                            @csrf
+                                                <div class="form-group">
+                                                    <label for="id">ID</label>
+                                                    <input name="id" id="id" type="text" class="form-control" value="{{ old('id')?: $part->id }}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="part_name">Part Name</label>
+                                                    <input name="part_name" id="part_name" type="text" class="form-control" value="{{ old('part_name')?: $part->part_name }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="part_quantity_in_stock">Quantity</label>
+                                                    <input name="part_quantity_in_stock" id="part_quantity_in_stock" type="text" class="form-control" value="{{ old('part_quantity_in_stock')?: $part->part_quantity_in_stock }}">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" class="btn btn-primary" value="edit part">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         @endforeach
                         </tbody>
@@ -116,8 +225,44 @@
                                 @else
                                 <td style="background-color:#FF0000">Low</td>
                                 @endif
-                                <td><a type="button" class="btn btn-danger" href="deleteMaterial/{{$material->id}}">Delete</button></td>
+                                <td>
+                                    <a class="btn btn-primary" data-placement="top" data-target="#modal-edit-material{{ $part->id }}" data-toggle="modal" id="modal-edit-material">Edit</a>
+                                    <a type="button" class="btn btn-danger" href="deleteMaterial/{{$material->id}}">Delete</button>
+                                </td>
                             </tr>
+
+                            <div class="modal fade" id="modal-edit-material{{ $part->id }}" tabindex="-1" role="dialog" aria-labelledby="edit_material_modal_lable" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="edit_material_modal_lable">Material</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body"> <!-- Modal body for the input -->
+                                            <form action={{route('edit.material')}} method="POST">
+                                            @csrf
+                                                <div class="form-group">
+                                                    <label for="id">ID</label>
+                                                    <input name="id" id="id" type="text" class="form-control" value="{{ old('id')?: $material->id }}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="material_name">Material Name</label>
+                                                    <input name="material_name" id="material_name" type="text" class="form-control" value="{{ old('material_name')?: $material->material_name }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="material_quantity_in_stock">Quantity</label>
+                                                    <input name="material_quantity_in_stock" id="material_quantity_in_stock" type="text" class="form-control" value="{{ old('material_quantity_in_stock')?: $material->material_quantity_in_stock }}">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" class="btn btn-primary" value="edit material">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         @endforeach
                         </tbody>
