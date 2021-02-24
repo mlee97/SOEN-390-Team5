@@ -95,6 +95,11 @@ class UserController extends Controller
         return view('User.user-management', ['users' => $users]);
     }
 
+    public function goToInventory()
+    {
+        return view('inventory');
+    }
+
     public function logoutUser(Request $request)
     {
         $msg_str = 'User has logged out of the ERP System';

@@ -11,20 +11,28 @@
         <div class="panel-body">
 
             <div class="row">
-
-            <!-- Bicycles Tables-->
                 <div class="col-10" id="bicycles">
-                    <h3>Jobs</h3>
-
+                    <h3>Jobs 
+                    <form action="{{route('create.job')}}">
+                    <button type="submit" class="btn btn-primary">Add new job</button>
+                    </form>
+                    </h3>
                     <table class="table table-bordered">
                         <thead>
                             <th class="sort pointer-cursor" data-sort="jobid">JobID</th>
                             <th class="sort pointer-cursor" data-sort="status">Date Created</th>
                             <th class="sort pointer-cursor" data-sort="status">Status</th>
-                            
+                            <th>Operations</th>
                         </thead>
                         <tbody class="list">
-
+                        @foreach ($jobs as $job)
+                            <tr>
+                                <th>{{$job->id}}</th>
+                                <th>{{$job->created_at}}</th>
+                                <th>{{$job->status}}</th>
+                                <td><button type="button" class="btn btn-primary">edit status</button></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
