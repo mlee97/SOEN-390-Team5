@@ -26,10 +26,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/assembly">Assembly</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
-                </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">Logout </a>

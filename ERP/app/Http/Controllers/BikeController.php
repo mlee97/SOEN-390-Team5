@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Bike;
 use App\Models\Part;
@@ -10,13 +10,14 @@ use App\Models\Material;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class BikeController extends Controller
 {
     //
     public function createBike(Request $request){
-        
+
         $request->validate([
             'type' => 'required|string|max:255',
             'size' => 'required|string|max:255',
@@ -57,7 +58,7 @@ class BikeController extends Controller
             'grade' => 'required|string|max:255',
             'quantity_in_stock' => 'required|integer',
         ]);
-        
+
         $bike = Bike::find($request->id);
         $bike->type = $request->type;
         $bike->size = $request->size;

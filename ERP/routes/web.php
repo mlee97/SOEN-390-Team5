@@ -67,24 +67,6 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
     Route::post('/update-user', [UserController::class, 'updateUser'])
         ->name('update.user');
 
-    Route::post('/create-bike', [BikeController::class, 'createBike'])
-        ->name('create.bike');
-
-    Route::post('/create-part', [PartController::class, 'createPart'])
-        ->name('create.part');
-
-    Route::post('/create-material', [MaterialController::class, 'createMaterial'])
-        ->name('create.material');
-    
-    Route::post('/edit-bike', [BikeController::class, 'editBike'])
-        ->name('edit.bike');
-
-    Route::post('/edit-part', [PartController::class, 'editPart'])
-        ->name('edit.part');
-
-    Route::post('/edit-material', [MaterialController::class, 'editMaterial'])
-        ->name('edit.material');
-
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
@@ -98,21 +80,36 @@ Route::post('/logout', [UserController::class, 'logoutUser'])
     ->middleware('auth')
     ->name('logout');
 
-Route::get('/inventory', [BikeController::class, 'goToInventory'])
-    ->name('inventory');
-
-Route::get('deleteBike/{id}',[BikeController::class, 'destroy']);
-
-Route::get('deletePart/{id}',[PartController::class, 'destroy']);
-
-Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);
-
-Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
-    ->name('update.bike');
-
 
 //Inventory Routes given `inventory.access.only` middleware (prevents non-inventory or non-IT personal from accessing this route)
 Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
-    Route::get('/inventory', [UserController::class, 'goToInventory'])
+    Route::get('/inventory', [BikeController::class, 'goToInventory'])
         ->name('inventory');
+
+    Route::post('/create-bike', [BikeController::class, 'createBike'])
+        ->name('create.bike');
+
+    Route::post('/create-part', [PartController::class, 'createPart'])
+        ->name('create.part');
+
+    Route::post('/create-material', [MaterialController::class, 'createMaterial'])
+        ->name('create.material');
+
+    Route::post('/edit-bike', [BikeController::class, 'editBike'])
+        ->name('edit.bike');
+
+    Route::post('/edit-part', [PartController::class, 'editPart'])
+        ->name('edit.part');
+
+    Route::post('/edit-material', [MaterialController::class, 'editMaterial'])
+        ->name('edit.material');
+
+    Route::get('deleteBike/{id}',[BikeController::class, 'destroy']);
+
+    Route::get('deletePart/{id}',[PartController::class, 'destroy']);
+
+    Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);
+
+    Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
+        ->name('update.bike');
 });

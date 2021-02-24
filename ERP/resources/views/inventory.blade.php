@@ -123,7 +123,7 @@
                 </button>
             </div>
         </div>
-            
+
             <br>
             <div class="row">
             <!-- Parts Table-->
@@ -166,7 +166,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body"> <!-- Modal body for the input -->
-                                            <form action={{route('edit.part')}} method="POST">
+                                            <form action="{{route('edit.part')}} method="POST">
                                             @csrf
                                                 <div class="form-group">
                                                     <label for="id">ID</label>
@@ -196,7 +196,7 @@
                     <!-- New Part button-->
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#part_modal">
                         Add a new Part
-                    </button>   
+                    </button>
                 </div>
             </div>
             <br>
