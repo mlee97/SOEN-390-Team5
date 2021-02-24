@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BikeController;
+use App\Http\Controllers\PartController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/assembly', function(){
+    return view ('assembly');
+})
+->middleware('auth')
+->name("assembly");
+
+
+Route::get('/inventory', function(){
+    return view ('inventory');
+})
+->middleware('auth')
+->name("inventory");
+
+Route::post('/inventory', [BikeController::class, 'createBike'])
+        ->name('create.bike');
+
+Route::post('/inventory', [PartController::class, 'createPart'])
+        ->name('create.part');
+
+Route::post('/inventory', [MaterialController::class, 'createMaterial'])
+->name('create.material');
+
+Route::get('/jobs', function(){
+    return view ('jobs');
+})
+->middleware('auth')
+->name("inventory");
+
+Route::post('/jobs', [JobController::class, 'createJob'])
+->name('create.job');
 
 Route::get('/', function () {
     return view('welcome');
