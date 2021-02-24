@@ -16,7 +16,7 @@ class DefaultJobSeeder extends Seeder
     {
         //
         $defaultJob = new Job();
-        $defaultJob -> status = 'active';
+        $defaultJob -> status = 'Queued';
 
         $defaultJob->save();
     }
