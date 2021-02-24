@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
 
     Route::get('/logging', [LogController::class, 'goToLogManagement'])
         ->name('logging.main');
+
+    Route::get('/logging-export', [LogController::class, 'exportLogs'])
+        ->name('logging.export');
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
