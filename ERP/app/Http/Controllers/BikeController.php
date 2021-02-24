@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Bike;
 use App\Models\Part;
@@ -77,5 +78,32 @@ class BikeController extends Controller
         $materials = Material::all();
         return view('inventory', ['bikes' => $bikes, 'parts' => $parts, 'materials' => $materials]);
     }
+
+    public function updateUser(Request $request){
+
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|',
+            'user_type' => 'required'
+        ]);
+
+        $user = User::find($request->user_id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->user_type = $request->user_type;
+
+        $user->save();
+
+        return redirect()->route('user.management')
+            ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+    }
+
+     public function destroy($id) {
+        DB::delete('delete from bikes where id = ?',[$id]);
+        return redirect('/inventory')
+            ->with('success_msg', 'Bike Deleted');
+     }
 
 }

@@ -60,9 +60,6 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
 
     Route::post('/create-bike', [BikeController::class, 'createBike'])
         ->name('create.bike');
-    
-    Route::post('/delete-bike', [UserController::class, 'deleteBike'])
-        ->name('delete.bike');
 
     Route::post('/create-part', [PartController::class, 'createPart'])
         ->name('create.part');
@@ -85,3 +82,9 @@ Route::post('/logout', [UserController::class, 'logoutUser'])
 
 Route::get('/inventory', [BikeController::class, 'goToInventory'])
     ->name('inventory');
+
+Route::get('deleteBike/{id}',[BikeController::class, 'destroy']);
+
+Route::get('deletePart/{id}',[PartController::class, 'destroy']);
+
+Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);

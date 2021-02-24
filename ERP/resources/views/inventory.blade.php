@@ -38,7 +38,7 @@
                             @else
                             <td style="background-color:#FF0000">Low</td>
                             @endif
-                            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBike{{$bike->id}}">Delete</button></td>
+                            <td><a type="button" class="btn btn-danger" href="deleteBike/{{$bike->id}}">Delete</button></td>
                         </tr>
 
                     @endforeach
@@ -72,12 +72,12 @@
                                 <td>{{$part->id}}</td>
                                 <td>{{$part->part_name}}</td>
                                 <td>{{$part->part_quantity_in_stock}}</td>
-                                @if($bike->quantity_in_stock > 10)
+                                @if($part->part_quantity_in_stock > 10)
                                 <td style="background-color:#00FF00">Good</td>
                                 @else
                                 <td style="background-color:#FF0000">Low</td>
                                 @endif
-                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePart{{$part->id}}">Delete</button></td>
+                                <td><a type="button" class="btn btn-danger" href="deletePart/{{$part->id}}">Delete</button></td>
                             </tr>
 
                         @endforeach
@@ -111,12 +111,12 @@
                                 <td>{{$material->id}}</td>
                                 <td>{{$material->material_name}}</td>
                                 <td>{{$material->material_quantity_in_stock}}</td>
-                                @if($bike->quantity_in_stock > 10)
+                                @if($material->material_quantity_in_stock > 10)
                                 <td style="background-color:#00FF00">Good</td>
                                 @else
                                 <td style="background-color:#FF0000">Low</td>
                                 @endif
-                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{$material->id}}">Delete</button></td>
+                                <td><a type="button" class="btn btn-danger" href="deleteMaterial/{{$material->id}}">Delete</button></td>
                             </tr>
 
                         @endforeach

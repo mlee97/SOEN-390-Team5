@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Material;
 
@@ -47,4 +48,10 @@ class MaterialController extends Controller
 
         return redirect('/');
     }
+
+    public function destroy($id) {
+        DB::delete('delete from materials where id = ?',[$id]);
+        return redirect('/inventory')
+            ->with('success_msg', 'Material Deleted');
+     }
 }
