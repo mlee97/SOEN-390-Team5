@@ -39,14 +39,19 @@ Route::post('/inventory', [PartController::class, 'createPart'])
 Route::post('/inventory', [MaterialController::class, 'createMaterial'])
 ->name('create.material');
 
-Route::get('/jobs', function(){
-    return view ('jobs');
-})
-->middleware('auth')
-->name("inventory");
+// Route::get('/jobs', function(){
+//     return view ('jobs');
+// })
+// ->middleware('auth')
+// ->name("inventory");
 
-Route::post('/jobs', [JobController::class, 'createJob'])
-->name('create.job');
+// Route::post('/jobs', [JobController::class, 'createJob'])
+// ->name('create.job');
+
+Route::get ('/jobs', [JobController::class, 'goToJobManagement']);
+Route::get('/create-job', [JobController::class, 'goToCreateJob']);
+Route::post('/create-job', [JobController::class, 'createJob'])
+    ->name('create.job');
 
 Route::get('/', function () {
     return view('welcome');
