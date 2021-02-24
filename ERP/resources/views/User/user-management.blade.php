@@ -60,6 +60,10 @@
                             Shipping Department
                             @break
 
+                            @case(4)
+                            Inventory
+                            @break
+
                             @default
                             Undefined User Type
                         @endswitch

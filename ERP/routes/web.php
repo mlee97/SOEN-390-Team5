@@ -101,3 +101,9 @@ Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);
 Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
     ->name('update.bike');
 
+
+//Inventory Routes given `inventory.access.only` middleware (prevents non-inventory or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
+    Route::get('/inventory', [UserController::class, 'goToInventory'])
+        ->name('inventory');
+});

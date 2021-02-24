@@ -14,6 +14,11 @@
                     <a class="nav-link active" href="{{route('user.management')}}">User Management</a>
                 </li>
                 @endif
+                @if(Auth::user()->user_type==4)
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
+                </li>
+                @endif
                 @if(Auth::user() != null)
                 <li class="nav-item">
                     <a class="nav-link active" href="/jobs">Jobs</a>
