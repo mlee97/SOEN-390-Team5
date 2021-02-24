@@ -17,8 +17,8 @@ class InventoryAccessOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()-> user_type == 1 || Auth::user()-> user_type == 2 || Auth::user()-> user_type == 3)
-            return redirect('/'); //redirects user to main page if they are not IT personal or inventory personnel
+        if(Auth::user()-> user_type != 4)
+            return redirect('/'); //redirects user to main page if they are not inventory personnel
         else {
             return $next($request); //allows request to proceed as usual
         }
