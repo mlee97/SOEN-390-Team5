@@ -25,7 +25,7 @@
                                 <td>{{$job->id}}</td>
                                 <td>{{$job->created_at}}</td>
                                 <td>{{$job->status}}</td>
-                                <td><a type="button" class="btn btn-primary" href="toggle-job-status/{{$job->id}}">Toggle Status</a></td>
+                                <td><a type="button" class="btn btn-primary" href="toggle-job-status/{{$job->id}}">Toggle Status</a> <a type="button" class="btn btn-danger" href="delete-job/{{$job->id}}">Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>

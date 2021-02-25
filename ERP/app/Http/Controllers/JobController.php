@@ -60,7 +60,27 @@ class JobController extends Controller
         ->with('success_msg', 'Job has been successfully created!');
     }
 
+    public function deleteJob($id, Request $request){
+
+        $job = Job::find($id);
+        $job->delete();
+
+        $msg_str = 'Job with ID '. $id . ' successfully deleted';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request ->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
+
+        return redirect()->route('jobs')
+            ->with('success_msg', 'Job has been successfully deleted'); //Send a temporary success message. This is saved in the session
+    }
+
+
     public function updateJobStatus($job_id, Request $request){
+
 
         $status = Job::find($job_id);
 

@@ -48,6 +48,7 @@ Route::get('/create-job', [JobController::class, 'goToCreateJob'])
 Route::post('/create-job', [JobController::class, 'createJob'])
     ->middleware('auth')    
     ->name('create.job');   
+Route::get('delete-job/{job_id}', [JobController::class, 'deleteJob']);    
 Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);   
 
 Route::get('/', function () {
