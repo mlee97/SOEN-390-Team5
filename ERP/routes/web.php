@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
@@ -69,6 +70,11 @@ Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
     Route::post('/update-user', [UserController::class, 'updateUser'])
         ->name('update.user');
 
+    Route::get('/logging', [LogController::class, 'goToLogManagement'])
+        ->name('logging.main');
+
+    Route::get('/logging-export', [LogController::class, 'exportLogs'])
+        ->name('logging.export');
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
