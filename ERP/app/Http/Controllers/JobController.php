@@ -27,6 +27,15 @@ class JobController extends Controller
         ->with('success_msg', 'Job has been successfully created!');
     }
 
+    public function deleteJob($id){
+
+        $job = Job::find($id);
+        $job->delete(); 
+
+        return redirect()->route('jobs')
+            ->with('success_msg', 'Job has been successfully deleted'); //Send a temporary success message. This is saved in the session
+    }
+
     public function updateJobStatus($job_id){
 
         $status = Job::find($job_id);
