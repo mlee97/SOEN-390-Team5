@@ -40,12 +40,13 @@
                 </div>
 
                 <div class="p-2">
-                    <select name="user_type" class="form-select" required>
+                    <select name="user_type" class="form-control" required>
                         <option value="">-- SELECT USER TYPE --</option>
                         <option value="0">IT Department</option>
                         <option value="1">Human Resources (HR)</option>
                         <option value="2">Floor Worker</option>
                         <option value="3">Shipping Department</option>
+                        <option value="4">Inventory</option>
                     </select>
                 </div>
 

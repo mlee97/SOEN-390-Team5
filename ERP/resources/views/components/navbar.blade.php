@@ -13,18 +13,45 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('user.management')}}">User Management</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{route('logging.main')}}">Logs</a>
+                    </li>
+                @endif
+                @if(Auth::user()->user_type==4)
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
+                </li>
                 @endif
                 @if(Auth::user() != null)
                 <li class="nav-item">
+                    <a class="nav-link active" href="/jobs">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/assembly">Assembly</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">Logout</a>
+                                        document.getElementById('logout-form').submit();">Logout </a>
+
                     <form id="logout-form" action="{{url('/logout')}}" method="POST">
                         {{csrf_field()}}
                     </form>
+
                 </li>
-                    @endif
+                @endif
 
 
+
+
+            </ul>
+
+            <ul class="navbar-nav mr-auto" style="position: absolute; right:0;">
+                <li class="nav-item active">
+                    <a class="nav-link">
+                        {{Auth::user()->last_name}}
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
