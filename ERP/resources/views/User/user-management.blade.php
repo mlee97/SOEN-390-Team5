@@ -19,7 +19,7 @@
 
         <form action="{{route('create.user')}}">
             <div class="d-grid gap-2 col-3 mx-auto mt-5">
-            <button class="btn btn-primary" type="submit">Create User</button>
+            <button class="btn btn-primary btn-block" type="submit">Create User</button>
             </div>
         </form>
 
@@ -70,7 +70,7 @@
                     </td>
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUser{{$user->id}}">Edit</button></td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUser{{$user->id}}">Edit</button></td>
                 </tr>
 
             @endforeach
@@ -85,7 +85,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">EDIT USER:  {{$user->first_name}} {{$user->last_name}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <form action={{route('update.user')}} method="POST">
@@ -109,7 +109,7 @@
 
                                 <div class="p-2">
                                     <label for="user_type" class="form-label">User type</label>
-                                    <select id="user_type" name="user_type" class="form-select" required>
+                                    <select id="user_type" name="user_type" class="form-control" required>
                                         <option value="">-- SELECT USER TYPE --</option>
                                         <option value="0" @if($user->user_type ==0) selected @endif>IT Department</option>
                                         <option value="1" @if($user->user_type ==1) selected @endif>Human Resources (HR)</option>
@@ -126,7 +126,7 @@
                             </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
 
