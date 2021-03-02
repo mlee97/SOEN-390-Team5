@@ -145,7 +145,7 @@ class BikeController extends Controller
              'request_type' => 'POST',
              'message' => $msg_str,
          ]);
-        return redirect('/inve ntory')
+        return redirect('/inventory')
             ->with('success_msg', 'Bike Deleted');
      }
 
