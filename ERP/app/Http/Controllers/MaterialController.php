@@ -19,7 +19,7 @@ class MaterialController extends Controller
     */
     public function createMaterial(Request $request){
 
-        //Validate that the all the following fields are specified and that they match their respective data type.
+        //Validate that all the following fields are specified and that they match their respective data type.
         $validator = Validator::make($request->all(), [
             'material_name' => 'required|string|max:255',
             'material_quantity_in_stock' => 'required|integer',
@@ -101,7 +101,7 @@ class MaterialController extends Controller
     */
      public function editMaterial(Request $request) {
 
-        //Validate that the all the following fields are specified and that they match their respective data type.
+        //Validate that all the following fields are specified and that they match their respective data type.
          $validator = Validator::make($request->all(), [
              'id' => 'required|integer',
              'material_name' => 'required|string|max:255',

@@ -19,7 +19,7 @@ class PartController extends Controller
     */
     public function createPart(Request $request){
 
-        //Validate that the all the following fields are specified and that they match their respective data type.
+        //Validate that all the following fields are specified and that they match their respective data type.
         $validator = Validator::make($request->all(), [
             'part_name' => 'required|string|max:255',
             'part_quantity_in_stock' => 'required|integer',
@@ -101,7 +101,7 @@ class PartController extends Controller
     */
     public function editPart(Request $request) {
 
-        //Validate that the all the following fields are specified and that they match their respective data type.
+        //Validate that all the following fields are specified and that they match their respective data type.
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer',
             'part_name' => 'required|string|max:255',

@@ -25,7 +25,7 @@ class BikeController extends Controller
     */
     public function createBike(Request $request){
 
-        //Validate that the all the following fields are specified and that they match their respective data type.
+        //Validate that all the following fields are specified and that they match their respective data type.
         $validator = Validator::make($request->all(), [
             'type' => 'required|string|max:255',
             'size' => 'required|string|max:255',
@@ -88,7 +88,7 @@ class BikeController extends Controller
     */
     public function editBike(Request $request) {
 
-        //Validate that the all the following fields are specified and that they match their respective data type.
+        //Validate that all the following fields are specified and that they match their respective data type.
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer',
             'type' => 'required|string|max:255',
