@@ -4,9 +4,19 @@
 <div class="container-fluid">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h1 class="panel-title">JOBS</h1>
+            <div class="row">
+                <!-- title of the page -->
+                <div class="col-6">
+                    <h1 class="panel-title">JOBS</h1>
+                </div>
+                <!-- button for going to the backlogs page -->
+                <div class="col-6 mt-3">
+                    <a class="btn btn-primary" href="/job-backlog-page">Backlog</a>
+                </div>
+            </div>
             <p>List of jobs that need to be completed</p>
         </div>
+
         <div class="panel-body">
 
             <div class="row">
