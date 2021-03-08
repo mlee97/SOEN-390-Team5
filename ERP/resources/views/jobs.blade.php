@@ -78,7 +78,22 @@
                                 </div>
                                 <div class="tab-pane fade" id="parts">
                                     <!-- real table for showing the parts -->
-                                    <!-- <table></table> -->
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">part</th>
+                                                <th scope="col">state</th>
+                                                <th scope="col">deadline</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
