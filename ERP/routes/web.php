@@ -19,11 +19,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/assembly', function(){
-    return view ('assembly');
+
+Route::get('/assembly', function () {
+    return view('assembly');
 })
-->middleware('auth')
-->name("assembly");
+    ->middleware('auth')
+    ->name("assembly");
 
 /*Route::get('/inventory', function(){
     return view ('inventory');
@@ -41,16 +42,16 @@ Route::get('/assembly', function(){
 // Route::post('/jobs', [JobController::class, 'createJob'])
 // ->name('create.job');
 
-Route::get ('/jobs', [JobController::class, 'goToJobManagement'])
+Route::get('/jobs', [JobController::class, 'goToJobManagement'])
     ->middleware('auth')
     ->name('jobs');
 Route::get('/create-job', [JobController::class, 'goToCreateJob'])
     ->middleware('auth');
 Route::post('/create-job', [JobController::class, 'createJob'])
-    ->middleware('auth')    
-    ->name('create.job');   
-Route::get('delete-job/{job_id}', [JobController::class, 'deleteJob']);    
-Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);   
+    ->middleware('auth')
+    ->name('create.job');
+Route::get('delete-job/{job_id}', [JobController::class, 'deleteJob']);
+Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,8 +59,10 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
+    
+
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
-Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
+Route::group(['middleware' => ['auth', 'it.access.only']], function () {
     Route::get('/create-user', [UserController::class, 'goToCreateUser']);
 
     Route::post('/create-user', [UserController::class, 'createUser'])
@@ -91,7 +94,7 @@ Route::post('/logout', [UserController::class, 'logoutUser'])
 
 
 //Inventory Routes given `inventory.access.only` middleware (prevents non-inventory or non-IT personal from accessing this route)
-Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
+Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
     Route::get('/inventory', [BikeController::class, 'goToInventory'])
         ->name('inventory');
 
@@ -113,11 +116,11 @@ Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
     Route::post('/edit-material', [MaterialController::class, 'editMaterial'])
         ->name('edit.material');
 
-    Route::get('deleteBike/{id}',[BikeController::class, 'destroy']);
+    Route::get('deleteBike/{id}', [BikeController::class, 'destroy']);
 
-    Route::get('deletePart/{id}',[PartController::class, 'destroy']);
+    Route::get('deletePart/{id}', [PartController::class, 'destroy']);
 
-    Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);
+    Route::get('deleteMaterial/{id}', [MaterialController::class, 'destroy']);
 
     Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
         ->name('update.bike');
