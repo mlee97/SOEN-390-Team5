@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
@@ -120,4 +121,10 @@ Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
 
     Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
         ->name('update.bike');
+});
+
+//Shipping Routes given `shipping.access.only` middleware (prevents non-shipping or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
+    Route::get('/shipping', [ShippingController::class, 'goToShipping'])
+        ->name('shipping');
 });

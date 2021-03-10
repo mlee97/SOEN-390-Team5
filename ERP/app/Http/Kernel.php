@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'inventory.access.only' => \App\Http\Middleware\InventoryAccessOnly::class,
         'it.access.only' => \App\Http\Middleware\ITAccessOnly::class,
+        'shipping.access.only' => \App\Http\Middleware\ShippingAccessOnly::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

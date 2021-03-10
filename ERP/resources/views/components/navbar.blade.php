@@ -17,6 +17,11 @@
                         <a class="nav-link active" href="{{route('logging.main')}}">Logs</a>
                     </li>
                 @endif
+                @if(Auth::user()->user_type==3)
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('shipping')}}">Shipping</a>
+                </li>
+                @endif
                 @if(Auth::user()->user_type==4)
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
