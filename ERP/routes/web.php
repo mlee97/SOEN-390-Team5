@@ -6,6 +6,7 @@ use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\AccountantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -124,3 +125,7 @@ Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
     Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
         ->name('update.bike');
 });
+
+// Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
+Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
+    ->name('accountant');
