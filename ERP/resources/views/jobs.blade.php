@@ -73,9 +73,9 @@
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
-                                                <th scope="col">part</th>
-                                                <th scope="col">state</th>
-                                                <th scope="col">deadline</th>
+                                                <th scope="col">Material</th>
+                                                <th scope="col">State</th>
+                                                <th scope="col">Arrival Time</th>
                                             </tr>
                                         </thead>
                                         <tbody>
