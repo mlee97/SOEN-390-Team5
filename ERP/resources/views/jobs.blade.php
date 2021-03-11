@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('inside-body-tag')
 
+
     <div class="container-fluid">
         <div class="panel panel-primary">
             <div class="panel-heading">
