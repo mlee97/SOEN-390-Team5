@@ -43,7 +43,7 @@
     </div>
 
 
-    <!-- 
+    <!--
         modal for showing backlog table
      -->
     <div class="modal fade" id="backlog-tables" tabindex="-1">
@@ -64,10 +64,6 @@
                                     <li class="nav-item">
                                         <!-- tab for showing materials -->
                                         <a class="nav-link active" data-toggle="tab" href="#materials">Materials</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <!-- tab for showing parts -->
-                                        <a class="nav-link" data-toggle="tab" href="#parts">Parts</a>
                                     </li>
                                 </ul>
                             </div>
@@ -90,10 +86,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="tab-pane fade" id="parts">
-                                    <!-- real table for showing the parts -->
-                                    <!-- <table></table> -->
                                 </div>
                             </div>
                         </div>
