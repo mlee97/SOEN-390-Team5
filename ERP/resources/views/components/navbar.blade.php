@@ -1,35 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        
         <a class="navbar-brand" href="/">ERP System</a>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <!--Navbar content-->
             <ul class="navbar-nav">
+                
+                <!--Redirects to home page-->
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
+
+                <!--Redirects to User Management page if the user has permission-->
                 @if(Auth::user()->user_type==0)
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('user.management')}}">User Management</a>
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route('logging.main')}}">Logs</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('logging.main')}}">Logs</a>
+                </li>
                 @endif
+
+                <!--Redirects to Inventory page if the user has permission--><!--Permissions to be implemented-->
                 @if(Auth::user()->user_type==4)
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
                 </li>
                 @endif
+
+                <!--Redirects to Accountant page if the user has permission-->
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('accountant')}}">Sales</a>
+                </li>
+
+                <!--Redirects to Job page if the user has permission-->
                 @if(Auth::user() != null)
                 <li class="nav-item">
                     <a class="nav-link active" href="/jobs">Jobs</a>
                 </li>
+
+                <!--Redirects to Assembly page if the user has permission--><!--Permissions to be implemented-->
                 <li class="nav-item">
                     <a class="nav-link active" href="/assembly">Assembly</a>
                 </li>
 
+                <!--Logs users out-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">Logout </a>
@@ -37,15 +58,12 @@
                     <form id="logout-form" action="{{url('/logout')}}" method="POST">
                         {{csrf_field()}}
                     </form>
-
                 </li>
                 @endif
-
-
-
-
             </ul>
+            <!--End of navbar content-->
 
+            <!--Display current user-->
             <ul class="navbar-nav mr-auto" style="position: absolute; right:0;">
                 <li class="nav-item active">
                     <a class="nav-link">
@@ -53,6 +71,7 @@
                     </a>
                 </li>
             </ul>
+            
         </div>
     </div>
 </nav>
