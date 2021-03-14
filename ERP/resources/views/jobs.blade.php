@@ -14,6 +14,7 @@
                     </div>
                 </div>
             </div>
+
                 <p>List of jobs that need to be completed</p>
             </div>
             <div class="panel-body">
@@ -46,11 +47,11 @@
                          page that it's easily possible using <a> tag.
                           -->
                         <a href="{{route('create.job')}}" class="btn btn-primary">Add new job</a>
+
                     </div>
                 </div>
             </div>
         </div>
-
 
     </div>
 
