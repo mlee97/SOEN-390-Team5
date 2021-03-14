@@ -17,6 +17,7 @@ class CreateBikesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('type');
+            $table->double('price', 2);
             $table->string('size');
             $table->string('color');
             $table->string('finish');

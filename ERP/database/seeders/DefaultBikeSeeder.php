@@ -20,6 +20,7 @@ class DefaultBikeSeeder extends Seeder
         $defaultBike -> color = 'Red';
         $defaultBike -> finish = 'Chrome';
         $defaultBike -> grade = 'Carbon';
+        $defaultBike -> price = 19.95;
         $defaultBike -> quantity_in_stock = 5;
 
         $defaultBike->save();

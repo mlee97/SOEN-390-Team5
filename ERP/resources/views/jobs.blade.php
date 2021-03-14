@@ -42,7 +42,6 @@
         </div>
     </div>
 
-
     <!--
         modal for showing backlog table
      -->
