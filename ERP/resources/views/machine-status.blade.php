@@ -17,12 +17,7 @@
                             <th class="sort pointer-cursor" data-sort="status">Status</th>
                         </thead>
                         <tbody class="list">
-                        @foreach ($machines as $machine)
-                            <tr>
-                                <td>{{$machine->name}}</td>
-                                <td>{{$machine->status}}</td>
-                            </tr>
-                        @endforeach
+            
                         </tbody>
                     </table>
                 </div>

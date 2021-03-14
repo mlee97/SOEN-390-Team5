@@ -24,6 +24,14 @@
                 Inventory
                 @break
 
+                @case(5)
+                Manufacturer Worker
+                @break
+
+                @case(6)
+                Accountant
+                @break
+
                 @default
                 Undefined User Type
             @endswitch</h1>

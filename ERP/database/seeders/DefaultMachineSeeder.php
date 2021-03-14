@@ -15,12 +15,9 @@ class DefaultMachineSeeder extends Seeder
     public function run()
     {
         $defaultMachine = new Machine();
-        $defaultMachine -> name = 'machine';
+        $defaultMachine -> name = 'Default_machine';
         $defaultMachine -> status = 'offline';
 
-
-
         $defaultMachine->save();
-      
     }
 }

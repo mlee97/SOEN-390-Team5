@@ -15,7 +15,8 @@ class Machine extends Model
      * @var array
      */
     protected $fillable = [
-        'status'
+        'name',
+        'status',
     ];
     
 }
