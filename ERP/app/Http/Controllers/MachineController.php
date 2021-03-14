@@ -11,7 +11,9 @@ use Illuminate\Validation\Rules\RequiredIf;
 class MachineController extends Controller
 {
 
-public function goToMachineStatusManagement(Request $request){
+public function goToMachineManagement(Request $request){
+
+    $machines = Machine::all();
 
     $msg_str = 'Machine status management page accessed';
     Log::create([
@@ -21,6 +23,6 @@ public function goToMachineStatusManagement(Request $request){
         'request_type' => 'GET',
         'message' => $msg_str,
     ]);
-    return view('machine_status', ['machines' => $machines]);
+    return view('machine-status', ['machines' => $machines]);
 }
 }

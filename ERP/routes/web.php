@@ -7,6 +7,7 @@ use App\Http\Controllers\PartController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AccountantController;
+use App\Http\Controllers\MachineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,12 +61,15 @@ Route::get('/', function () {
     ->name('home');
 
 //Machine status route to see the current status of a particular machine
-Route::get('/machine-status', function(){
-        return view ('machine-status');
-    })
+// Route::get('/machine-status', function(){
+//         return view ('machine-status');
+//     })
+//     ->middleware('auth')
+//     ->name("machine-status");
+
+Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
     ->middleware('auth')
-    ->name("machine-status");
-    
+    ->name('machine-status');
 
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
 Route::group(['middleware' => ['auth', 'it.access.only']], function () {

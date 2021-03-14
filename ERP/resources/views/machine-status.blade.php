@@ -17,7 +17,7 @@
                             <th class="sort pointer-cursor" data-sort="status">Status</th>
                         </thead>
                         <tbody class="list">
-            
+                
                         </tbody>
                     </table>
                 </div>
