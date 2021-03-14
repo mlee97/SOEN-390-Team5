@@ -59,6 +59,12 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
+//Machine status route to see the current status of a particular machine
+Route::get('/machine-status', function(){
+        return view ('machine-status');
+    })
+    ->middleware('auth')
+    ->name("machine-status");
     
 
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)

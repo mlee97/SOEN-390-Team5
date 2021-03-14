@@ -50,6 +50,11 @@
                     <a class="nav-link active" href="/assembly">Assembly</a>
                 </li>
 
+                <!--Redirects to Machine page if the user has permission--><!--Permissions to be implemented-->
+                <li class="nav-item">
+                    <a class="nav-link active" href="/machine-status">Machine Status</a>
+                </li>
+
                 <!--Logs users out-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
