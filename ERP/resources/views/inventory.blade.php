@@ -1,13 +1,22 @@
 @extends('layouts.master')
 @section('inside-body-tag')
     <!-- Container for the whole page -->
-    <div class="container-fluid">
+    <div class="container-fluid my-4">
         <div class="panel panel-primary"> <!-- Panel for the buttons -->
             <div class="panel-heading">
-                <h1 class="panel-title">INVENTORY</h1>
+                <div class="row">
+                    <div class="col">
+                        <h1 class="panel-title">INVENTORY</h1>
+                    </div>
+                    <div class="col">
+                        <div class="float-right">
+                            @include('components.backlog-modal')
+                        </div>
+                    </div>
+                </div>
                 <br/>
             </div>
-            <div class="panel-body"> <!-- Begining of the button panel body -->
+            <div class="panel-body"> <!-- Beginning of the button panel body -->
                 <div class="row">
                     <div class="col-10" id="bicycles">
                         <h3>Bicycles</h3>
@@ -116,7 +125,8 @@
                                                         <label for="quantity_in_stock">Quantity in Stock</label>
                                                         <input id="quantity_in_stock" name="quantity_in_stock"
                                                                class="form-control" type="text"
-                                                               value="{{ old('quantity_in_stock')?: $bike->quantity_in_stock }}" required>
+                                                               value="{{ old('quantity_in_stock')?: $bike->quantity_in_stock }}"
+                                                               required>
                                                     </div>
 
                                                     <div class="modal-footer">
@@ -307,7 +317,7 @@
                             Add New Materials
                         </button>
 
-                        <button type="button" class="btn btn-success" data-toggle="modal"
+                        <button type="button" class="btn btn-info" data-toggle="modal"
                                 data-target="#order_materials">
                             Order Materials
                         </button>
@@ -333,13 +343,12 @@
                         @csrf
 
 
-
                         <div class="form-group">
                             <label for="order_material_name">Material Name</label>
                             <select id="order_material_name" class="form-control" required>
                                 <option value="">-- SELECT MATERIAL --</option>
                                 @foreach($materials as $material)
-                                <option value={{$material->id}}>{{$material->material_name}}</option>
+                                    <option value={{$material->id}}>{{$material->material_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -415,7 +424,8 @@
                         </div>
                         <div class="form-group">
                             <label for="quantity_in_stock">Quantity in Stock</label>
-                            <input id="quantity_in_stock" name="quantity_in_stock" class="form-control" type="text" required>
+                            <input id="quantity_in_stock" name="quantity_in_stock" class="form-control" type="text"
+                                   required>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -481,13 +491,13 @@
                             <input name="part_quantity_in_stock" id="part_quantity_in_stock" type="text"
                                    class="form-control" required>
                         </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="create part">
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-primary" value="create part">
+                        </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
-    </div>
 
 
 @endsection
