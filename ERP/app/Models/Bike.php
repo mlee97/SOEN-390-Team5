@@ -20,7 +20,13 @@ class Bike extends Model
         'color',
         'finish',
         'grade',
-        'quantity_in_stock'
+        'quantity_in_stock',
+        'price'
     ];
-    
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
 }

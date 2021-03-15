@@ -18,4 +18,9 @@ class Part extends Model
         'part_name',
         'part_quantity_in_stock'
     ];
+
+    public function material(){
+        $this->hasMany(Part::class);
+    }
+
 }
