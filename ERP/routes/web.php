@@ -127,7 +127,7 @@ Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
         ->name('update.bike');
 });
 
-//Shipping Routes given `shipping.access.only` middleware (prevents non-shipping or non-IT personal from accessing this route)
+//Shipping Routes given `shipping.access.only` middleware (prevents non-shipping users from accessing this route)
 Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
     Route::get('/shipping', [ShippingController::class, 'goToShipping'])
         ->name('shipping');
