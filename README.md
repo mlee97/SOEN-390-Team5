@@ -1,7 +1,7 @@
 # Bicycle Manufacturing ERP System [SOEN-390] (Team 5)
 
 ## Objective
-Create an ERP system for a bicycle manufacturing company. We will be developing this software for a real client.
+Create an ERP system for a bicycle manufacturing company. 
 
 ## Description
 An ERP (Enterprise Resource Planning) system is a piece of software meant to help 
