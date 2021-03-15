@@ -51,10 +51,11 @@
                 </li>
 
                 <!--Redirects to Machine page if the user has permission--><!--Permissions to be implemented-->
+                @if(Auth::user()->user_type==5)
                 <li class="nav-item">
                     <a class="nav-link active" href="/machine-status">Machine Status</a>
                 </li>
-
+                @endif
                 <!--Logs users out-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();

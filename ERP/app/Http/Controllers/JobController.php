@@ -24,7 +24,7 @@ class JobController extends Controller
             'status' => 'required',
         ]);
 
-        //If validatin fials user is redirected to inventory
+        //If validatin fails user is redirected to inventory
         if ($validator->fails()) {
 
             $msg_str = 'Job creation failed';
@@ -169,6 +169,7 @@ class JobController extends Controller
             'request_type' => 'GET',
             'message' => $msg_str,
         ]);
+        
         //Redirect user to jobs page and returns jobs list
         return view('jobs', ['jobs' => $jobs]);
     }
