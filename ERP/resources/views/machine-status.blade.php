@@ -15,9 +15,20 @@
                         <thead>
                             <th class="sort pointer-cursor" data-sort="type">Machine</th>
                             <th class="sort pointer-cursor" data-sort="status">Status</th>
+                            <th class="sort pointer-cursor" data-sort="status">Toggle Status</th>
                         </thead>
                         <tbody class="list">
-                
+                        @foreach($machines as $machine)
+                            <tr>
+                                <td>{{$machine->name}}</td>
+                                <td>{{$machine->status}}</td>
+                                @if ($machine->status == "offline")
+                                    <td><a type="button" class="btn btn-danger" href="change-status/{{$machine->id}}">Turn On</button></td>
+                                @else
+                                    <td><a type="button" class="btn btn-danger" href="change-status/{{$machine->id}}">Turn Off</button></td>
+                                @endif
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

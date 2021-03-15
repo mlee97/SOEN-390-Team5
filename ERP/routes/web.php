@@ -71,6 +71,9 @@ Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'
     ->middleware('auth')
     ->name('machine-status');
 
+Route::get('change-status/{id}', [MachineController::class, 'changeStatus'])
+    ->name('change.status');
+
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
 Route::group(['middleware' => ['auth', 'it.access.only']], function () {
     Route::get('/create-user', [UserController::class, 'goToCreateUser']);

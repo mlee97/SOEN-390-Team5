@@ -14,9 +14,6 @@ class DefaultMachineSeeder extends Seeder
      */
     public function run()
     {
-        $defaultMachine = new Machine();
-        $defaultMachine -> name = 'Default_machine';
-        $defaultMachine -> status = 'offline';
 
         $seatMachine = new Machine();
         $seatMachine -> name = 'Seat Machine';
@@ -30,14 +27,24 @@ class DefaultMachineSeeder extends Seeder
         $wheelMachine -> name = 'Wheel Machine';
         $wheelMachine -> status = 'offline';
 
-        $gearMachine = new Machine();
-        $gearMachine -> name = 'Gear Machine';
-        $gearMachine -> status = 'offline';
+        $pedalMachine = new Machine();
+        $pedalMachine -> name = 'Pedal Machine';
+        $pedalMachine -> status = 'offline';
 
-        $defaultMachine->save();
+        $handleMachine = new Machine();
+        $handleMachine -> name = 'Handle Machine';
+        $handleMachine -> status = 'offline';
+
+        $assemblerMachine = new Machine();
+        $assemblerMachine -> name = 'Assembler Machine';
+        $assemblerMachine -> status = 'offline';
+
         $seatMachine->save();
         $frameMachine->save();
         $wheelMachine->save();
-        $gearMachine->save();
+        $pedalMachine->save();
+        $handleMachine->save();
+        $assemblerMachine->save();
+        
     }
 }
