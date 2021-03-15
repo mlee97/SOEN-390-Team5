@@ -26,6 +26,7 @@
                                 @else
                                 <td style="background-color:#FF0000">Offline</td>
                                 @endif
+                                <!-- Change status button -->
                                 @if ($machine->status == "offline")
                                     <td><a type="button" class="btn btn-primary ml-1" href="change-status/{{$machine->id}}">Turn On</button></td>
                                 @else

@@ -12,10 +12,17 @@ use Illuminate\Validation\Rules\RequiredIf;
 class MachineController extends Controller
 {
 
+/**
+ * Display the machine status page
+ * 
+ * @param $request
+ * @return view 
+ */
 public function goToMachineManagement(Request $request){
 
     $machines = Machine::all();
 
+    //Log results
     $msg_str = 'Machine status management page accessed';
     Log::create([
         'user_id' => Auth::user()->id,
@@ -24,13 +31,21 @@ public function goToMachineManagement(Request $request){
         'request_type' => 'GET',
         'message' => $msg_str,
          ]);
+    //Redirects user to machine-status page
     return view('machine-status', ['machines' => $machines]);
 }
 
+/**
+ * Changes the status of the specific machine id
+ * 
+ * @param $request, $id
+ * @return redirect()->route('machine-status')
+ */
 public function changeStatus(Request $request,$id) {
 
     $machine = Machine::find($id);
     print($id);
+    //If the machine is offline switch it to online and vice-versa
     if ($machine->status == "offline")
     {
         $machine->status = "online";
@@ -42,6 +57,7 @@ public function changeStatus(Request $request,$id) {
 
     $machine->save();
 
+    //Log results
     $msg_str = 'Machine with ID '. $machine->id. ' changed status successfully';
     Log::create([
         'user_id' => Auth::user()->id,
@@ -51,6 +67,7 @@ public function changeStatus(Request $request,$id) {
         'message' => $msg_str,
     ]);
     
+    //Redirects user to machine-status page
     return redirect()->route('machine-status')
         ->with('success_msg', 'Changes have been successfully saved');
  }

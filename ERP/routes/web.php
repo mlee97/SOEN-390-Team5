@@ -27,22 +27,7 @@ Route::get('/assembly', function () {
     ->middleware('auth')
     ->name("assembly");
 
-/*Route::get('/inventory', function(){
-    return view ('inventory');
-})
-->middleware('auth')
-->name("inventory");*/
-
-
-// Route::get('/jobs', function(){
-//     return view ('jobs');
-// })
-// ->middleware('auth')
-// ->name("inventory");
-
-// Route::post('/jobs', [JobController::class, 'createJob'])
-// ->name('create.job');
-
+//Jobs routes to see, create, delete and update jobs
 Route::get('/jobs', [JobController::class, 'goToJobManagement'])
     ->middleware('auth')
     ->name('jobs');
@@ -60,13 +45,7 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
-//Machine status route to see the current status of a particular machine
-// Route::get('/machine-status', function(){
-//         return view ('machine-status');
-//     })
-//     ->middleware('auth')
-//     ->name("machine-status");
-
+//Machine status routes to see and change the current status of a particular machine
 Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
     ->middleware('auth')
     ->name('machine-status');

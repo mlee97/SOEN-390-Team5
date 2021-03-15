@@ -9,9 +9,9 @@
                 <p>List of jobs that need to be completed</p>
             </div>
             <div class="panel-body">
-
                 <div class="row">
-                    <div class="col-10" id="bicycles">
+                    <div class="col-10" id="jobs">
+                    <!-- Jobs table -->
                         <h3>Jobs</h3>
                         <table class="table table-bordered">
                             <thead>
