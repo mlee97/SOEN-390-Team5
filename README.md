@@ -33,12 +33,27 @@ many different level. Such features included in the ERP system are:
 
 
 ## Changelog
-### [3.0] - 2021-03-17
+### [3.0](https://github.com/mlee97/SOEN-390-Team5/tree/v3.0) - 2021-03-17
+1. Defects tracking report
+2. Release Plan (Sprint #4 planning)
+3. UI modeling of Sprint #4 user stories
+Updated deliverables: SAD, USB, RMP, Testing Plan
 
 ### [2.0](https://github.com/mlee97/SOEN-390-Team5/tree/v2.0) - 2021-02-24
+- Defects tracking report
+- Release Plan (Sprint #3 planning)
+- UI modeling of Sprint #3 user stories
+- Updated deliverables: SAD, USB, RMP, Testing Plan
 
 ### [1.0](https://github.com/mlee97/SOEN-390-Team5/tree/v1.0) - 2021-02-03
-Sprint 1 deliverables
+- User Stories Backlog (USB)
+- Release Plan (Sprint #2 planning)
+- Software Architecture Document (SAD)
+- Risk Assessment & Risk Management Plan (RMP)
+- UI prototypes for Sprint #2 user stories
+- Testing Plan
+- Running prototype
+
 
 ## Technologies
 Project is created with the following:
