@@ -31,13 +31,16 @@ many different level. Such features included in the ERP system are:
 - Piravien Suntharalingam (ID:40035136) (Github Username: pirasunt)
 - Julien Xu (ID: 40095332) (Github Username: xujulien99)
 
-
+## Changelog
+- Sprint 1
 ## Technologies
 Project is created with the following:
 - [Laravel version: 8.16.1](https://laravel.com/)
   <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           simple for us to access/create our relational databases and make deployement easier</dd>
 - [Docker version: 20.10.5](https://www.docker.com/)
   <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers. These containers run all and only the       required applications which simplifies and accelerates our workflow</dd>
+- [Ubuntu version: 20.10](https://ubuntu.com/)
+  <dd>Ubuntu is an open-source software Linux operating system.</dd>
 - [GitHub](https://github.com/)
   <dd>Github is a free service that allows open-source projects or unlimited private repositories.</dd>
 - [Discord version: 74432](https://discord.com/)
@@ -48,4 +51,7 @@ Project is created with the following:
 The software will implement a model-view-controller (MVC) architectural pattern for a faster development process.
 
 
-## Installation
+## Install
+1. Install [Laravel framework](https://laravel.com/docs/8.x/installation#getting-started-on-windows) using the following guideline.
+2. Install [Ubuntu](https://releases.ubuntu.com/20.10/)
+3. Install [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) using the following guide.
