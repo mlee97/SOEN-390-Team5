@@ -1,7 +1,7 @@
 # Bicycle Manufacturing ERP System [SOEN-390] (Team 5)
 
 ## Objective
-Create an ERP system for a bicycle manufacturing company.
+Create an ERP system for a bicycle manufacturing company. We will be developing this software for a real client.
 
 ## Description
 An ERP (Enterprise Resource Planning) system is a piece of software meant to help 
@@ -20,7 +20,7 @@ many different level. Such features included in the ERP system are:
 - Accounting
 
 
-## Team Members
+## Authors
 - Celia Cai (ID: 40098535) (Github Username: CeliaCaii)
 - Kelvin Chow Wan Chuen (ID: 40029677) (Github Username: WanProduction)
 - Daniel Gauvin (ID: 40061905) (Github Username: DGovi)
@@ -33,14 +33,19 @@ many different level. Such features included in the ERP system are:
 
 
 ## Technologies
-
-- [Laravel](https://laravel.com/)
-  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           easier for us to access/create our relational databases and make deployement easier</dd>
-- [Docker](https://www.docker.com/)
-  <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers.</dd>
+Project is created with the following:
+- [Laravel version: 8.16.1](https://laravel.com/)
+  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           simple for us to access/create our relational databases and make deployement easier</dd>
+- [Docker version: 20.10.5](https://www.docker.com/)
+  <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers. These containers run all and only the       required applications which simplifies and accelerates our workflow</dd>
 - [GitHub](https://github.com/)
-- [Discord](https://discord.com/)
+  <dd>Github is a free service that allows open-source projects or unlimited private repositories.</dd>
+- [Discord version: 74432](https://discord.com/)
+  <dd>Discord is a VoIP, instant messaging and digital distribution platform designed for creating communities.</dd>
+
 
 ## Architecture
+The software will implement a model-view-controller (MVC) architectural pattern for a faster development process.
+
 
 ## Installation
