@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Log;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class JobController extends Controller
             'status' => $request->status,
         ]);
 
-        $msg_str = 'Job bicycle with ID '. $newJob->id. ' successfully created';
+        $msg_str = 'Job with ID '. $newJob->id. ' successfully created';
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request ->ip(),
@@ -122,6 +123,7 @@ class JobController extends Controller
     public function goToJobManagement(Request $request){
 
         $jobs = Job::all();
+        $orders = Order::all();
 
         $msg_str = 'Job management page accessed';
         Log::create([
@@ -131,6 +133,6 @@ class JobController extends Controller
             'request_type' => 'GET',
             'message' => $msg_str,
         ]);
-        return view('jobs', ['jobs' => $jobs]);
+        return view('jobs', ['jobs' => $jobs, 'orders' => $orders]);
     }
 }

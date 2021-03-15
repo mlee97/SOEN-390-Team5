@@ -17,11 +17,11 @@ class Order extends Model
     protected $fillable = [
         'date',
         'status',
-        'order_quantity'
+        'ETA'
     ];
 
     public function materials()
     {
-        return $this->hasMany(Material::class);
+        return $this->belongsToMany(Material::class)->as('material_order_pivot')->withPivot('order_quantity');
     }
 }

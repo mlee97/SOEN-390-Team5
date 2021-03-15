@@ -17,6 +17,8 @@ class CreateJobsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('status');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('bike_id')->references('id')->on('bikes');
         });
     }
 

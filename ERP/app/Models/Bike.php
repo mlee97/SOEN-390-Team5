@@ -29,4 +29,8 @@ class Bike extends Model
         return $this->belongsTo(Job::class);
     }
 
+    public function parts(){
+        return $this->belongsToMany(Part::class);
+    }
+
 }

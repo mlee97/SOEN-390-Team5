@@ -19,8 +19,11 @@ class Part extends Model
         'part_quantity_in_stock'
     ];
 
-    public function material(){
-        $this->hasMany(Part::class);
+    public function materials(){
+        return $this->belongsToMany(Material::class);
     }
 
+    public function bikes(){
+        return $this->belongsToMany(Bike::class);
+    }
 }
