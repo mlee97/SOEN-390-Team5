@@ -31,10 +31,15 @@ many different level. Such features included in the ERP system are:
 - Piravien Suntharalingam (ID:40035136) (Github Username: pirasunt)
 - Julien Xu (ID: 40095332) (Github Username: xujulien99)
 
+
 ## Changelog
-### Sprint 3 - [3.0] - 2021-03-17
-### Sprint 2 - [2.0](https://github.com/mlee97/SOEN-390-Team5/tree/v2.0) - 2021-02-24
-### Sprint 1 - [1.0](https://github.com/mlee97/SOEN-390-Team5/tree/v1.0) - 2021-02-03
+### [3.0] - 2021-03-17
+
+### [2.0](https://github.com/mlee97/SOEN-390-Team5/tree/v2.0) - 2021-02-24
+
+### [1.0](https://github.com/mlee97/SOEN-390-Team5/tree/v1.0) - 2021-02-03
+Sprint 1 deliverables
+
 ## Technologies
 Project is created with the following:
 - [Laravel version: 8.16.1](https://laravel.com/)
