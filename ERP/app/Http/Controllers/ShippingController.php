@@ -24,7 +24,7 @@ class ShippingController extends Controller
     */
     public function goToShipping(Request $request)
     {
-        //Store the data from the Bikes, Parts, and Materials tables into variables
+        //Store the data from the order table into the $order variable/
         $orders = Order::all();
 
         //Log the results of the get request
@@ -37,8 +37,46 @@ class ShippingController extends Controller
             'message' => $msg_str,
         ]);
 
-        //Return the inventory page and an array of arrays containing the data from the bikes, parts, and materials tables.
+        //Return the shipping page and an array of arrays containing the data from the order table.
         return view('shipping', ['orders' => $orders]);
     }
+
+    /**
+    * Toggles the status of a specific order.
+    *
+    * @param  $request  stores the request method and its inputs, cookies, and files that were submitted with the request.
+    * @param  $id       the order id of the order in which the status should be updated.
+    * @return view      the shipping view.
+    */
+    public function toggleOrderStatus($id, Request $request) {
+
+        //Find the particular row in the Order table that we want to update
+        $order = Order::find($id);
+
+        //Apply the status changes depending on the current status of the order.
+        if($order->status == "received") {
+            $order->status = "in transit";
+        }
+        else {
+            $order->status = "received";
+        }
+
+        //Save the changes.
+        $order->save();
+
+        //Log the results
+        $msg_str = 'Order status with ID '. $order->id. ' updated successfully';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request ->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
+        
+        //Return the shipping page with success message.
+        return redirect()->route('shipping')
+            ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+     }
 
 }

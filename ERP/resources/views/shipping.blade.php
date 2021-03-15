@@ -29,11 +29,11 @@
                                     <td>{{$order->order_quantity}}</td>
                                     @if($order->status == 'received')
                                         <td>
-                                            <a type="button" class="btn btn-danger" href="toggleOrderStatus/{{$order->id}}">Cancel Order</button>
+                                            <a type="button" class="btn btn-danger" href="toggle-order-status/{{$order->id}}">Cancel Order</button>
                                         </td>
                                     @else
                                         <td>
-                                            <a type="button" class="btn btn-success" href="toggleOrderStatus/{{$order->id}}">Receive Order</button>
+                                            <a type="button" class="btn btn-success" href="toggle-order-status/{{$order->id}}">Receive Order</button>
                                         </td>
                                     @endif  
                                 </tr>
