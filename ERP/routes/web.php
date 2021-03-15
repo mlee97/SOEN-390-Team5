@@ -131,6 +131,8 @@ Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
 Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
     Route::get('/shipping', [ShippingController::class, 'goToShipping'])
         ->name('shipping');
+    Route::get('/toggle-order-status/{id}', [ShippingController::class, 'toggleOrderStatus'])
+        ->name('toggle.order.status');
 });
 
 // Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
