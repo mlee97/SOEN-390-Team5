@@ -55,10 +55,25 @@ class MasterUserSeeder extends Seeder
         $inventoryUser -> password = Hash::make('password');
         $inventoryUser -> user_type = 4;
 
-        $hrUser->save();
-        $floorUser->save();
-        $shippingUser->save();
-        $inventoryUser->save();
+        $user2 = User::where('email', '=', $hrUser->email)->first();
+
+        if($user2 == null)
+            $hrUser->save();
+
+        $user3 = User::where('email', '=', $floorUser->email)->first();
+
+        if($user3 == null)
+            $floorUser->save();
+
+        $user4 = User::where('email', '=', $shippingUser->email)->first();
+
+        if($user4 == null)
+            $shippingUser->save();
+
+        $user5 = User::where('email', '=', $inventoryUser->email)->first();
+
+        if($user5 == null)
+            $inventoryUser->save();
 
     }
 }
