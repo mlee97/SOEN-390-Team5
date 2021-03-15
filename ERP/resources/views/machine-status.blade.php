@@ -21,9 +21,13 @@
                         @foreach($machines as $machine)
                             <tr>
                                 <td>{{$machine->name}}</td>
-                                <td>{{$machine->status}}</td>
+                                @if($machine->status == "online")
+                                <td style="background-color:#00FF00">Online</td>
+                                @else
+                                <td style="background-color:#FF0000">Offline</td>
+                                @endif
                                 @if ($machine->status == "offline")
-                                    <td><a type="button" class="btn btn-danger" href="change-status/{{$machine->id}}">Turn On</button></td>
+                                    <td><a type="button" class="btn btn-primary ml-1" href="change-status/{{$machine->id}}">Turn On</button></td>
                                 @else
                                     <td><a type="button" class="btn btn-danger" href="change-status/{{$machine->id}}">Turn Off</button></td>
                                 @endif
