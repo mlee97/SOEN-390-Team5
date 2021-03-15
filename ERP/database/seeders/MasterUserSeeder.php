@@ -27,5 +27,38 @@ class MasterUserSeeder extends Seeder
         if($user == null)
             $masterUser->save();
 
+        $hrUser = new User();
+        $hrUser -> first_name = 'Human';
+        $hrUser -> last_name = 'Resources';
+        $hrUser -> email = 'hr@gmail.com';
+        $hrUser -> password = Hash::make('password');
+        $hrUser -> user_type = 1;
+
+        $floorUser = new User();
+        $floorUser -> first_name = 'Floor';
+        $floorUser -> last_name = 'Worker';
+        $floorUser -> email = 'floor@gmail.com';
+        $floorUser -> password = Hash::make('password');
+        $floorUser -> user_type = 2;
+
+        $shippingUser = new User();
+        $shippingUser -> first_name = 'Shipping';
+        $shippingUser -> last_name = 'Department';
+        $shippingUser -> email = 'shipping@gmail.com';
+        $shippingUser -> password = Hash::make('password');
+        $shippingUser -> user_type = 3;
+
+        $inventoryUser = new User();
+        $inventoryUser -> first_name = 'Inventory';
+        $inventoryUser -> last_name = 'Manager';
+        $inventoryUser -> email = 'inventory@gmail.com';
+        $inventoryUser -> password = Hash::make('password');
+        $inventoryUser -> user_type = 4;
+
+        $hrUser->save();
+        $floorUser->save();
+        $shippingUser->save();
+        $inventoryUser->save();
+
     }
 }
