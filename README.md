@@ -35,8 +35,9 @@ many different level. Such features included in the ERP system are:
 ## Technologies
 
 - [Laravel](https://laravel.com/)
-  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern.</dd>
+  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           easier for us to access/create our relational databases and make deployement easier</dd>
 - [Docker](https://www.docker.com/)
+  <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers.</dd>
 - [GitHub](https://github.com/)
 - [Discord](https://discord.com/)
 
