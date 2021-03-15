@@ -32,7 +32,9 @@ many different level. Such features included in the ERP system are:
 - Julien Xu (ID: 40095332) (Github Username: xujulien99)
 
 ## Changelog
-- Sprint 1
+- [3.0] - 2021-03-17
+- [2.0](https://github.com/mlee97/SOEN-390-Team5/tree/v2.0) - 2021-02-24
+- [1.0](https://github.com/mlee97/SOEN-390-Team5/tree/v1.0) - 2021-02-03
 ## Technologies
 Project is created with the following:
 - [Laravel version: 8.16.1](https://laravel.com/)
@@ -53,5 +55,5 @@ The software will implement a model-view-controller (MVC) architectural pattern 
 
 ## Install
 1. Install [Laravel framework](https://laravel.com/docs/8.x/installation#getting-started-on-windows) using the following guideline.
-2. Install [Ubuntu](https://releases.ubuntu.com/20.10/)
+2. Install [Ubuntu Groovy](https://releases.ubuntu.com/20.10/).
 3. Install [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) using the following guide.
