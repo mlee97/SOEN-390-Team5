@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this-> call(DefaultPartSeeder::class);
         $this-> call(DefaultMaterialSeeder::class);
         $this-> call(DefaultJobSeeder::class);
+        $this-> call(DefaultSaleSeeder::class);
     }
 }
