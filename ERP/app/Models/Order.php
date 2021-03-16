@@ -20,6 +20,7 @@ class Order extends Model
         'ETA'
     ];
 
+    //relates orders to materials
     public function materials()
     {
         return $this->belongsToMany(Material::class)->as('material_order_pivot')->withPivot('order_quantity');

@@ -40,6 +40,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <!-- LISTS OUT ALL THE ORDERS-->
                                     @foreach($orders as $order)
                                         <tr>
                                             <td>
@@ -64,7 +65,9 @@
     </div>
 </div>
 
-
+<!--
+    shows the backlog table of all the orders
+-->
 @foreach($orders as $order)
     <!-- Modal -->
     <div class="modal fade" id="details{{$order->id}}" tabindex="-1">

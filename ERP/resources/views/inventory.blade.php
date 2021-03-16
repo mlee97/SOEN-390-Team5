@@ -516,6 +516,7 @@
             </div>
         </div>
 
+       <!-- script to add more rows in the 'place order' modal-->
         <script type="text/javascript">
             var input_row_count = 1;
 

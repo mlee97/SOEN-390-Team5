@@ -17,7 +17,7 @@ class Bike_Parts_MaterialOrderSeeder extends Seeder
      */
     public function run()
     {
-        //MATERIALS LIST
+        //MATERIALS SEEDS=============================================
         $stainless_steel = new Material();
         $stainless_steel -> material_name = 'Stainless Steel';
         $stainless_steel -> material_quantity_in_stock = 1;
@@ -108,7 +108,7 @@ class Bike_Parts_MaterialOrderSeeder extends Seeder
 
 
 
-        //PARTS_LIST
+        //PARTS SEEDS==============================================================
         $carbon_fiber_fork = new Part();
         $carbon_fiber_fork->part_name = 'Carbon Fiber Fork';
         $carbon_fiber_fork->part_quantity_in_stock = '1';
@@ -285,7 +285,7 @@ class Bike_Parts_MaterialOrderSeeder extends Seeder
 
 
 
-        //BICYCLES
+        //BICYCLES SEEDS =======================================
         $bike1 = new Bike();
         $bike1 -> type = 'Mountain Bike';
         $bike1 -> size = '18';
@@ -355,7 +355,7 @@ class Bike_Parts_MaterialOrderSeeder extends Seeder
         $bike3->parts()->save($tire);
 
 
-        //ORDERS
+        //ORDER SEEDS
         $order1 = new Order();
         $order1 -> ETA = '2021-06-21';
         $order1 -> status = 'Delivered';

@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 
 class OrderController extends Controller
 {
+    //creates order in the orders table
     public function createOrder(Request $request)
     {
         $todays_date = Carbon::now();
@@ -19,11 +20,13 @@ class OrderController extends Controller
         $status = $status_array[array_rand($status_array, 1)];
 
 
+        //creates orders with random data (above)
         $newOrder = Order::create([
             'status' => $status,
             'ETA' => $rand_deliver_date
         ]);
 
+        //for every material ordered, plaec the order
         $count = 1;
         do {
             $mat_key = 'MAT' . $count;

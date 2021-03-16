@@ -51,7 +51,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    //relates user to job
     public function job()
     {
         return $this->hasMany(Job::class);
