@@ -15,7 +15,11 @@ class AccountantController extends Controller
     public function goToAccoutantView()
     {
         $sales = Sale::all(); // Getting all data from Sale.    
+        $totalSalesProfit = collect($sales)->sum('profit'); // Sums all values in the 'profit' colomn in the sales table.
 
-        return view('accountant', ['sales' => $sales]);
+        $currentMonth = now()->month;
+        $currentYear = now()->year;
+
+        return view('accountant', ['sales' => $sales, 'totalSalesProfit' => $totalSalesProfit, 'currentMonth' => $currentMonth, 'currentYear' => $currentYear]);
     }
 }

@@ -44,11 +44,11 @@
                         </thead>
                         <tbody>
                             @foreach ($sales as $sale)
-                                <tr>
-                                    @foreach ($sale->bikes as $bikeSale)
+                                @foreach ($sale->bikes as $bikeSale)
+                                    <tr>
                                         <td>{{$sale->id}}</td>
                                     
-                                        <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td>  
+                                        <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td> <!--We need to use bike_sale_pivot to get the bike_id in the bike_sale table-->
                                         <td>{{$bikeSale->type}}</td>  
                                         <td>{{$bikeSale->size}}</td>  
                                         <td>{{$bikeSale->color}}</td>  
@@ -56,20 +56,20 @@
                                         <td>{{$bikeSale->grade}}</td>  
                                         <td>{{$bikeSale->price}}</td>  
 
-                                        <td>{{$sale->quantity_sold}}</td>
+                                        <td>{{$bikeSale->bike_sale_pivot->quantity_sold}}</td>
                                         <td>{{$sale->created_at}}</td>
-                                        <td>{{$sale->quantity_sold * $bikeSale->price}}</td>
-                                    @endforeach
-                                </tr>
+                                        <td>{{$sale->profit}}</td>
+                                    </tr>
+                                @endforeach
                             @endforeach
                         </tbody>
                     </table>
                     <table class="table table-bordered">                   
                         <tbody>
-                           <!--Dummy values, make them dynamic in the future-->
                             <tr>
                                 <th scope="col">Total Profit (CAD)</th>      
-                                <td>150</th>                
+
+                                <td>{{$totalSalesProfit}}</td>
                             </tr>   
                         </tbody>
                     </table>
@@ -87,9 +87,9 @@
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a month</button>
                                         <div class="dropdown-menu">
                                             <!--Dummy values, make them dynamic in the future-->
-                                            <a class="dropdown-item" href="#">December 2020</a>
-                                            <a class="dropdown-item" href="#">November 2020</a>
-                                            <a class="dropdown-item" href="#">October 2020</a>
+                                            <a class="dropdown-item" href="#">{{$currentMonth}}/{{$currentYear}}</a>
+                                            <a class="dropdown-item" href="#">{{$currentMonth-1}}/{{$currentYear}}</a>
+                                            <a class="dropdown-item" href="#">{{$currentMonth-2}}/{{$currentYear}}</a>
                                         </div>
                                     </div>
                                 </td>
