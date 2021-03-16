@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AccountantController;
 use Illuminate\Support\Facades\Route;
@@ -59,7 +60,7 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
-    
+
 
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
 Route::group(['middleware' => ['auth', 'it.access.only']], function () {
@@ -126,6 +127,15 @@ Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
         ->name('update.bike');
 });
 
+//Shipping Routes given `shipping.access.only` middleware (prevents non-shipping users from accessing this route)
+Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
+    Route::get('/shipping', [ShippingController::class, 'goToShipping'])
+        ->name('shipping');
+    Route::get('/toggle-order-status/{id}', [ShippingController::class, 'toggleOrderStatus'])
+        ->name('toggle.order.status');
+});
+
 // Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
 Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
     ->name('accountant');
+
