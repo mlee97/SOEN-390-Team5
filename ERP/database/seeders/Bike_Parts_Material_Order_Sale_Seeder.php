@@ -6,9 +6,10 @@ use App\Models\Bike;
 use App\Models\Material;
 use App\Models\Order;
 use App\Models\Part;
+use App\Models\Sale;
 use Illuminate\Database\Seeder;
 
-class Bike_Parts_MaterialOrderSeeder extends Seeder
+class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -355,7 +356,7 @@ class Bike_Parts_MaterialOrderSeeder extends Seeder
         $bike3->parts()->save($tire);
 
 
-        //ORDER SEEDS
+        //ORDER SEEDS =======================================
         $order1 = new Order();
         $order1 -> ETA = '2021-06-21';
         $order1 -> status = 'Delivered';
@@ -387,5 +388,26 @@ class Bike_Parts_MaterialOrderSeeder extends Seeder
         $order4->materials()->save($spandex, ['order_quantity' => 70]);
         $order4->materials()->save($leather, ['order_quantity' => 100]);
         $order4->materials()->save($aluminum_alloy, ['order_quantity' => 50]);
+
+        //SALE SEEDS =======================================
+        $sale1 = new Sale();
+        $sale1->profit = 1499.75;
+        $sale1->save();
+        $sale1->bikes()->save($bike1, ['quantity_sold' => 5]);
+
+        $sale2 = new Sale();
+        $sale2->profit = 2999.5;
+        $sale2->save();
+        $sale2->bikes()->save($bike1, ['quantity_sold' => 10]);
+
+        $sale3 = new Sale();
+        $sale3->profit = 1759.6;
+        $sale3->save();
+        $sale3->bikes()->save($bike2, ['quantity_sold' => 8]);
+
+        $sale4 = new Sale();
+        $sale4->profit = 11999.4;
+        $sale4->save();
+        $sale4->bikes()->save($bike3, ['quantity_sold' => 12]);
     }
 }

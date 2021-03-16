@@ -15,10 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this-> call(MasterUserSeeder::class);
 
-        $this-> call(DefaultSaleSeeder::class);
-
-        $this->call(Bike_Parts_MaterialOrderSeeder::class);
+        $this->call(Bike_Parts_Material_Order_Sale_Seeder::class);
         //$this-> call(DefaultJobSeeder::class);
-
     }
 }
