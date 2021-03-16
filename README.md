@@ -61,9 +61,9 @@ many different level. Such features included in the ERP system are:
 ## Technologies
 Project is created with the following:
 - [Laravel version: 8.16.1](https://laravel.com/)
-  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           simple for us to access/create our relational databases and make deployement easier</dd>
+  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           simple for us to access/create our relational databases and make deployement easier.</dd>
 - [Docker version: 20.10.5](https://www.docker.com/)
-  <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers. These containers run all and only the       required applications which simplifies and accelerates our workflow</dd>
+  <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers. These containers run all and only the       required applications which simplifies and accelerates our workflow.</dd>
 - [Ubuntu version: 20.10](https://ubuntu.com/)
   <dd>Ubuntu is an open-source software Linux operating system.</dd>
 - [GitHub](https://github.com/)
