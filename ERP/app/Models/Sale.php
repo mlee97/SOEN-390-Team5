@@ -14,7 +14,7 @@ class Sale extends Model
      *
      * @var array
      */
-    protected $fillable = ['quantity_sold'];
+    protected $fillable = ['profit'];
 
     /** 
      * Creating a many to many relationships with sales (many sales can be selling many bikes).
@@ -22,6 +22,6 @@ class Sale extends Model
      */ 
     public function bikes()
     {
-        return $this->belongsToMany(Bike::class)->withTimestamps()->withPivot('bike_id', 'sale_id')->as('bike_sale_pivot');
+        return $this->belongsToMany(Bike::class)->withPivot('bike_id', 'sale_id', 'quantity_sold')->as('bike_sale_pivot');
     }  
 }

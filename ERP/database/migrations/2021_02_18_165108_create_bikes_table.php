@@ -23,7 +23,6 @@ class CreateBikesTable extends Migration
             $table->string('finish');
             $table->string('grade');
             $table->integer('quantity_in_stock');
-            $table->foreignId('sale_id')->references('id')->on('sales');
         });
     }
 

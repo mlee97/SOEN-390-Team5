@@ -16,12 +16,14 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) { // Create a 'sales' table.
+        // Create a 'sales' table.
+        Schema::create('sales', function (Blueprint $table) { 
+           
             // Defining the columns in the table.
             $table->id();
             $table->timestamps(); // When the record is created and updated.
-            $table->integer('quantity_sold');
-            $table->foreignId('bike_id')->references('id')->on('bikes');
+            $table->double('profit');
+
         });
     }
 

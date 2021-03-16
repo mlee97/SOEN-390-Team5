@@ -37,7 +37,7 @@ class Bike extends Model
      */
     public function sale()
     {
-        return $this->belongsToMany(Sale::class)->withTimestamps();
+        return $this->belongsToMany(Sale::class);
     }
 
     //relates bike table to parts table
