@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
@@ -107,6 +108,9 @@ Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
 
     Route::post('/create-material', [MaterialController::class, 'createMaterial'])
         ->name('create.material');
+
+    Route::post('/create-order', [OrderController::class, 'createOrder'])
+        ->name('create.order');
 
     Route::post('/edit-bike', [BikeController::class, 'editBike'])
         ->name('edit.bike');

@@ -339,29 +339,46 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST">
-                        @csrf
+                    <div class="container">
+                        <form id="order_material_id" action={{route('create.order')}} method="POST">
+                            @csrf
+                            <div>
+                                <button type="button" class="btn btn-primary" onClick="add_field()">Add Material(+)</button>
+                                <input type="submit" class="btn btn-primary" value="Place Order">
+                            </div>
+                            <hr>
 
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label>Material Name</label>
+                                </div>
+                                <div class="col-sm">
+                                    <label>Quantity</label>
+                                </div>
+                            </div>
+                            <div id="input_grp1" class="row">
+                                <div class="col-sm">
+                                    <div class="form-group">
 
-                        <div class="form-group">
-                            <label for="order_material_name">Material Name</label>
-                            <select id="order_material_name" class="form-control" required>
-                                <option value="">-- SELECT MATERIAL --</option>
-                                @foreach($materials as $material)
-                                    <option value={{$material->id}}>{{$material->material_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                                        <select id="MAT1" class="form-control" name="MAT1" required>
+                                            <option value="">-- SELECT MATERIAL --</option>
+                                            @foreach($materials as $material)
+                                                <option value={{$material->id}}>{{$material->material_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <input name="ODR_QTY1" id="ODR_QTY1"
+                                               type="number" class="form-control" min=0 required>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="part_quantity_in_stock">Quantity</label>
-                            <input name="part_quantity_in_stock" id="part_quantity_in_stock"
-                                   type="number" class="form-control" required>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="Place Order">
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -499,5 +516,34 @@
             </div>
         </div>
 
+       <!-- script to add more rows in the 'place order' modal-->
+        <script type="text/javascript">
+            var input_row_count = 1;
+
+            function add_field() {
+                input_row_count++;
+                var form = document.getElementById('order_material_id');
+                var input_row = document.getElementById('input_grp1');
+
+                var input_row_grp_str = 'input_grp' + input_row_count
+                var mat_input_str = 'MAT' + input_row_count
+                var qty_input_str = 'ODR_QTY' + input_row_count
+
+
+                var cloned_input = input_row.cloneNode(true);
+                cloned_input.setAttribute('id', input_row_grp_str)
+
+                cloned_input.querySelector('[name ="MAT1"]').setAttribute('id', mat_input_str)
+                cloned_input.querySelector('[name ="MAT1"]').setAttribute('name', mat_input_str)
+
+                cloned_input.querySelector('[name ="ODR_QTY1"]').setAttribute('id', qty_input_str)
+                cloned_input.querySelector('[name ="ODR_QTY1"]').setAttribute('name', qty_input_str)
+
+                form.append(cloned_input)
+
+
+            }
+
+        </script>
 
 @endsection

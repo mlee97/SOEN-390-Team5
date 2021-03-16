@@ -24,18 +24,26 @@ class Bike extends Model
         'price'
     ];
 
+    //relates bike table to job table
     public function job()
     {
         return $this->belongsTo(Job::class);
     }
 
-    /** 
+
+    /**
      * Creating a many to many relationships with sales (many sales can be selling many bikes).
      * Get the sale for the bike.
-     */ 
+     */
     public function sale()
     {
         return $this->belongsToMany(Sale::class)->withTimestamps();
+    }
+
+    //relates bike table to parts table
+    public function parts(){
+        return $this->belongsToMany(Part::class);
+
     }
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class MaterialPart extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->date('ETA');
-            $table->string('status');
+        Schema::create('material_part', function (Blueprint $table) {
+            $table->foreignId('material_id')->references('id')->on('materials');
+            $table->foreignId('part_id')->references('id')->on('parts');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('material_part');
     }
 }

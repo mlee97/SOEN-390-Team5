@@ -20,12 +20,14 @@ class Material extends Model
         'cost'
     ];
 
-    public function part(){
-        $this->belongsToMany(Part::class);
+    //relates materials to parts
+    public function parts(){
+        return $this->belongsToMany(Part::class);
     }
 
-    public function order()
+    //relates orders to materials
+    public function orders()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsToMany(Order::class);
     }
 }
