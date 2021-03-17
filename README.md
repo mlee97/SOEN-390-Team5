@@ -1,7 +1,7 @@
 # Bicycle Manufacturing ERP System [SOEN-390] (Team 5)
 
 ## Objective
-Create an ERP system for a bicycle manufacturing company.
+Create an ERP system for a bicycle manufacturing company. 
 
 ## Description
 An ERP (Enterprise Resource Planning) system is a piece of software meant to help 
@@ -20,7 +20,7 @@ many different level. Such features included in the ERP system are:
 - Accounting
 
 
-## Team Members
+## Authors
 - Celia Cai (ID: 40098535) (Github Username: CeliaCaii)
 - Kelvin Chow Wan Chuen (ID: 40029677) (Github Username: WanProduction)
 - Daniel Gauvin (ID: 40061905) (Github Username: DGovi)
@@ -32,9 +32,51 @@ many different level. Such features included in the ERP system are:
 - Julien Xu (ID: 40095332) (Github Username: xujulien99)
 
 
-## Technologies
+## Changelog
+### [3.0](https://github.com/mlee97/SOEN-390-Team5/tree/v3.0) - 2021-03-17
+### Added
+- Defects tracking report
+- Release Plan (Sprint #4 planning)
+- UI modeling of Sprint #4 user stories
+- Updated deliverables: SAD, USB, RMP, Testing Plan
 
-- Laravel
-- Docker
-- GitHub
-- Discord
+### [2.0](https://github.com/mlee97/SOEN-390-Team5/tree/v2.0) - 2021-02-24
+### Added
+- Defects tracking report
+- Release Plan (Sprint #3 planning)
+- UI modeling of Sprint #3 user stories
+- Updated deliverables: SAD, USB, RMP, Testing Plan
+
+### [1.0](https://github.com/mlee97/SOEN-390-Team5/tree/v1.0) - 2021-02-03
+### Added
+- User Stories Backlog (USB)
+- Release Plan (Sprint #2 planning)
+- Software Architecture Document (SAD)
+- Risk Assessment & Risk Management Plan (RMP)
+- UI prototypes for Sprint #2 user stories
+- Testing Plan
+- Running prototype
+
+
+## Technologies
+Project is created with the following:
+- [Laravel version: 8.16.1](https://laravel.com/)
+  <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           simple for us to access/create our relational databases and make deployement easier.</dd>
+- [Docker version: 20.10.5](https://www.docker.com/)
+  <dd>Docker is a set of platform as a service products that use OS-level virtualization to deliver siftware in packages called containers. These containers run all and only the       required applications which simplifies and accelerates our workflow.</dd>
+- [Ubuntu version: 20.10](https://ubuntu.com/)
+  <dd>Ubuntu is an open-source software Linux operating system.</dd>
+- [GitHub](https://github.com/)
+  <dd>Github is a free service that allows open-source projects or unlimited private repositories.</dd>
+- [Discord version: 74432](https://discord.com/)
+  <dd>Discord is a VoIP, instant messaging and digital distribution platform designed for creating communities.</dd>
+
+
+## Architecture
+The software will implement a model-view-controller (MVC) architectural pattern for a faster development process.
+
+
+## Install
+1. Install [Laravel framework](https://laravel.com/docs/8.x/installation#getting-started-on-windows) using the following guideline.
+2. Install [Ubuntu Groovy](https://releases.ubuntu.com/20.10/).
+3. Install [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) using the following guide.

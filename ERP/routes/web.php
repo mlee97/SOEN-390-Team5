@@ -10,6 +10,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AccountantController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\MachineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,22 +30,7 @@ Route::get('/assembly', function () {
     ->middleware('auth')
     ->name("assembly");
 
-/*Route::get('/inventory', function(){
-    return view ('inventory');
-})
-->middleware('auth')
-->name("inventory");*/
-
-
-// Route::get('/jobs', function(){
-//     return view ('jobs');
-// })
-// ->middleware('auth')
-// ->name("inventory");
-
-// Route::post('/jobs', [JobController::class, 'createJob'])
-// ->name('create.job');
-
+//Jobs routes to see, create, delete and update jobs
 Route::get('/jobs', [JobController::class, 'goToJobManagement'])
     ->middleware('auth')
     ->name('jobs');
@@ -62,6 +48,13 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
+//Machine status routes to see and change the current status of a particular machine
+Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
+    ->middleware('auth')
+    ->name('machine-status');
+
+Route::get('change-status/{id}', [MachineController::class, 'changeStatus'])
+    ->name('change.status');
 
 
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
