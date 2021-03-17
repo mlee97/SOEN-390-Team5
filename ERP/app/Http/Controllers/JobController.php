@@ -12,13 +12,12 @@ use Illuminate\Validation\Rules\RequiredIf;
 
 class JobController extends Controller
 {
-    // public function test() {
-    //     $jobs = Job::all();
-
-    //     return view('jobs', ['jobs' => $jobs]);
-    // }
-
-    //creates a job with through a form
+    /**
+     * Creates a job and returns to inventory if validation fail and jobs if validation succeed
+     *
+     * @param $request
+     * @return redirect()->route('inventory') or redirect('/jobs')
+     */
     public function createJob(Request $request){
 
 
@@ -26,7 +25,7 @@ class JobController extends Controller
             'status' => 'required',
         ]);
 
-        //what happens in the event that the bike creation fails
+        //If validation fails user is redirected to inventory
         if ($validator->fails()) {
 
             $msg_str = 'Job creation failed';
@@ -46,13 +45,13 @@ class JobController extends Controller
 
         }
 
-        //otherwise, creates and stores a job
+        //Otherwise successfully create and store a job
         $newJob= Job::create([
             'status' => $request->status,
         ]);
 
-        //logs the event
-        $msg_str = 'Job with ID '. $newJob->id. ' successfully created';
+        //Log results
+        $msg_str = 'Job bicycle with ID '. $newJob->id. ' successfully created';
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request ->ip(),
@@ -61,19 +60,21 @@ class JobController extends Controller
             'message' => $msg_str,
         ]);
 
-
-        //redirects the user to the jobs view with a successful message
+        //Redirect user to jobs page
         return redirect('/jobs')
         ->with('success_msg', 'Job has been successfully created!');
     }
 
-    //deletes job from the jobs migration
+    /*
+     * Delete specific job id from jobs migration
+     *
+     * @param $id, $request
+     * @return redirect()->route('jobs')
+     */
     public function deleteJob($id, Request $request){
-
-        $job = Job::find($id);
         $job->delete();
 
-        //logs the action in the application
+        //Log result in application
         $msg_str = 'Job with ID '. $id . ' successfully deleted';
         Log::create([
             'user_id' => Auth::user()->id,
@@ -83,18 +84,23 @@ class JobController extends Controller
             'message' => $msg_str,
         ]);
 
-        //return to the job view with sucess message
+        //Redirect user to jobs page
         return redirect()->route('jobs')
             ->with('success_msg', 'Job has been successfully deleted'); //Send a temporary success message. This is saved in the session
     }
 
-
-    //The status attribute for jobs can be updated
+    /**
+     * Update job status of specific job id
+     *
+     * @param $job_id, $request
+     * @return redirect()->route('jobs')
+     */
     public function updateJobStatus($job_id, Request $request){
 
+        //Find status of job id
         $status = Job::find($job_id);
 
-        //sets the job to completed, otherwise queued
+        //If job status id queued, change to complete and vice-versa
         if($status->status == "Queued") {
             $status->status = "Complete";
         }
@@ -102,9 +108,10 @@ class JobController extends Controller
             $status->status = "Queued";
         }
 
+        //Save the status of job id
         $status->save();
 
-        //logs
+        //Log results
         $msg_str = 'Job status with ID '. $status->id. ' updated successfully';
         Log::create([
             'user_id' => Auth::user()->id,
@@ -114,15 +121,20 @@ class JobController extends Controller
             'message' => $msg_str,
         ]);
 
-        //redirects the user to the jobs page with a successful message
+        //Redirect user to jobs page
         return redirect()->route('jobs')
             ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
     }
 
-    //redirects the user to the create-job view
+    /**
+     * Go to create-job form to create job
+     *
+     * @param $request
+     * @return view
+     */
     public function goToCreateJob(Request $request) {
 
-        //logs event and return the user to the create jobs page
+        //Get results
         $msg_str = 'Job Creation page accessed';
         Log::create([
             'user_id' => Auth::user()->id,
@@ -131,16 +143,24 @@ class JobController extends Controller
             'request_type' => 'GET',
             'message' => $msg_str,
         ]);
+
+        //Redirect user to create-job page
         return view('create-job');
     }
 
-    //redirects the user to the jobs view
+    /**
+     * Go to job management page and return list of jobs
+     *
+     * @param $request
+     * @return view
+     */
     public function goToJobManagement(Request $request){
 
+        //Retrieve job model
         $jobs = Job::all();
         $orders = Order::all();
 
-        //logs event and returns view for jobs
+        //Get results and returns view for jobs
         $msg_str = 'Job management page accessed';
         Log::create([
             'user_id' => Auth::user()->id,
@@ -149,6 +169,8 @@ class JobController extends Controller
             'request_type' => 'GET',
             'message' => $msg_str,
         ]);
+
+        //Redirect user to jobs page and returns jobs list
         return view('jobs', ['jobs' => $jobs, 'orders' => $orders]);
     }
 }
