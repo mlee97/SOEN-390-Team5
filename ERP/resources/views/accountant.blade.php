@@ -15,6 +15,9 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#yearly_sales">Yearly Sales</a>
                     </li>
+                    <li class="nav-item ml-auto">
+                        <span data-href="/sale-export" id="export" class="btn btn-primary btn-sm" onclick="exportTasks(event.target);">Export</span>           
+                    </li>
                 </ul>
             </div>
             
