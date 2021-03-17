@@ -94,6 +94,7 @@ The software will implement a model-view-controller (MVC) architectural pattern 
 6. Restart the erp_laravel.test_1 port in docker.
 7. Type "php -v" in the CLI. If xdebug appears then youre good to go.
 8. To generate code coverage. Type "./vendor/bin/phpunit --coverage-html reports/" in the CLI. The report should be in the project in the reports folder.
+
 ![1](https://user-images.githubusercontent.com/48234317/111553020-e6443180-8759-11eb-9ada-1a6efe1ee7b6.PNG)
 ![2](https://user-images.githubusercontent.com/48234317/111553024-e8a68b80-8759-11eb-8c54-02f27dd0b83b.PNG)
 ![3](https://user-images.githubusercontent.com/48234317/111553030-ea704f00-8759-11eb-8ec6-abb810a1eab5.PNG)
