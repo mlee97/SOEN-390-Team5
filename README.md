@@ -59,7 +59,7 @@ many different level. Such features included in the ERP system are:
 
 
 ## Technologies
-Project is created with the following:
+Project is created using the following:
 - [Laravel version: 8.16.1](https://laravel.com/)
   <dd>Laravel is a free, open_source  PHP web framework for developping web applications following a MVC (model-view-controller) architectural pattern. Laravel will make it           simple for us to access/create our relational databases and make deployement easier.</dd>
 - [Docker version: 20.10.5](https://www.docker.com/)
@@ -82,15 +82,15 @@ The software will implement a model-view-controller (MVC) architectural pattern 
 1. Install [Laravel framework](https://laravel.com/docs/8.x/installation#getting-started-on-windows) using the following guideline.
 2. Install [Ubuntu Groovy](https://releases.ubuntu.com/20.10/).
 3. Install [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) using the following guide.
-4. Install [Xdebug](https://xdebug.org/docs/install)
+4. Install [Xdebug](https://xdebug.org/docs/install).
    
    
 ## Steps for generating code coverage
-1. open CLI in docker and type "pecl install xdebug"
-2. if xdebug appears when you run "php -v" in the CLI then skip to step 8
-3. After you install xdebug, theres a message at the end that say "you should add 'extension' to php.ini". Save that extension somewhere (for me the extension was    "zend_extension=/usr/lib/php/20200930/xdebug.so:")
-4. Find your php.ini file. (its in \wsl$ -> docker-desktop-data then type "php.ini" in search)
+1. open CLI in docker and type "pecl install xdebug".
+2. if xdebug appears when you run "php -v" in the CLI then skip to step 8.
+3. After you install xdebug, theres a message at the end that say "you should add 'extension' to php.ini". Save that extension somewhere (for me the extension was    "zend_extension=/usr/lib/php/20200930/xdebug.so:").
+4. Find your php.ini file. (its in \wsl$ -> docker-desktop-data then type "php.ini" in search).
 5. Open you php.ini and add your extension from step 3 (for me it was "zend_extension=/usr/lib/php/20200930/xdebug.so:") and "xdebug.mode=coverage" under ";zend_extension=opcache". Save the file.
-6. Restart the erp_laravel.test_1 port in docker
+6. Restart the erp_laravel.test_1 port in docker.
 7. Type "php -v" in the CLI. If xdebug appears then youre good to go.
-8. To generate code coverage. Type "./vendor/bin/phpunit --coverage-html reports/" in the CLI. The report should be in the project in the reports folder
+8. To generate code coverage. Type "./vendor/bin/phpunit --coverage-html reports/" in the CLI. The report should be in the project in the reports folder.
