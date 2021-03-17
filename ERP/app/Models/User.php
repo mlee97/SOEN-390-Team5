@@ -50,4 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relates user to job
+    public function job()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

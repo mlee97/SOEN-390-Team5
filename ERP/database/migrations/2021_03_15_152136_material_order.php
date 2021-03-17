@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMaterialsTable extends Migration
+class MaterialOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('materials', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->double('cost', 2);
-            $table->string('material_name');
-            $table->integer('material_quantity_in_stock');
+        Schema::create('material_order', function (Blueprint $table) {
+            $table->foreignId('order_id')->references('id')->on('orders');
+            $table->foreignId('material_id')->references('id')->on('materials');
+            $table->integer('order_quantity')->default(1);
         });
     }
 
@@ -29,6 +27,6 @@ class CreateMaterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materials');
+        //
     }
 }

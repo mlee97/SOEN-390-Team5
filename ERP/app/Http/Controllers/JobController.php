@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Log;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +25,11 @@ class JobController extends Controller
             'status' => 'required',
         ]);
 
-        //If validatin fails user is redirected to inventory
+        //If validation fails user is redirected to inventory
         if ($validator->fails()) {
 
             $msg_str = 'Job creation failed';
-
+            //logs the event
             Log::create([
                 'user_id' => Auth::user()->id,
                 'ip_address' => $request ->ip(),
@@ -37,13 +38,14 @@ class JobController extends Controller
                 'message' => $msg_str,
             ]);
 
+            //redirects the user back to where the came from
             return redirect()->route('inventory')
                 ->withErrors($validator)
                 ->withInput();
 
         }
 
-        //Otherwise successfully create a job 
+        //Otherwise successfully create and store a job 
         $newJob= Job::create([
             'status' => $request->status,
         ]);
@@ -63,19 +65,15 @@ class JobController extends Controller
         ->with('success_msg', 'Job has been successfully created!');
     }
 
-    /**
-     * Delete specific job id
+     * Delete specific job id from jobs migration
      * 
      * @param $id, $request 
      * @return redirect()->route('jobs')
      */
     public function deleteJob($id, Request $request){
-
-        //Find specific job id and delete it
-        $job = Job::find($id);
         $job->delete();
 
-        //Log results
+        //Log result in application
         $msg_str = 'Job with ID '. $id . ' successfully deleted';
         Log::create([
             'user_id' => Auth::user()->id,
@@ -159,8 +157,9 @@ class JobController extends Controller
 
         //Retrieve job model
         $jobs = Job::all();
+        $orders = Order::all();
 
-        //Get results
+        //Get results and returns view for jobs
         $msg_str = 'Job management page accessed';
         Log::create([
             'user_id' => Auth::user()->id,

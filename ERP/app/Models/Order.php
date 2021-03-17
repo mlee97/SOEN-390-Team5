@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model
+class Order extends Model
 {
     use HasFactory;
 
@@ -15,18 +15,14 @@ class Job extends Model
      * @var array
      */
     protected $fillable = [
-        'status'
+        'date',
+        'status',
+        'ETA'
     ];
 
-
-    public function user()
+    //relates orders to materials
+    public function materials()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Material::class)->as('material_order_pivot')->withPivot('order_quantity');
     }
-
-    public function bike()
-    {
-        return $this->hasOne(Bike::class);
-    }
-
 }
