@@ -14,7 +14,7 @@ class JobController extends Controller
 {
     /**
      * Creates a job and returns to inventory if validation fail and jobs if validation succeed
-     * 
+     *
      * @param $request
      * @return redirect()->route('inventory') or redirect('/jobs')
      */
@@ -45,7 +45,7 @@ class JobController extends Controller
 
         }
 
-        //Otherwise successfully create and store a job 
+        //Otherwise successfully create and store a job
         $newJob= Job::create([
             'status' => $request->status,
         ]);
@@ -65,9 +65,10 @@ class JobController extends Controller
         ->with('success_msg', 'Job has been successfully created!');
     }
 
+    /*
      * Delete specific job id from jobs migration
-     * 
-     * @param $id, $request 
+     *
+     * @param $id, $request
      * @return redirect()->route('jobs')
      */
     public function deleteJob($id, Request $request){
@@ -90,7 +91,7 @@ class JobController extends Controller
 
     /**
      * Update job status of specific job id
-     * 
+     *
      * @param $job_id, $request
      * @return redirect()->route('jobs')
      */
@@ -127,7 +128,7 @@ class JobController extends Controller
 
     /**
      * Go to create-job form to create job
-     * 
+     *
      * @param $request
      * @return view
      */
@@ -149,7 +150,7 @@ class JobController extends Controller
 
     /**
      * Go to job management page and return list of jobs
-     * 
+     *
      * @param $request
      * @return view
      */
@@ -168,8 +169,8 @@ class JobController extends Controller
             'request_type' => 'GET',
             'message' => $msg_str,
         ]);
-        
+
         //Redirect user to jobs page and returns jobs list
-        return view('jobs', ['jobs' => $jobs]);
+        return view('jobs', ['jobs' => $jobs, 'orders' => $orders]);
     }
 }
