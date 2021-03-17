@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this-> call(MasterUserSeeder::class);
-        $this->call(Bike_Parts_MaterialOrderSeeder::class);
-        //$this-> call(DefaultJobSeeder::class);
 
+        $this->call(Bike_Parts_Material_Order_Sale_Seeder::class);
+        //$this-> call(DefaultJobSeeder::class);
     }
 }

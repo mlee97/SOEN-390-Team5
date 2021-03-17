@@ -27,9 +27,10 @@
                         <thead>
                             <tr>
                                 <th scope="col" rowspan = "2">Sales ID</th>
-                                <th scope="col" colspan = "6">Bicycle Specifications</th>
+                                <th scope="col" colspan = "7">Bicycle Specifications</th>
+                                <th scope="col" rowspan = "2">Quantity Sold</th>
                                 <th scope="col" rowspan = "2">Date Sold</th>
-                                <th scope="col" rowspan = "2">Price Sold (CAD)</th>
+                                <th scope="col" rowspan = "2">Profit (CAD)</th>
                             </tr>
                             <tr>
                                 <th scope="col">ID</th>
@@ -38,29 +39,37 @@
                                 <th scope="col">Color</th>
                                 <th scope="col">Finish</th>
                                 <th scope="col">Grade</th>
+                                <th scope="col">Price</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!--Dummy values, make them dynamic in the future-->
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Mountain</td>
-                                <td>24</td>
-                                <td>Blue</td>
-                                <td>Matt</td>
-                                <td>Aluminium</td>
-                                <td>2021-06-03 00:00:00</td>
-                                <td>150</td>
-                            </tr>    
+                            @foreach ($sales as $sale)
+                                @foreach ($sale->bikes as $bikeSale)
+                                    <tr>
+                                        <td>{{$sale->id}}</td>
+                                    
+                                        <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td> <!--We need to use bike_sale_pivot to get the bike_id in the bike_sale table-->
+                                        <td>{{$bikeSale->type}}</td>  
+                                        <td>{{$bikeSale->size}}</td>  
+                                        <td>{{$bikeSale->color}}</td>  
+                                        <td>{{$bikeSale->finish}}</td>  
+                                        <td>{{$bikeSale->grade}}</td>  
+                                        <td>{{$bikeSale->price}}</td>  
+
+                                        <td>{{$bikeSale->bike_sale_pivot->quantity_sold}}</td>
+                                        <td>{{$sale->created_at}}</td>
+                                        <td>{{$sale->profit}}</td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                     <table class="table table-bordered">                   
                         <tbody>
-                           <!--Dummy values, make them dynamic in the future-->
                             <tr>
                                 <th scope="col">Total Profit (CAD)</th>      
-                                <td>150</th>                
+
+                                <td>{{$totalSalesProfit}}</td>
                             </tr>   
                         </tbody>
                     </table>
@@ -78,9 +87,9 @@
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a month</button>
                                         <div class="dropdown-menu">
                                             <!--Dummy values, make them dynamic in the future-->
-                                            <a class="dropdown-item" href="#">December 2020</a>
-                                            <a class="dropdown-item" href="#">November 2020</a>
-                                            <a class="dropdown-item" href="#">October 2020</a>
+                                            <a class="dropdown-item" href="#">{{$currentMonth}}/{{$currentYear}}</a>
+                                            <a class="dropdown-item" href="#">{{$currentMonth-1}}/{{$currentYear}}</a>
+                                            <a class="dropdown-item" href="#">{{$currentMonth-2}}/{{$currentYear}}</a>
                                         </div>
                                     </div>
                                 </td>
@@ -91,9 +100,10 @@
                         <thead>
                             <tr>
                                 <th scope="col" rowspan = "2">Sales ID</th>
-                                <th scope="col" colspan = "6">Bicycle Specifications</th>
+                                <th scope="col" colspan = "7">Bicycle Specifications</th>
+                                <th scope="col" rowspan = "2">Quantity Sold</th>
                                 <th scope="col" rowspan = "2">Date Sold</th>
-                                <th scope="col" rowspan = "2">Price Sold (CAD)</th>
+                                <th scope="col" rowspan = "2">Profit (CAD)</th>
                             </tr>
                             <tr>
                                 <th scope="col">ID</th>
@@ -102,6 +112,7 @@
                                 <th scope="col">Color</th>
                                 <th scope="col">Finish</th>
                                 <th scope="col">Grade</th>
+                                <th scope="col">Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,6 +125,8 @@
                                 <td>Blue</td>
                                 <td>Matt</td>
                                 <td>Aluminium</td>
+                                <td>150</td>
+                                <td>1</td>
                                 <td>2021-03-03 00:00:00</td>
                                 <td>150</td>
                             </tr>    
@@ -155,9 +168,10 @@
                         <thead>
                             <tr>
                                 <th scope="col" rowspan = "2">Sales ID</th>
-                                <th scope="col" colspan = "6">Bicycle Specifications</th>
+                                <th scope="col" colspan = "7">Bicycle Specifications</th>
+                                <th scope="col" rowspan = "2">Quantity Sold</th>
                                 <th scope="col" rowspan = "2">Date Sold</th>
-                                <th scope="col" rowspan = "2">Price Sold (CAD)</th>
+                                <th scope="col" rowspan = "2">Profit (CAD)</th>
                             </tr>
                             <tr>
                                 <th scope="col">ID</th>
@@ -166,6 +180,7 @@
                                 <th scope="col">Color</th>
                                 <th scope="col">Finish</th>
                                 <th scope="col">Grade</th>
+                                <th scope="col">Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -178,6 +193,8 @@
                                 <td>Blue</td>
                                 <td>Matt</td>
                                 <td>Aluminium</td>
+                                <td>150</td>
+                                <td>1</td>
                                 <td>2021-06-03 00:00:00</td>
                                 <td>150</td>
                             </tr>    
