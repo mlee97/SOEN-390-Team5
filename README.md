@@ -85,19 +85,11 @@ The software will implement a model-view-controller (MVC) architectural pattern 
 4. Install [Xdebug](https://xdebug.org/docs/install)
    
    Steps for generating code coverage
-
-  1. open CLI in docker and type "pecl install xdebug"
-
+  <dd>1. open CLI in docker and type "pecl install xdebug"</dd>
   2. if xdebug appears when you run "php -v" in the CLI then skip to step 8
-
   3. After you install xdebug, theres a message at the end that say "you should add 'extension' to php.ini". Save that extension somewhere (for me the extension was    "zend_extension=/usr/lib/php/20200930/xdebug.so:")
-
   4. Find your php.ini file. (its in \wsl$ -> docker-desktop-data then type "php.ini" in search)
-
   5. Open you php.ini and add your extension from step 3 (for me it was "zend_extension=/usr/lib/php/20200930/xdebug.so:") and "xdebug.mode=coverage" under ";zend_extension=opcache". Save the file.
-
   6. Restart the erp_laravel.test_1 port in docker
-
   7. Type "php -v" in the CLI. If xdebug appears then youre good to go.
-
   8. To generate code coverage. Type "./vendor/bin/phpunit --coverage-html reports/" in the CLI. The report should be in the project in the reports folder
