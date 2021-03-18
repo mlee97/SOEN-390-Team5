@@ -49,14 +49,14 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
-//Machine status routes to see and change the current status of a particular machine
-Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
-    ->middleware('auth')
-    ->name('machine-status');
+//Machine Routes given `manufacturer.access.only` middleware (prevents non-manufacturing or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth', 'manufacturer.access.only']], function () {
+    Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
+        ->name('machine.status');
 
-Route::get('change-status/{id}', [MachineController::class, 'changeStatus'])
-    ->name('change.status');
-
+    Route::get('change-status/{id}', [MachineController::class, 'changeStatus'])
+        ->name('change.status');
+});
 
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
 Route::group(['middleware' => ['auth', 'it.access.only']], function () {

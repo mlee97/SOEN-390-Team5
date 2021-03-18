@@ -23,6 +23,8 @@ class JobController extends Controller
 
         $validator = Validator::make($request->all(), [
             'status' => 'required',
+            'quantity' => 'required',
+            'bike_id' => 'required'
         ]);
 
         //If validation fails user is redirected to inventory
@@ -48,6 +50,8 @@ class JobController extends Controller
         //Otherwise successfully create and store a job
         $newJob= Job::create([
             'status' => $request->status,
+            'quantity' => $request->quantity,
+            'bike_id' => $request->bike_id
         ]);
 
         //Log results
@@ -72,6 +76,7 @@ class JobController extends Controller
      * @return redirect()->route('jobs')
      */
     public function deleteJob($id, Request $request){
+        $job = Job::find($id);
         $job->delete();
 
         //Log result in application

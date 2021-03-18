@@ -42,10 +42,9 @@ class ShippingTest extends TestCase
 
         DB::table('orders')->insert([
             'ETA' => '2021-03-15',
-            'status' => 'received',
-            'order_quantity' => 700
+            'status' => 'received'
         ]);
-        
+
         //Get order id in which we want to toggle the status
         $order_id = DB::table('orders')->where('status', 'received')->value('id');
 
@@ -59,7 +58,7 @@ class ShippingTest extends TestCase
         $this->actingAs($user)->get('toggle-order-status/' . $order_id);
 
         $this->assertDatabaseHas('orders', ['id' => $order_id, 'status' => 'received']);
-        
+
     }
 
 }

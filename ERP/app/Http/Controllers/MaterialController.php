@@ -22,6 +22,7 @@ class MaterialController extends Controller
         //Validate that all the following fields are specified and that they match their respective data type.
         $validator = Validator::make($request->all(), [
             'material_name' => 'required|string|max:255',
+            'cost' => 'required',
             'material_quantity_in_stock' => 'required|integer',
         ]);
 
@@ -47,6 +48,7 @@ class MaterialController extends Controller
         //Create a new material and associate each input with its appropriate field in the Material model.
         $newMaterial = Material::create([
             'material_name' => $request->material_name,
+            'cost' => $request -> cost,
             'material_quantity_in_stock' => $request->material_quantity_in_stock,
         ]);
 
@@ -60,7 +62,7 @@ class MaterialController extends Controller
             'request_type' => 'POST',
             'message' => $msg_str,
         ]);
-        
+
         //Redirect the user to the inventory page.
         return redirect()->route('inventory')
         ->with('success_msg', 'Material has been successfully created!'); //Send a temporary success message. This is saved in the session.
@@ -88,7 +90,7 @@ class MaterialController extends Controller
             'message' => $msg_str,
         ]);
 
-        //Redirect the user to the inventory page 
+        //Redirect the user to the inventory page
         return redirect('/inventory')
             ->with('success_msg', 'Material Deleted'); //Send a temporary success message. This is saved in the session
      }
@@ -121,7 +123,7 @@ class MaterialController extends Controller
                  'request_type' => 'POST',
                  'message' => $msg_str,
              ]);
-            
+
              //Redirect user back to the inventory page.
              return redirect()->route('inventory')
                  ->withErrors($validator)
@@ -133,7 +135,7 @@ class MaterialController extends Controller
         $material = Material::find($request->id);
         $material->material_name = $request->material_name;
         $material->material_quantity_in_stock = $request->material_quantity_in_stock;
-        
+
         //Save this instance of the the Material Model.
         $material->save();
 
@@ -146,7 +148,7 @@ class MaterialController extends Controller
              'request_type' => 'POST',
              'message' => $msg_str,
          ]);
-        
+
         //Redirect the user to the inventory page.
         return redirect()->route('inventory')
             ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
