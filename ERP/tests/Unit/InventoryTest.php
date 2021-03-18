@@ -3,11 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Models\Bike;
-use App\Models\Part;
 use Illuminate\Support\Facades\DB;
-use App\Models\Material;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -46,6 +42,7 @@ class InventoryTest extends TestCase
         $this->actingAs($user)->post('/create-bike', [
             'type' => 'Mountain',
             'size' => '18',
+            'price' => 199.99,
             'color' => 'red',
             'finish' => 'Matt',
             'grade' => 'Aluminium',
@@ -56,6 +53,7 @@ class InventoryTest extends TestCase
             [
             'type' => 'Mountain',
             'size' => '18',
+            'price' => 199.99,
             'color' => 'red',
             'finish' => 'Matt',
             'grade' => 'Aluminium']
@@ -86,6 +84,7 @@ class InventoryTest extends TestCase
 
         $this->actingAs($user)->post('/create-material', [
             'material_name' => 'Test',
+            'cost' => 19.95,
             'material_quantity_in_stock' => rand(0, 100)
         ]);
 

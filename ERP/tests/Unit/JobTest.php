@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Bike;
 use App\Models\Job;
 use App\Models\User;
 use Tests\TestCase;
@@ -44,11 +45,27 @@ class JobTest extends TestCase
 
     public function test_job_creation(){
         $user = User::factory()->create();
-        $this->actingAs($user)->post('/create-job', [
-            'status'=> 'Queued'
+
+        //The Job entity needs a reference to a bike
+        $test_bike = Bike::create([
+            'type' => 'test',
+            'size' =>'test',
+            'color' => 'test',
+            'price' => 12,
+            'finish' => 'test',
+            'grade' => 'test',
+            'quantity_in_stock' => 1222,
         ]);
 
+        $this->actingAs($user)->post('/create-job', [
+            'quantity' => 12,
+            'status' => 'Queued',
+            'bike_id' => $test_bike->id
+        ]);
+
+        $bikes = Bike::all();
         $jobs = Job::all();
+        assertEquals(1, $bikes->count());
         assertEquals(1, $jobs->count());
     }
 
@@ -56,8 +73,22 @@ class JobTest extends TestCase
     public function test_update_job(){
 
         $user = User::factory()->create();
+
+        //The Job entity needs a reference to a bike
+        $test_bike = Bike::create([
+            'type' => 'test',
+            'size' =>'test',
+            'color' => 'test',
+            'price' => 12,
+            'finish' => 'test',
+            'grade' => 'test',
+            'quantity_in_stock' => 1222,
+        ]);
+
         $newJob = new Job();
         $newJob->status = "Queued";
+        $newJob->quantity = 69;
+        $newJob->bike_id = $test_bike->id;
         $newJob->save();
         $uri = '/toggle-job-status/'.$newJob->id;
 
@@ -75,8 +106,22 @@ class JobTest extends TestCase
     public function test_delete_job() {
 
         $user = User::factory()->create();
+
+        //The Job entity needs a reference to a bike
+        $test_bike = Bike::create([
+            'type' => 'test',
+            'size' =>'test',
+            'color' => 'test',
+            'price' => 12,
+            'finish' => 'test',
+            'grade' => 'test',
+            'quantity_in_stock' => 1222,
+        ]);
+
         $newJob = new Job();
         $newJob->status = "Complete";
+        $newJob->quantity = 69;
+        $newJob->bike_id = $test_bike->id;
         $newJob->save();
 
         $this->assertDatabaseHas('jobs', [
