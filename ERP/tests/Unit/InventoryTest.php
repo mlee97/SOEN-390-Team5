@@ -142,6 +142,7 @@ class InventoryTest extends TestCase
 
         $this->actingAs($user)->post('/create-material', [
             'material_name' => 'TestDelete',
+            'cost' => 19.95,
             'material_quantity_in_stock' => rand(0, 100)
         ]);
 
@@ -150,5 +151,52 @@ class InventoryTest extends TestCase
         $this->actingAs($user)->get('deleteMaterial/' . $material_id);
 
         $this->assertDatabaseMissing('materials', ['material_name' => 'TestDelete']);
+    }
+
+    public function test_inventory_user_can_edit_material()
+    {
+
+        //Create Inventory User
+        $user = User::factory()->create();
+        $user->user_type = 4;
+
+        $this->actingAs($user)->post('/create-material', [
+            'material_name' => 'TestEdit',
+            'cost' => 19.95,
+            'material_quantity_in_stock' => 100
+        ]);
+
+        $material_id = DB::table('materials')->where('material_name', 'TestEdit')->value('id');
+
+        $this->actingAs($user)->post('/edit-material', [
+            'id' => $material_id,
+            'material_name' => 'TestEdit',
+            'cost' => 19.95,
+            'material_quantity_in_stock' => 2
+        ]);
+
+        $this->assertDatabaseHas('materials', ['id' => $material_id, 'material_quantity_in_stock' => 2]);
+    }
+
+    public function test_inventory_user_can_edit_part()
+    {
+        //Create Inventory User
+        $user = User::factory()->create();
+        $user->user_type = 4;
+
+        $this->actingAs($user)->post('/create-part', [
+            'part_name' => 'TestEdit',
+            'part_quantity_in_stock' => 100
+        ]);
+
+        $part_id = DB::table('parts')->where('part_name', 'TestEdit')->value('id');
+
+        $this->actingAs($user)->post('/edit-part', [
+            'id' => $part_id,
+            'part_name' => 'TestEdit',
+            'part_quantity_in_stock' => 2
+        ]);
+
+        $this->assertDatabaseHas('parts', ['id' => $part_id, 'part_quantity_in_stock' => 2]);
     }
 }
