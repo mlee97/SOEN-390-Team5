@@ -68,6 +68,8 @@ Project is created using the following:
   <dd>Ubuntu is an open-source software Linux operating system.</dd>
 - [Xdebug Code Coverage version 3.0.3](https://xdebug.org/)
   <dd>Xdebug is a PHP extension which provides debugging and profiling capabilities.</dd>
+- [Larastan version 0.7.0](https://xdebug.org/)
+  <dd>Larastan is a static analysis tool that focuses on finding errors in your code without actually running it.</dd>
 - [GitHub](https://github.com/)
   <dd>Github is a free service that allows open-source projects or unlimited private repositories.</dd>
 - [Discord version: 74432](https://discord.com/)
@@ -83,6 +85,7 @@ The software will implement a model-view-controller (MVC) architectural pattern 
 2. Install [Ubuntu Groovy](https://releases.ubuntu.com/20.10/).
 3. Install [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) using the following guide.
 4. Install [Xdebug](https://xdebug.org/docs/install).
+5. Install [Larastan](https://github.com/nunomaduro/larastan) using the following guide.
    
    
 ## Steps for generating code coverage
