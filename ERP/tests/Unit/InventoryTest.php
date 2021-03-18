@@ -3,11 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Models\Bike;
-use App\Models\Part;
 use Illuminate\Support\Facades\DB;
-use App\Models\Material;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
