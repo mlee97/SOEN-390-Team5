@@ -15,7 +15,20 @@ class Job extends Model
      * @var array
      */
     protected $fillable = [
-        'status'
+        'status',
+        'quantity',
+        'bike_id'
     ];
-    
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function bike()
+    {
+        return $this->hasOne(Bike::class);
+    }
+
 }

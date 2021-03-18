@@ -14,7 +14,7 @@
                         <a class="nav-link" data-toggle="tab" href="#post_logs">Action Logs</a>
                     </li>
                     <li class="nav-item ml-auto">
-                        <span data-href="/logging-export" id="export" class="btn btn-primary btn-sm" onclick="exportLogs(event.target);">Export</span>
+                        <span data-href="/logging-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export</span>
                     </li>
                 </ul>
             </div>

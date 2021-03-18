@@ -1,11 +1,16 @@
 <?php
 
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\AccountantController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\MachineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,38 +23,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/assembly', function(){
-    return view ('assembly');
+
+Route::get('/assembly', function () {
+    return view('assembly');
 })
-->middleware('auth')
-->name("assembly");
+    ->middleware('auth')
+    ->name("assembly");
 
-/*Route::get('/inventory', function(){
-    return view ('inventory');
-})
-->middleware('auth')
-->name("inventory");*/
-
-
-// Route::get('/jobs', function(){
-//     return view ('jobs');
-// })
-// ->middleware('auth')
-// ->name("inventory");
-
-// Route::post('/jobs', [JobController::class, 'createJob'])
-// ->name('create.job');
-
-Route::get ('/jobs', [JobController::class, 'goToJobManagement'])
+//Jobs routes to see, create, delete and update jobs
+Route::get('/jobs', [JobController::class, 'goToJobManagement'])
     ->middleware('auth')
     ->name('jobs');
 Route::get('/create-job', [JobController::class, 'goToCreateJob'])
     ->middleware('auth');
 Route::post('/create-job', [JobController::class, 'createJob'])
-    ->middleware('auth')    
-    ->name('create.job');   
-Route::get('delete-job/{job_id}', [JobController::class, 'deleteJob']);    
-Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);   
+    ->middleware('auth')
+    ->name('create.job');
+Route::get('delete-job/{job_id}', [JobController::class, 'deleteJob']);
+Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,8 +48,17 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
+//Machine Routes given `manufacturer.access.only` middleware (prevents non-manufacturing or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth', 'manufacturer.access.only']], function () {
+    Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
+        ->name('machine.status');
+
+    Route::get('change-status/{id}', [MachineController::class, 'changeStatus'])
+        ->name('change.status');
+});
+
 //IT Routes grouped together & given `it.access.only` middleware (prevents non-IT personal from accessing these routes)
-Route::group(['middleware' => ['auth' ,'it.access.only']], function () {
+Route::group(['middleware' => ['auth', 'it.access.only']], function () {
     Route::get('/create-user', [UserController::class, 'goToCreateUser']);
 
     Route::post('/create-user', [UserController::class, 'createUser'])
@@ -90,7 +90,7 @@ Route::post('/logout', [UserController::class, 'logoutUser'])
 
 
 //Inventory Routes given `inventory.access.only` middleware (prevents non-inventory or non-IT personal from accessing this route)
-Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
+Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
     Route::get('/inventory', [BikeController::class, 'goToInventory'])
         ->name('inventory');
 
@@ -103,6 +103,9 @@ Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
     Route::post('/create-material', [MaterialController::class, 'createMaterial'])
         ->name('create.material');
 
+    Route::post('/create-order', [OrderController::class, 'createOrder'])
+        ->name('create.order');
+
     Route::post('/edit-bike', [BikeController::class, 'editBike'])
         ->name('edit.bike');
 
@@ -112,12 +115,27 @@ Route::group(['middleware' => ['auth' ,'inventory.access.only']], function () {
     Route::post('/edit-material', [MaterialController::class, 'editMaterial'])
         ->name('edit.material');
 
-    Route::get('deleteBike/{id}',[BikeController::class, 'destroy']);
+    Route::get('deleteBike/{id}', [BikeController::class, 'destroy']);
 
-    Route::get('deletePart/{id}',[PartController::class, 'destroy']);
+    Route::get('deletePart/{id}', [PartController::class, 'destroy']);
 
-    Route::get('deleteMaterial/{id}',[MaterialController::class, 'destroy']);
+    Route::get('deleteMaterial/{id}', [MaterialController::class, 'destroy']);
 
     Route::get('update-bike/{id}', [BikeController::class, 'updateBike'])
         ->name('update.bike');
 });
+
+//Shipping Routes given `shipping.access.only` middleware (prevents non-shipping users from accessing this route)
+Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
+    Route::get('/shipping', [ShippingController::class, 'goToShipping'])
+        ->name('shipping');
+    Route::get('/toggle-order-status/{id}', [ShippingController::class, 'toggleOrderStatus'])
+        ->name('toggle.order.status');
+});
+
+// Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
+Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
+    ->name('accountant');
+
+Route::get('/sale-export', [SaleController::class, 'exportSales'])
+    ->name('sale.export');

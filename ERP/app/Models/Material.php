@@ -16,6 +16,18 @@ class Material extends Model
      */
     protected $fillable = [
         'material_name',
-        'material_quantity_in_stock'
+        'material_quantity_in_stock',
+        'cost'
     ];
+
+    //relates materials to parts
+    public function parts(){
+        return $this->belongsToMany(Part::class);
+    }
+
+    //relates orders to materials
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }

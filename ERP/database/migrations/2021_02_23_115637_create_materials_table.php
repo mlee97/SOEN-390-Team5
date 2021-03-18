@@ -16,6 +16,7 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->double('cost', 2);
             $table->string('material_name');
             $table->integer('material_quantity_in_stock');
         });

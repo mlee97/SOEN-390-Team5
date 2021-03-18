@@ -47,6 +47,8 @@
                         <option value="2">Floor Worker</option>
                         <option value="3">Shipping Department</option>
                         <option value="4">Inventory</option>
+                        <option value="5">Manufacturer Worker</option>
+                        <option value="6">Accountant</option>
                     </select>
                 </div>
 
