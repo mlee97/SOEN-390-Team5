@@ -9,6 +9,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AccountantController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\MachineController;
 use Illuminate\Support\Facades\Route;
 
@@ -136,3 +137,5 @@ Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
 Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
     ->name('accountant');
 
+Route::get('/sale-export', [SaleController::class, 'exportSales'])
+    ->name('sale.export');
