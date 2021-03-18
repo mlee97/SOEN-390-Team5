@@ -46,6 +46,7 @@ class InventoryTest extends TestCase
         $this->actingAs($user)->post('/create-bike', [
             'type' => 'Mountain',
             'size' => '18',
+            'price' => 199.99,
             'color' => 'red',
             'finish' => 'Matt',
             'grade' => 'Aluminium',
@@ -56,6 +57,7 @@ class InventoryTest extends TestCase
             [
             'type' => 'Mountain',
             'size' => '18',
+            'price' => 199.99,
             'color' => 'red',
             'finish' => 'Matt',
             'grade' => 'Aluminium']
@@ -86,6 +88,7 @@ class InventoryTest extends TestCase
 
         $this->actingAs($user)->post('/create-material', [
             'material_name' => 'Test',
+            'cost' => 19.95,
             'material_quantity_in_stock' => rand(0, 100)
         ]);
 
