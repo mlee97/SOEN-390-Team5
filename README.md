@@ -68,7 +68,7 @@ Project is created using the following:
   <dd>Ubuntu is an open-source software Linux operating system.</dd>
 - [Xdebug Code Coverage version 3.0.3](https://xdebug.org/)
   <dd>Xdebug is a PHP extension which provides debugging and profiling capabilities.</dd>
-- [Larastan version 0.7.0](https://xdebug.org/)
+- [Larastan version 0.7.0](https://github.com/nunomaduro/larastan)
   <dd>Larastan is a static analysis tool that focuses on finding errors in your code without actually running it.</dd>
 - [GitHub](https://github.com/)
   <dd>Github is a free service that allows open-source projects or unlimited private repositories.</dd>
