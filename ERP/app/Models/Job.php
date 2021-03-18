@@ -15,7 +15,8 @@ class Job extends Model
      * @var array
      */
     protected $fillable = [
-        'status'
+        'status',
+        'quantity'
     ];
 
 
