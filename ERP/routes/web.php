@@ -12,6 +12,7 @@ use App\Http\Controllers\AccountantController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\MachineController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DynamicPDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,8 @@ Route::group(['middleware' => ['auth', 'it.access.only']], function () {
 
     Route::get('/logging-export', [LogController::class, 'exportLogs'])
         ->name('logging.export');
+
+    Route::get('/PDF/logs', [LogController::class, 'pdf']);
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
@@ -139,3 +142,6 @@ Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
 
 Route::get('/sale-export', [SaleController::class, 'exportSales'])
     ->name('sale.export');
+
+
+    
