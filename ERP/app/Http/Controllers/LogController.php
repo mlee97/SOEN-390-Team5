@@ -52,51 +52,43 @@ class LogController extends Controller
 
     }
 
-    //functions to create PDF
-    function get_logs()
-    {
-     $logs = DB::table('logs')
-         ->limit(10)
-         ->get();
-     return $logs;
-    }
-
-    function pdf()
-    {
-     $pdf = \App::make('dompdf.wrapper');
-     $pdf->loadHTML($this->convert_logs_to_html());
-     return $pdf->stream();
-    }
-
+    //function to convert logs to html
     function convert_logs_to_html()
     {
-     $logs = $this->get_logs();
-     $output = '
-     <h3 align="center">logs</h3>
-     <table width="100%" style="border-collapse: collapse; border: 0px;">
-      <tr>
-      <th style="border: 1px solid; padding:12px;" width="10%">Type</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">TimeStamp</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">IP Address</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">Message</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">Request Type</th>
-      </tr>
-      ';  
-
-     foreach($logs as $log)
-        {
-        $output .= '
+        $logs = Log::all()->sortByDesc('created_at');
+        $output = '
+        <h3 align="center">Logs in PDF format</h3>
+        <table width="100%" style="border-collapse: collapse; border: 0px;">
         <tr>
-        <td style="border: 1px solid; padding:12px;">'.$log->log_type.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->created_at.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->ip_address.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->message.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->request_type.'</td>
+        <th style="border: 1px solid; padding:1px;" width="10%">Type</th>
+        <th style="border: 1px solid; padding:1px;" width="20%">TimeStamp</th>
+        <th style="border: 1px solid; padding:1px;" width="10%">IP Address</th>
+        <th style="border: 1px solid; padding:1px;" width="20%">Message</th>
+        <th style="border: 1px solid; padding:1px;" width="20%">Request Type</th>
         </tr>
-        ';
+        ';  
+
+        foreach($logs as $log) {
+            $output .= '
+            <tr>
+            <td style="border: 1px solid; padding:1px;">'.$log->log_type.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->created_at.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->ip_address.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->message.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->request_type.'</td>
+            </tr>
+            ';
         }
 
-     $output .= '</table>';
-     return $output;
+        $output .= '</table>';
+        return $output;
+    }
+
+    //pdf function to convert html to pdf
+    function pdf()
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->convert_logs_to_html());
+        return $pdf->stream();
     }
 }

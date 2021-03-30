@@ -77,7 +77,8 @@ Route::group(['middleware' => ['auth', 'it.access.only']], function () {
     Route::get('/logging-export', [LogController::class, 'exportLogs'])
         ->name('logging.export');
 
-    Route::get('/PDF/logs', [LogController::class, 'pdf']);
+    Route::get('/PDF/logs', [LogController::class, 'pdf'])
+        ->name('loggingPDF.export');
 });
 
 Route::get('/login', [UserController::class, 'goToLogin'])
@@ -142,6 +143,9 @@ Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
 
 Route::get('/sale-export', [SaleController::class, 'exportSales'])
     ->name('sale.export');
+
+Route::get('/PDF/sales', [SaleController::class, 'pdf'])
+    ->name('salePDF.export');
 
 
     

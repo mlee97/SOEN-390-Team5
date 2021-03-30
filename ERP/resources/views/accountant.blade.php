@@ -18,6 +18,9 @@
                     <li class="nav-item ml-auto">
                         <span data-href="/sale-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export</span>           
                     </li>
+                    <li class="col-md-5" align="right">
+                        <a href="{{ url('/PDF/sales') }}" target="_blank" class="btn btn-danger">Export into PDF</a>
+                    </li>
                 </ul>
             </div>
             
