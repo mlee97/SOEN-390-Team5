@@ -58,8 +58,10 @@ class SaleController extends Controller
     //function to convert sales to html
     function convert_sales_to_html()
     {
+        //$sales: variable that returns all the sales in sale table and sorts them in descending order of created time
         $sales = Sale::all()->sortByDesc('created_at');
 
+       //$output below defines a table in html format and identifies the header of each column 
         $output = '
         <h3 align="center">Sales in PDF format</h3>
         <table width="100%" style="border-collapse: collapse; border: 0px;">
@@ -78,6 +80,8 @@ class SaleController extends Controller
         </tr>
         ';  
 
+        //this fills each row of the table with the specified elements from the sales table in each respective column
+        //nested foreach with bikes as well to define what element from the bikes table will be put in each column for each sale
         foreach($sales as $sale) {
                 foreach ($sale->bikes as $bikeSale) {
                 $output .= '
@@ -97,12 +101,16 @@ class SaleController extends Controller
                 ';
                 }
             }
-
+        
+        //this returns the table
         $output .= '</table>';
         return $output;
     }  
 
-    //pdf function to convert html to pdf
+    //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer 
+    //this function is called when the route /PDF/logs is accessed 
+    //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_sales_to_html());' for the content in the PDF
+    //and finally return the pdf 'return $pdf->stream();'
     function pdf()
     {
         $pdf = \App::make('dompdf.wrapper');
