@@ -16,8 +16,8 @@ class MasterUserSeeder extends Seeder
     public function run()
     {
         $masterUser = new User();
-        $masterUser -> first_name = 'IT';
-        $masterUser -> last_name = 'Admin';
+        $masterUser -> first_name = 'Jimmy';
+        $masterUser -> last_name = 'Neutron';
         $masterUser -> email = 'admin@gmail.com';
         $masterUser -> password = Hash::make('password');
         $masterUser -> user_type = 0;
@@ -28,32 +28,53 @@ class MasterUserSeeder extends Seeder
             $masterUser->save();
 
         $hrUser = new User();
-        $hrUser -> first_name = 'Human';
-        $hrUser -> last_name = 'Resources';
+        $hrUser -> first_name = 'Joe';
+        $hrUser -> last_name = 'Bobberson';
         $hrUser -> email = 'hr@gmail.com';
         $hrUser -> password = Hash::make('password');
         $hrUser -> user_type = 1;
 
         $floorUser = new User();
-        $floorUser -> first_name = 'Floor';
-        $floorUser -> last_name = 'Worker';
+        $floorUser -> first_name = 'Nikkie';
+        $floorUser -> last_name = 'Minaj';
         $floorUser -> email = 'floor@gmail.com';
         $floorUser -> password = Hash::make('password');
         $floorUser -> user_type = 2;
 
         $shippingUser = new User();
-        $shippingUser -> first_name = 'Shipping';
-        $shippingUser -> last_name = 'Department';
+        $shippingUser -> first_name = 'Contigo';
+        $shippingUser -> last_name = 'Las Vegas';
         $shippingUser -> email = 'shipping@gmail.com';
         $shippingUser -> password = Hash::make('password');
         $shippingUser -> user_type = 3;
 
         $inventoryUser = new User();
-        $inventoryUser -> first_name = 'Inventory';
-        $inventoryUser -> last_name = 'Manager';
+        $inventoryUser -> first_name = 'Guy';
+        $inventoryUser -> last_name = 'Fieri';
         $inventoryUser -> email = 'inventory@gmail.com';
         $inventoryUser -> password = Hash::make('password');
         $inventoryUser -> user_type = 4;
+
+        $manufacturerWorker = new User();
+        $manufacturerWorker -> first_name = 'Git';
+        $manufacturerWorker -> last_name = 'Man';
+        $manufacturerWorker -> email = 'gman@gmail.com';
+        $manufacturerWorker -> password = Hash::make('password');
+        $manufacturerWorker -> user_type = 5;
+
+        $manufacturerWorker2 = new User();
+        $manufacturerWorker2 -> first_name = 'Robert';
+        $manufacturerWorker2 -> last_name = 'Kardashian';
+        $manufacturerWorker2 -> email = 'rk@gmail.com';
+        $manufacturerWorker2 -> password = Hash::make('password');
+        $manufacturerWorker2 -> user_type = 5;
+
+        $manufacturerWorker3 = new User();
+        $manufacturerWorker3 -> first_name = 'Lil';
+        $manufacturerWorker3 -> last_name = 'Uzi';
+        $manufacturerWorker3 -> email = 'uzi@gmail.com';
+        $manufacturerWorker3 -> password = Hash::make('password');
+        $manufacturerWorker3 -> user_type = 5;
 
         $user2 = User::where('email', '=', $hrUser->email)->first();
 
@@ -74,6 +95,23 @@ class MasterUserSeeder extends Seeder
 
         if($user5 == null)
             $inventoryUser->save();
+
+
+        $user6 = User::where('email', '=', $manufacturerWorker->email)->first();
+
+        if($user6 == null)
+            $manufacturerWorker->save();
+
+
+        $user7 = User::where('email', '=', $manufacturerWorker2->email)->first();
+
+        if($user7 == null)
+            $manufacturerWorker2->save();
+
+        $user8 = User::where('email', '=', $manufacturerWorker3->email)->first();
+
+        if($user8== null)
+            $manufacturerWorker3->save();
 
     }
 }
