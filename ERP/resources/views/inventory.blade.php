@@ -276,13 +276,13 @@
                                     @endif
                                     <td>
                                         <a class="btn btn-primary" data-placement="top"
-                                           data-target="#modal-edit-material{{ $part->id }}" data-toggle="modal"
+                                           data-target="#modal-edit-material{{ $material->id }}" data-toggle="modal"
                                            id="modal-edit-material">Edit</a>
                                         <a type="button" class="btn btn-danger" href="deleteMaterial/{{$material->id}}">Delete</button>
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="modal-edit-material{{ $part->id }}" tabindex="-1"
+                                <div class="modal fade" id="modal-edit-material{{ $material->id }}" tabindex="-1"
                                      role="dialog" aria-labelledby="edit_material_modal_lable" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
