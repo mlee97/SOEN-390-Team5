@@ -19,7 +19,7 @@ class CreateJobsTable extends Migration
             $table->integer('quantity');
             $table->string('status');
             $table->foreignId('user_id')->nullable()->references('id')->on('users');
-            $table->foreignId('bike_id')->references('id')->on('bikes');
+            $table->foreignId('bike_id')->references('id')->on('bikes')->onDelete('cascade');
         });
     }
 

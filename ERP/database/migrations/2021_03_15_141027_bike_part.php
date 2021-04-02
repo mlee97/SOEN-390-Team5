@@ -14,7 +14,7 @@ class BikePart extends Migration
     public function up()
     {
         Schema::create('bike_part', function (Blueprint $table) {
-            $table->foreignId('bike_id')->references('id')->on('bikes');
+            $table->foreignId('bike_id')->references('id')->on('bikes')->cascadeOnDelete();
             $table->foreignId('part_id')->references('id')->on('parts');
         });
     }

@@ -1,5 +1,21 @@
 @extends('layouts.master')
 @section('inside-body-tag')
+    @if(count($errors->all()))
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(Session::has('success_msg'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success_msg')}}
+        </div>
+    @endif
+
     <!-- Container for the whole page -->
     <div class="container-fluid my-4">
         <div class="panel panel-primary"> <!-- Panel for the buttons -->

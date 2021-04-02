@@ -24,7 +24,7 @@ class PartController extends Controller
             'part_name' => 'required|string|max:255',
             'part_quantity_in_stock' => 'required|integer',
         ]);
-        
+
         //If the validation fails, log an error message.
         if ($validator->fails()) {
             $msg_str = 'Part creation failed';
@@ -60,7 +60,7 @@ class PartController extends Controller
             'request_type' => 'POST',
             'message' => $msg_str,
         ]);
-        
+
         //Redirect the user to the inventory page.
         return redirect()->route('inventory')
         ->with('success_msg', 'Part has been successfully created!'); //Send a temporary success message. This is saved in the session.
@@ -75,24 +75,46 @@ class PartController extends Controller
     */
     public function destroy($id, Request $request) {
 
-        //Take the id parameter and insert it into the following query
-        DB::delete('delete from parts where id = ?',[$id]);
+        //Find all bikes associated with part
+        $bikePartRelationship = DB::table('bike_part')->where('part_id', '=', $id);
 
-        //Log the results of the post request
-        $msg_str = 'Part with ID '. $id . ' successfully deleted';
-        Log::create([
-            'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
-            'log_type' => 'INFO',
-            'request_type' => 'POST',
-            'message' => $msg_str,
-        ]);
-        
-        //Redirect the user to the inventory page 
-        return redirect('/inventory')
-            ->with('success_msg', 'Part Deleted'); //Send a temporary success message. This is saved in the session
+        //If part is associated with a bike, the delete operation fails
+        if($bikePartRelationship->count() == 0) {
+
+            //Take the id parameter and insert it into the following query
+            DB::delete('delete from parts where id = ?', [$id]);
+
+            //Log the results of the post request
+            $msg_str = 'Part with ID ' . $id . ' successfully deleted';
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'log_type' => 'INFO',
+                'request_type' => 'POST',
+                'message' => $msg_str,
+            ]);
+
+            //Redirect the user to the inventory page
+            return redirect('/inventory')
+                ->with('success_msg', 'Part Has Been Successfully Deleted'); //Send a temporary success message. This is saved in the session
+        } else {
+
+
+            //Log the results of the failed post request
+            $msg_str = 'Failed to delete Part with ID ' . $id. ' Due to It Being Used by a Bike';
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'log_type' => 'ERROR',
+                'request_type' => 'POST',
+                'message' => $msg_str,
+            ]);
+            //Redirect the user to the inventory page with errors
+            return redirect('/inventory')->withErrors(['This Part can not Be Deleted since there is 1 or more Bike that is Built Using this Part']);
+
+        }
      }
-    
+
     /**
     * Edits the specified part from the parts table
     *
@@ -121,7 +143,7 @@ class PartController extends Controller
                 'request_type' => 'POST',
                 'message' => $msg_str,
             ]);
-            
+
             //Redirect user back to the inventory page.
             return redirect()->route('inventory')
                 ->withErrors($validator)
@@ -145,7 +167,7 @@ class PartController extends Controller
             'request_type' => 'POST',
             'message' => $msg_str,
         ]);
-        
+
         //Redirect the user to the inventory page.
         return redirect()->route('inventory')
             ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session

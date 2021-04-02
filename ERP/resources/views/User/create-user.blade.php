@@ -9,6 +9,16 @@
             </ul>
         </div>
     @endif
+
+    @if(count($errors->all()))
+        <div class="alert alert-success" role="alert">
+            <ul>
+                @foreach($success->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action={{route('create.user')}} method="POST">
         <div class="d-flex justify-content-center mt-5">
             <div class="d-flex flex-column border rounded shadow p-2">
