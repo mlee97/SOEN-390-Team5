@@ -27,20 +27,6 @@ class MasterUserSeeder extends Seeder
         if($user == null)
             $masterUser->save();
 
-        $hrUser = new User();
-        $hrUser -> first_name = 'Joe';
-        $hrUser -> last_name = 'Bobberson';
-        $hrUser -> email = 'hr@gmail.com';
-        $hrUser -> password = Hash::make('password');
-        $hrUser -> user_type = 1;
-
-        $floorUser = new User();
-        $floorUser -> first_name = 'Nikkie';
-        $floorUser -> last_name = 'Minaj';
-        $floorUser -> email = 'floor@gmail.com';
-        $floorUser -> password = Hash::make('password');
-        $floorUser -> user_type = 2;
-
         $shippingUser = new User();
         $shippingUser -> first_name = 'Contigo';
         $shippingUser -> last_name = 'Las Vegas';
@@ -76,16 +62,11 @@ class MasterUserSeeder extends Seeder
         $manufacturerWorker3 -> password = Hash::make('password');
         $manufacturerWorker3 -> user_type = 5;
 
-        $user2 = User::where('email', '=', $hrUser->email)->first();
 
-        if($user2 == null)
-            $hrUser->save();
 
-        $user3 = User::where('email', '=', $floorUser->email)->first();
-
-        if($user3 == null)
-            $floorUser->save();
-
+        //The code below verifies that the users we are adding to the database as a seed does not already exist in the database.
+        //If the entry already exists, then it will not be added to the DB as it will throw an error if we do
+        
         $user4 = User::where('email', '=', $shippingUser->email)->first();
 
         if($user4 == null)

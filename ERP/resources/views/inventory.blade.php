@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('inside-body-tag')
+
+    <!-- Display temporary error message when redirected to this page by controller due to an error-->
     @if(count($errors->all()))
         <div class="alert alert-danger" role="alert">
             <ul>
@@ -9,7 +11,7 @@
             </ul>
         </div>
     @endif
-
+    <!-- Display temporary success message when successfully deleting a part, material or bike-->
     @if(Session::has('success_msg'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success_msg')}}

@@ -101,7 +101,7 @@ class PartController extends Controller
 
 
             //Log the results of the failed post request
-            $msg_str = 'Failed to delete Part with ID ' . $id. ' Due to It Being Used by a Bike';
+            $msg_str = 'Failed to delete part with ID ' . $id. ' due to it being used by a bike';
             Log::create([
                 'user_id' => Auth::user()->id,
                 'ip_address' => $request->ip(),
@@ -110,7 +110,7 @@ class PartController extends Controller
                 'message' => $msg_str,
             ]);
             //Redirect the user to the inventory page with errors
-            return redirect('/inventory')->withErrors(['This Part can not Be Deleted since there is 1 or more Bike that is Built Using this Part']);
+            return redirect('/inventory')->withErrors(['This part can not Be deleted since there is 1 or more bike that is built using this part']);
 
         }
      }

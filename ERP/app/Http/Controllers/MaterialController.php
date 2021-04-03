@@ -100,7 +100,7 @@ class MaterialController extends Controller
                 ->with('success_msg', 'Material has been Successfully Deleted'); //Send a temporary success message. This is saved in the session
         } else {
 
-            $msg_str = $msg_str = 'Failed to delete Material with ID ' . $id. ' Due to It Being Used by a Part';
+            $msg_str = $msg_str = 'Failed to delete material with ID ' . $id. ' due to it being used by a part';
             Log::create([
                 'user_id' => Auth::user()->id,
                 'ip_address' => $request->ip(),
@@ -109,7 +109,7 @@ class MaterialController extends Controller
                 'message' => $msg_str,
             ]);
             //Redirect the user to the inventory page with errors
-            return redirect('/inventory')->withErrors(['This Material can not Be Deleted since there is 1 or more Part that is Built Using this Material']);
+            return redirect('/inventory')->withErrors(['This material can not be deleted since there is 1 or more part that is built using this material']);
 
         }
      }
