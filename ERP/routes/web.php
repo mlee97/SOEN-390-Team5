@@ -144,6 +144,9 @@ Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
 Route::get('/sales', [AccountantController::class, 'sales'])
 ->name('sales');
 
+Route::post('/sales', [AccountantController::class, 'saveSaleOrder'])
+->name('save.sale.order');
+
 Route::get('/sale-export', [SaleController::class, 'exportSales'])
     ->name('sale.export');
 
