@@ -18,9 +18,9 @@ class CreateBikeSaleTable extends Migration
 
             // Defining the columns in the table.
             $table->foreignId('sale_id')->references('id')->on('sales');
-            $table->foreignId('bike_id')->references('id')->on('bikes');
+            $table->foreignId('bike_id')->nullable()->references('id')->on('bikes')->nullOnDelete();
             $table->integer('quantity_sold');
-            
+
         });
     }
 

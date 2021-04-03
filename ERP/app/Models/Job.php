@@ -17,7 +17,8 @@ class Job extends Model
     protected $fillable = [
         'status',
         'quantity',
-        'bike_id'
+        'bike_id',
+        'user_id'
     ];
 
 

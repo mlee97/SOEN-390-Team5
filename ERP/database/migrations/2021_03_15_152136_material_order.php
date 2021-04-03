@@ -15,7 +15,7 @@ class MaterialOrder extends Migration
     {
         Schema::create('material_order', function (Blueprint $table) {
             $table->foreignId('order_id')->references('id')->on('orders');
-            $table->foreignId('material_id')->references('id')->on('materials');
+            $table->foreignId('material_id')->references('id')->on('materials')->cascadeOnDelete();
             $table->integer('order_quantity')->default(1);
         });
     }

@@ -209,7 +209,7 @@ class BikeController extends Controller
 
         //Redirect the user to the inventory page
         return redirect('/inventory')
-            ->with('success_msg', 'Bike Deleted'); //Send a temporary success message. This is saved in the session
+            ->with('success_msg', 'Bike Has Been Successfully Deleted'); //Send a temporary success message. This is saved in the session
     }
 
 }
