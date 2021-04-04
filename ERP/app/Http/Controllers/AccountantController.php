@@ -24,13 +24,8 @@ class AccountantController extends Controller
 
         return view('accountant', ['sales' => $sales, 'totalSalesProfit' => $totalSalesProfit, 'currentMonth' => $currentMonth, 'currentYear' => $currentYear]);
     }
-    // Redirects to the sales view.
-    public function sales()
-    {
-        $sales = Sale::all(); // Getting all data from Sale.    
         $bicycles = Bike::all();
-
-        return view('sales-test', ['sales' => $sales, 'bicycles' => $bicycles]);
+    
     }
 
 
@@ -55,5 +50,4 @@ class AccountantController extends Controller
         }
 
         return $this->sales();
-    }
 }
