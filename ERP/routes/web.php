@@ -141,7 +141,7 @@ Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
     ->name('accountant');
 
     // Executes "sales" method in the AccountantController when the route is "/sales".
-Route::get('/sales', [AccountantController::class, 'sales'])
+Route::get('/sales', [SaleController::class, 'sales'])
 ->name('sales');
 
 Route::get('/sale-export', [SaleController::class, 'exportSales'])

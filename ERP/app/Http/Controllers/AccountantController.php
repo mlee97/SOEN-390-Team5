@@ -22,11 +22,5 @@ class AccountantController extends Controller
 
         return view('accountant', ['sales' => $sales, 'totalSalesProfit' => $totalSalesProfit, 'currentMonth' => $currentMonth, 'currentYear' => $currentYear]);
     }
-    // Redirects to the sales view.
-    public function sales()
-    {
-        $sales = Sale::all(); // Getting all data from Sale.    
-
-        return view('sales-order', ['sales' => $sales]);
-    }
+    
 }
