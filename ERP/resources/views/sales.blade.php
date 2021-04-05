@@ -73,10 +73,6 @@
                             <input id="bicyle_quantity_sold_input" type="text" name="quantity" class="form-control" placeholder="Quantity">
                         </div>
                         <div class="form-group">
-                            <label for="bicyle_date_sold_input">Date Sold</label>
-                            <input id="bicyle_date_sold_input" type="text" name="dateSold" class="form-control" placeholder="Grade">
-                        </div>
-                        <div class="form-group">
                             <label for="bicyle_profit_input">Profit</label>
                             <input id="bicyle_profit_input" type="text" name="profit" class="form-control" placeholder="Grade">
                         </div>
