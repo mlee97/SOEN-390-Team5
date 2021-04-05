@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bike;
 use App\Models\Log;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\RequiredIf;
 
 class JobController extends Controller
 {
@@ -23,8 +24,9 @@ class JobController extends Controller
 
         $validator = Validator::make($request->all(), [
             'status' => 'required',
-            'quantity' => 'required',
-            'bike_id' => 'required'
+            'order_qty' => 'required',
+            'bike' => 'required',
+            'user' => 'required'
         ]);
 
         //If validation fails user is redirected to inventory
@@ -50,8 +52,9 @@ class JobController extends Controller
         //Otherwise successfully create and store a job
         $newJob= Job::create([
             'status' => $request->status,
-            'quantity' => $request->quantity,
-            'bike_id' => $request->bike_id
+            'quantity' => $request->order_qty,
+            'bike_id' => $request->bike,
+            'user_id' =>$request->user
         ]);
 
         //Log results
@@ -139,6 +142,14 @@ class JobController extends Controller
      */
     public function goToCreateJob(Request $request) {
 
+        //Each job needs an associated bike, therefore the list of all bikes is returned to the view
+        $bikes = Bike::all();
+
+        //Each job has an assignee (manufacturer worker, user_type = 5)
+        $manufacturerWorkers = DB::table('users')
+            ->where('user_type', '=', 5)
+            ->get();
+
         //Get results
         $msg_str = 'Job Creation page accessed';
         Log::create([
@@ -150,7 +161,7 @@ class JobController extends Controller
         ]);
 
         //Redirect user to create-job page
-        return view('create-job');
+        return view('create-job', ['bikes' => $bikes, 'users' => $manufacturerWorkers]);
     }
 
     /**

@@ -1,5 +1,23 @@
 @extends('layouts.master')
 @section('inside-body-tag')
+
+    <!-- Display temporary error message when redirected to this page by controller due to an error-->
+    @if(count($errors->all()))
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <!-- Display temporary success message when successfully deleting a part, material or bike-->
+    @if(Session::has('success_msg'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success_msg')}}
+        </div>
+    @endif
+
     <!-- Container for the whole page -->
     <div class="container-fluid my-4">
         <div class="panel panel-primary"> <!-- Panel for the buttons -->
@@ -24,6 +42,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">Type</th>
+                                <th scope="col">Price</th>
                                 <th scope="col">Size</th>
                                 <th scope="col">Color</th>
                                 <th scope="col">Finish</th>
@@ -37,6 +56,7 @@
                             @foreach($bikes as $bike)
                                 <tr>
                                     <td>{{$bike->type}}</td>
+                                    <td>{{$bike->price}}</td>
                                     <td>{{$bike->size}}</td>
                                     <td>{{$bike->color}}</td>
                                     <td>{{$bike->finish}}</td>
@@ -83,6 +103,11 @@
                                                             <option value="Racing">Racing</option>
                                                             <option value="Recreational">Recreational</option>
                                                         </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="type">Price</label>
+                                                        <input id="price" name="price" class="form-control"
+                                                                value="{{ old('price')?: $bike->price }}" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="size">Frame Size</label>
@@ -140,10 +165,12 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <!--new bicycle Button-->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bicycle_modal">
-                            Add a new Bicycle
-                        </button>
+                            @if(Auth::user()-> user_type == 7)
+                                <!--new bicycle Button-->
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bicycle_modal">
+                                    Add a new Bicycle
+                                </button>
+                            @endif
                     </div>
                 </div>
 
@@ -226,10 +253,12 @@
                             </tbody>
                         </table>
 
+                    @if(Auth::user()-> user_type == 7)
                         <!-- New Part button-->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#part_modal">
                             Add a new Part
                         </button>
+                        @endif
                     </div>
                 </div>
                 <br>
@@ -243,6 +272,7 @@
                                 <th scope="col">MaterialID</th>
                                 <th scope="col">Material Name</th>
                                 <th scope="col">Quantity In Stock</th>
+                                <th scope="col">Cost</th>
                                 <th scope="col">Stock Status</th>
                                 <td></td>
                             </tr>
@@ -253,6 +283,7 @@
                                     <td>{{$material->id}}</td>
                                     <td>{{$material->material_name}}</td>
                                     <td>{{$material->material_quantity_in_stock}}</td>
+                                    <td>{{$material->cost}}</td>
                                     @if($material->material_quantity_in_stock > 10)
                                         <td style="background-color:#00FF00">Good</td>
                                     @else
@@ -260,13 +291,13 @@
                                     @endif
                                     <td>
                                         <a class="btn btn-primary" data-placement="top"
-                                           data-target="#modal-edit-material{{ $part->id }}" data-toggle="modal"
+                                           data-target="#modal-edit-material{{ $material->id }}" data-toggle="modal"
                                            id="modal-edit-material">Edit</a>
                                         <a type="button" class="btn btn-danger" href="deleteMaterial/{{$material->id}}">Delete</button>
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="modal-edit-material{{ $part->id }}" tabindex="-1"
+                                <div class="modal fade" id="modal-edit-material{{ $material->id }}" tabindex="-1"
                                      role="dialog" aria-labelledby="edit_material_modal_lable" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -298,6 +329,11 @@
                                                                class="form-control"
                                                                value="{{ old('material_quantity_in_stock')?: $material->material_quantity_in_stock }}">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="type">Cost</label>
+                                                        <input id="cost" name="cost" class="form-control" 
+                                                            value="{{ old('cost')?: $material->cost }}" required/>
+                                                    </div>
                                                     <div class="modal-footer">
                                                         <input type="submit" class="btn btn-primary"
                                                                value="edit material">
@@ -311,16 +347,21 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <!-- Materials Button-->
-                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#materials_modal">
-                            Add New Materials
-                        </button>
 
-                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#order_materials">
-                            Order Materials
-                        </button>
+                        @if(Auth::user()-> user_type == 7)
+                            <!-- Materials Button-->
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#materials_modal">
+                                Add New Materials
+                            </button>
+                        @endif
+
+                        @if(Auth::user()-> user_type == 4)
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#order_materials">
+                                Order Materials
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -407,6 +448,10 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="type">Price</label>
+                            <input id="price" name="price" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
                             <label for="size">Frame Size</label>
                             <select id="size" name="size" class="form-control" required>
                                 <option value="18">18"</option>
@@ -475,6 +520,10 @@
                             <label for="material_quantity_in_stock">Quantity</label>
                             <input name="material_quantity_in_stock" id="material_quantity_in_stock" type="text"
                                    class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Cost</label>
+                            <input id="cost" name="cost" class="form-control" required/>
                         </div>
                         <div class="modal-footer">
                             <input type="submit" class="btn btn-primary" value="create material">

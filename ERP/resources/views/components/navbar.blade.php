@@ -35,7 +35,7 @@
 
                 <!--Redirects to Inventory page if the user has permission--><!--Permissions to be implemented-->
 
-                @if(Auth::user()->user_type==4)
+                @if(Auth::user()->user_type==4 || Auth::user()->user_type==7 )
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
                 </li>

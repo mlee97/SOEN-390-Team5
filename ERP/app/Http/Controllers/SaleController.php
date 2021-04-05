@@ -54,7 +54,7 @@ class SaleController extends Controller
     }  
     
     // Redirects to the sales view.
-    public function sales()
+    public function goToSalesView()
     {
         $sales = Sale::all(); // Getting all data from Sale.    
         $bicycles = Bike::all();
