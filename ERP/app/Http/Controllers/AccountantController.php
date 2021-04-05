@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Models\Bike;
+use Exception;
 
 /**
  *  Takes care of the logics in the accountant view.
