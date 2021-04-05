@@ -49,7 +49,6 @@ class OrderController extends Controller
         //Send email to all accountants that an order has been placed with order details
         $accountantUsers = DB::table('users')->where('user_type', '=', 6)->get();
         foreach ($accountantUsers as $aUser) {
-
             Mail::to($aUser->email)->send(new MaterialOrderConfirmation($newOrder, $totalCost, new User( (array)$aUser)));
         }
 
