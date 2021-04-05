@@ -26,7 +26,6 @@ class JobController extends Controller
             'status' => 'required',
             'order_qty' => 'required',
             'bike' => 'required',
-            'user' => 'required'
         ]);
 
         //If validation fails user is redirected to inventory
@@ -54,7 +53,7 @@ class JobController extends Controller
             'status' => $request->status,
             'quantity' => $request->order_qty,
             'bike_id' => $request->bike,
-            'user_id' =>$request->user
+            'user_id' => ($request->user) == "" ? null: $request->user
         ]);
 
         //Log results
@@ -118,7 +117,7 @@ class JobController extends Controller
             //Save the status of job id
             $job->save();
 
-            
+
 
             //Log results
             $msg_str = 'Job status with ID ' . $job->id . ' updated successfully to ' . $job->status;

@@ -14,7 +14,7 @@
             <div class="d-flex flex-column border rounded shadow p-2">
                 <div class="p-2">
                     <label for="user" class="form-label">Assign Job To</label>
-                    <select id="user" name="user" class="form-control py-1" required>
+                    <select id="user" name="user" class="form-control py-1">
                         <option value=""> -- SELECT ASSIGNEE --</option>
                         @foreach($users as $user)
                             <option value={{$user->id}}> {{$user->first_name. " ". $user->last_name}} </option>
