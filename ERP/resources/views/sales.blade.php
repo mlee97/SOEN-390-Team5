@@ -62,28 +62,39 @@
                 <div class="modal-body">
                     <!-- Modal body for the input -->
                     <form method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="form-group">
                             <label for="bicycle_id">Bicycles</label>
                             <!-- the dropdown list for showing the bicycles -->
                             <select id="bicycle_id" name="bicycleId">
+                                @foreach ($bicycles as $bicycle)
+                                <option value="{{$bicycle->id}}">
+                                    {{$bicycle->type}}-
+                                    {{$bicycle->price}}-
+                                    {{$bicycle->size}}-
+                                    {{$bicycle->color}}-
+                                    {{$bicycle->finish}}-
+                                    {{$bicycle->grade}}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="bicyle_quantity_sold_input">Quantity Sold</label>
-                            <input id="bicyle_quantity_sold_input" type="text" name="quantity" class="form-control" placeholder="Quantity">
+                            <input id="bicyle_quantity_sold_input" type="text" name="quantitySold" class="form-control" placeholder="Quantity">
                         </div>
                         <div class="form-group">
                             <label for="bicyle_profit_input">Profit</label>
-                            <input id="bicyle_profit_input" type="text" name="profit" class="form-control" placeholder="Grade">
+                            <input id="bicyle_profit_input" type="text" name="profit" class="form-control" placeholder="Profit">
                         </div>
                         <!-- End of Modal body for input -->
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <!-- Modal or Popup footer -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
