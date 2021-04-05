@@ -82,6 +82,6 @@ class SaleController extends Controller
             $sale->bikes()->sync([1 => $bike_sale_pivot]);
         }
 
-        return $this->sales();
+        return $this->goToSalesView();
     }
 }

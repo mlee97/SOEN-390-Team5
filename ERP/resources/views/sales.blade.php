@@ -88,13 +88,13 @@
                             <input id="bicyle_profit_input" type="text" name="profit" class="form-control" placeholder="Profit">
                         </div>
                         <!-- End of Modal body for input -->
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <!-- Modal or Popup footer -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
