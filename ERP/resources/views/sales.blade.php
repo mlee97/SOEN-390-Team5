@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('inside-body-tag')
-<div class="container-fluid">
+<div class="container-fluid table-responsive"> <!--"table-responsive" makes the table adjustable to window size-->
     <!-- table for showing all the sales  -->
-    <!-- mt-5 is for adding margin top -->
-    <table class="table table-bordered mt-5">
+    <table class="table table-bordered text-center mt-5"> <!-- mt-5 is for adding margin top -->
+
         <thead>
             <tr>
                 <th scope="col" rowspan="2">Sales ID</th>
@@ -24,24 +24,23 @@
         </thead>
         <tbody>
             @foreach ($sales as $sale)
-            @foreach ($sale->bikes as $bikeSale)
-            <tr>
-                <td>{{$sale->id}}</td>
+                @foreach ($sale->bikes as $bikeSale)
+                <tr>
+                    <td>{{$sale->id}}</td>
 
-                <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td>
-                <!--We need to use bike_sale_pivot to get the bike_id in the bike_sale table-->
-                <td>{{$bikeSale->type}}</td>
-                <td>{{$bikeSale->size}}</td>
-                <td>{{$bikeSale->color}}</td>
-                <td>{{$bikeSale->finish}}</td>
-                <td>{{$bikeSale->grade}}</td>
-                <td>{{$bikeSale->price}}</td>
+                    <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td> <!--We need to use bike_sale_pivot to get the bike_id in the bike_sale table-->
+                    <td>{{$bikeSale->type}}</td>
+                    <td>{{$bikeSale->size}}</td>
+                    <td>{{$bikeSale->color}}</td>
+                    <td>{{$bikeSale->finish}}</td>
+                    <td>{{$bikeSale->grade}}</td>
+                    <td>{{$bikeSale->price}}</td>
 
-                <td>{{$bikeSale->bike_sale_pivot->quantity_sold}}</td>
-                <td>{{$sale->created_at}}</td>
-                <td>{{$sale->profit}}</td>
-            </tr>
-            @endforeach
+                    <td>{{$bikeSale->bike_sale_pivot->quantity_sold}}</td>
+                    <td>{{$sale->created_at}}</td>
+                    <td>{{$sale->profit}}</td>
+                </tr>
+                @endforeach
             @endforeach
         </tbody>
     </table>
@@ -82,13 +81,13 @@
                             <input id="bicyle_profit_input" type="text" name="profit" class="form-control" placeholder="Grade">
                         </div>
                         <!-- End of Modal body for input -->
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <!-- Modal or Popup footer -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
