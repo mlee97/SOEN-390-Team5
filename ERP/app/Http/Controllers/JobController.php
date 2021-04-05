@@ -103,35 +103,40 @@ class JobController extends Controller
      * @param $job_id, $request
      * @return redirect()->route('jobs')
      */
-    public function updateJobStatus($job_id, Request $request){
+    public function updateJobStatus(Request $request){
 
         //Find status of job id
-        $status = Job::find($job_id);
+        $job = Job::find($request->get('jobID'));
 
-        //If job status id queued, change to complete and vice-versa
-        if($status->status == "Queued") {
-            $status->status = "Complete";
+
+        //Checks if the new status is different from the current one and only changes it if different.
+        if(strcmp($job->status, $request->get('status')) != 0) {
+
+
+            $job->status = $request->get('status');
+
+            //Save the status of job id
+            $job->save();
+
+            
+
+            //Log results
+            $msg_str = 'Job status with ID ' . $job->id . ' updated successfully to ' . $job->status;
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'log_type' => 'INFO',
+                'request_type' => 'POST',
+                'message' => $msg_str,
+            ]);
+
+            //Redirect user to jobs page
+            return redirect()->route('jobs')
+                ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+
         }
-        else {
-            $status->status = "Queued";
-        }
 
-        //Save the status of job id
-        $status->save();
-
-        //Log results
-        $msg_str = 'Job status with ID '. $status->id. ' updated successfully';
-        Log::create([
-            'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
-            'log_type' => 'INFO',
-            'request_type' => 'POST',
-            'message' => $msg_str,
-        ]);
-
-        //Redirect user to jobs page
-        return redirect()->route('jobs')
-            ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+        return redirect()->route('jobs');
     }
 
     /**

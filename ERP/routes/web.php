@@ -41,7 +41,8 @@ Route::post('/create-job', [JobController::class, 'createJob'])
     ->middleware('auth')
     ->name('create.job');
 Route::get('delete-job/{job_id}', [JobController::class, 'deleteJob']);
-Route::get('/toggle-job-status/{job_id}', [JobController::class, 'updateJobStatus']);
+Route::post('/change-job-status', [JobController::class, 'updateJobStatus'])
+    ->name('change.job.status');
 
 Route::get('/', function () {
     return view('welcome');
@@ -144,4 +145,4 @@ Route::get('/sale-export', [SaleController::class, 'exportSales'])
     ->name('sale.export');
 
 
-    
+

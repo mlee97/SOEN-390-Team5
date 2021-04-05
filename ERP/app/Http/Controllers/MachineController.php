@@ -14,9 +14,9 @@ class MachineController extends Controller
 
 /**
  * Display the machine status page
- * 
+ *
  * @param $request
- * @return view 
+ * @return view
  */
 public function goToMachineManagement(Request $request){
 
@@ -37,7 +37,7 @@ public function goToMachineManagement(Request $request){
 
 /**
  * Changes the status of the specific machine id
- * 
+ *
  * @param $request, $id
  * @return redirect()->route('machine-status')
  */
@@ -50,7 +50,7 @@ public function changeStatus(Request $request,$id) {
     {
         $machine->status = "online";
     }
-    else 
+    else
     {
         $machine->status = "offline";
     }
@@ -66,9 +66,9 @@ public function changeStatus(Request $request,$id) {
         'request_type' => 'POST',
         'message' => $msg_str,
     ]);
-    
+
     //Redirects user to machine-status page
-    return redirect()->route('machine-status')
+    return redirect('machine-status')
         ->with('success_msg', 'Changes have been successfully saved');
  }
 
