@@ -448,7 +448,74 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="type">Price</label>
+                            <label for="fork">Fork</label>
+                            <select id="fork" name="fork" class="form-control" required>
+                                <option value="CarbonFiber">Carbon Fiber</option>
+                                <option value="Titanium">Titanium</option>
+                                <option value="Magnesium">Magnesium</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="seatpost">Seatpost</label><br>
+                            <input type="text" id="seatpost" name="seatpost" class="form-control" value="Seatpost" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="headset">Headset</label>
+                            <select id="headset" name="headset" class="form-control" required>
+                                <option value="threaded">threaded</option>
+                                <option value="threadless">Threadless</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cranks">cranks</label>
+                            <select id="cranks" name="cranks" class="form-control" required>
+                                <option value="aluminum">aluminum</option>
+                                <option value="titanium">Titanium</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pedals">Pedals</label>
+                            <select id="pedals" name="pedals" class="form-control" required>
+                                <option value="polycarbonate">Polycarbonate (1 pair)</option>
+                                <option value="metal">metal (1 pair)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="handlebar">handlebar</label><br>
+                            <input type="text" id="handlebar" name="handlebar" class="form-control" value="Standard" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="stem">stem</label><br>
+                            <input type="text" id="stem" name="stem" class="form-control" value="Stem" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="saddle">Saddle</label>
+                            <select id="saddle" name="saddle" class="form-control" required>
+                                <option value="Plastic">Plastic</option>
+                                <option value="carbonfiber">Carbon Fiber Saddle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="brakes">Brakes</label>
+                            <select id="brakes" name="brakes" class="form-control" required>
+                                <option value="rim">Rim Assembly</option>
+                                <option value="disk">Disk Assembly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shock">shock</label><br>
+                            <input type="text" id="shock" name="shock" class="form-control" value="shock" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="rim">rim</label><br>
+                            <input type="text" id="rim" name="rim" class="form-control" value="rim" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="tire">tire</label><br>
+                            <input type="text" id="tire" name="tire" class="form-control" value="tire" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Price</label><br>
                             <input id="price" name="price" class="form-control" required/>
                         </div>
                         <div class="form-group">
