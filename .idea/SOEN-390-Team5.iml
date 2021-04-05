@@ -115,6 +115,18 @@
       <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/phpunit/php-invoker" />
       <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/phpunit/php-text-template" />
       <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/laravel/breeze" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/seld/phar-utils" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/seld/jsonlint" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/nunomaduro/larastan" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/phpstan/phpstan" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/justinrainbow/json-schema" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/sabberworm/php-css-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/react/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/barryvdh/laravel-dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/phenx/php-svg-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ERP/vendor/phenx/php-font-lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

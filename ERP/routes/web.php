@@ -142,6 +142,3 @@ Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
 
 Route::get('/sale-export', [SaleController::class, 'exportSales'])
     ->name('sale.export');
-
-
-    
