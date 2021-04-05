@@ -158,10 +158,12 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <!--new bicycle Button-->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bicycle_modal">
-                            Add a new Bicycle
-                        </button>
+                            @if(Auth::user()-> user_type == 7)
+                                <!--new bicycle Button-->
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bicycle_modal">
+                                    Add a new Bicycle
+                                </button>
+                            @endif
                     </div>
                 </div>
 
@@ -244,10 +246,12 @@
                             </tbody>
                         </table>
 
+                    @if(Auth::user()-> user_type == 7)
                         <!-- New Part button-->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#part_modal">
                             Add a new Part
                         </button>
+                        @endif
                     </div>
                 </div>
                 <br>
@@ -329,11 +333,14 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <!-- Materials Button-->
-                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#materials_modal">
-                            Add New Materials
-                        </button>
+
+                        @if(Auth::user()-> user_type == 7)
+                            <!-- Materials Button-->
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#materials_modal">
+                                Add New Materials
+                            </button>
+                        @endif
 
                         <button type="button" class="btn btn-info" data-toggle="modal"
                                 data-target="#order_materials">
