@@ -14,17 +14,23 @@ class JobIssueWarning extends Mailable
     use Queueable, SerializesModels;
 
     public $job;
+    public $jobAssignee;
+    public $bikeType;
     public $user;
 
     /**
      * Create a new message instance.
      *
      * @param Job $job
+     * @param string $jobAssignee
+     * @param string $bikeType
      * @param User $user
      */
-    public function __construct(Job $job, User $user)
+    public function __construct(Job $job, string $jobAssignee, string $bikeType, User $user)
     {
         $this->job=$job;
+        $this->jobAssignee=$jobAssignee;
+        $this->bikeType = $bikeType;
         $this->user=$user;
     }
 
@@ -35,7 +41,7 @@ class JobIssueWarning extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.email.job-issue-warning')
+        return $this->markdown('email.job-issue-warning')
             ->from('bike.erp@gmail.com', 'Bike ERP System')
             ->subject("[WARNING] Production Disruption with Job ID #". $this->job->id);
     }

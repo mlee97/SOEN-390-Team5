@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobIssueWarning;
 use App\Models\Bike;
 use App\Models\Log;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
@@ -104,9 +107,12 @@ class JobController extends Controller
      */
     public function updateJobStatus(Request $request){
 
+
         //Find status of job id
         $job = Job::find($request->get('jobID'));
 
+        $oldStatus = $job->status;
+        $newStatus = $request->get('status');
 
 
             $job->status = $request->get('status');
@@ -115,6 +121,22 @@ class JobController extends Controller
             //Save the status of job id
             $job->save();
 
+            $jobAssignee = User::find($job->user_id);
+            $bike = Bike::find($job->bike_id);
+
+        if($newStatus == 'Issue') {
+            if(strcmp($oldStatus, $newStatus) !=0) {
+
+                $productManagers = DB::table('users')
+                    ->where('user_type', '=', 7)
+                    ->get();
+
+                foreach($productManagers as $pUser){
+                    Mail::to($pUser->email)->send(new JobIssueWarning($job, $jobAssignee==null ? "": $jobAssignee->first_name . " ". $jobAssignee->last_name, $bike->type, new User((array)$pUser)));
+                }
+
+            }
+        }
 
 
             //Log results

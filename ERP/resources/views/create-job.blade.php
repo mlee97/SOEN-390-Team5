@@ -43,7 +43,6 @@
                         <select id="status" name="status" class="form-control  py-1" required>
                             <option value="Queued" selected>Queued</option>
                             <option value="In Progress">In Progress</option>
-                            <option value="Issue">Issue</option>
                             <option value="Completed">Completed</option>
                         </select>
                     </div>
