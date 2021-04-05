@@ -342,10 +342,12 @@
                             </button>
                         @endif
 
-                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#order_materials">
-                            Order Materials
-                        </button>
+                        @if(Auth::user()-> user_type == 4)
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#order_materials">
+                                Order Materials
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
