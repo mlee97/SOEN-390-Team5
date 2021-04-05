@@ -140,5 +140,9 @@ Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
 Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
     ->name('accountant');
 
+// Executes "goToSalesView" method in the SaleController when the route is "/sales".
+Route::get('/sales', [SaleController::class, 'goToSalesView'])
+->name('sales');
+
 Route::get('/sale-export', [SaleController::class, 'exportSales'])
     ->name('sale.export');

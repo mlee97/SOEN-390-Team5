@@ -22,4 +22,5 @@ class AccountantController extends Controller
 
         return view('accountant', ['sales' => $sales, 'totalSalesProfit' => $totalSalesProfit, 'currentMonth' => $currentMonth, 'currentYear' => $currentYear]);
     }
+    
 }

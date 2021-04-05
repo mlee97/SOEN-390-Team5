@@ -43,7 +43,11 @@
 
                 <!--Redirects to Accountant page if the user has permission-->
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{route('accountant')}}">Sales</a>
+                    <a class="nav-link active" href="{{route('accountant')}}">Accountant</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('sales')}}">Sales</a>
                 </li>
 
                 @if(Auth::user()->user_type==5)
@@ -64,6 +68,10 @@
                 @endif
 
                 @if(Auth::user() != null)
+
+               
+
+
                 <!--Logs users out-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();
