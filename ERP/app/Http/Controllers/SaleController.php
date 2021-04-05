@@ -51,5 +51,13 @@ class SaleController extends Controller
 
     return response()->stream($callback, 200, $headers);
 
-    }   
+    }  
+    
+    // Redirects to the sales view.
+    public function goToSalesView()
+    {
+        $sales = Sale::all(); // Getting all data from Sale.    
+
+        return view('sales', ['sales' => $sales]);
+    }
 }
