@@ -32,6 +32,10 @@
                 Accountant
                 @break
 
+                @case(7)
+                Product Manager
+                @break
+
                 @default
                 Undefined User Type
             @endswitch</h1>

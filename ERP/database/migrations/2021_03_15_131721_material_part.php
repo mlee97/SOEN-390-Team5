@@ -15,7 +15,7 @@ class MaterialPart extends Migration
     {
         Schema::create('material_part', function (Blueprint $table) {
             $table->foreignId('material_id')->references('id')->on('materials');
-            $table->foreignId('part_id')->references('id')->on('parts');
+            $table->foreignId('part_id')->references('id')->on('parts')->cascadeOnDelete();
         });
     }
 

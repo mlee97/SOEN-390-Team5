@@ -146,6 +146,3 @@ Route::get('/sale-export', [SaleController::class, 'exportSales'])
 
 Route::get('/PDF/sales', [SaleController::class, 'pdf'])
     ->name('salePDF.export');
-
-
-    
