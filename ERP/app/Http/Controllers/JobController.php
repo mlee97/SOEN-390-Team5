@@ -108,11 +108,9 @@ class JobController extends Controller
         $job = Job::find($request->get('jobID'));
 
 
-        //Checks if the new status is different from the current one and only changes it if different.
-        if(strcmp($job->status, $request->get('status')) != 0) {
-
 
             $job->status = $request->get('status');
+            $job->user_id = $request->get('user');
 
             //Save the status of job id
             $job->save();
@@ -133,9 +131,6 @@ class JobController extends Controller
             return redirect()->route('jobs')
                 ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
 
-        }
-
-        return redirect()->route('jobs');
     }
 
     /**
@@ -179,6 +174,9 @@ class JobController extends Controller
         //Retrieve job model
         $jobs = Job::all();
         $orders = Order::all();
+        $users = DB::table('users')
+            ->where('user_type', '=', 5)
+            ->get();
 
         //Get results and returns view for jobs
         $msg_str = 'Job management page accessed';
@@ -191,6 +189,6 @@ class JobController extends Controller
         ]);
 
         //Redirect user to jobs page and returns jobs list
-        return view('jobs', ['jobs' => $jobs, 'orders' => $orders]);
+        return view('jobs', ['jobs' => $jobs, 'orders' => $orders, 'users' =>$users]);
     }
 }
