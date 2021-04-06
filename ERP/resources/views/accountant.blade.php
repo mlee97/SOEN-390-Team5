@@ -73,20 +73,23 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <table class="table table-bordered">                   
-                        <tbody>
-                            <th scope="col">Profit (CAD)</th>
-                            <tr>
-                                <td id="sale-chart-container" style="height: 300px;"></td>
-                            </tr>   
-                        </tbody>
-                    </table>
+                    
                     <table class="table table-bordered">                   
                         <tbody>
                             <tr>
                                 <th scope="col">Total Profit (CAD)</th>      
 
                                 <td>{{$totalSalesProfit}}</td>
+                            </tr>   
+                        </tbody>
+                    </table>
+                    <br>
+                    <!--Sales Graph-->
+                    <table class="table table-bordered">                   
+                        <tbody>
+                            <th scope="col">Sales Profit By Date</th>
+                            <tr>
+                                <td id="sale-chart-container" style="height: 300px;"></td>
                             </tr>   
                         </tbody>
                     </table>
