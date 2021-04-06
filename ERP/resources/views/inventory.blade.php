@@ -849,18 +849,51 @@
                 <div class="modal-body"> <!-- Modal body for the input or form -->
                     <form action={{route('create.part')}} method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="part_name">Part Name</label>
-                            <input name="part_name" id="part_name" type="text" class="form-control" required>
+                        <div class="modal-split">
+                            <div class="form-group">
+                                <label for="part_name">Part Name</label>
+                                <input name="part_name" id="part_name" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select name="category" id="category" type="text" class="form-control" required>
+                                    @foreach ($categories as $category)
+                                        <option value={{$category->category}}>{{$category->category}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="part_quantity_in_stock">Quantity</label>
+                                <input name="part_quantity_in_stock" id="part_quantity_in_stock" type="text"
+                                    class="form-control" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="part_quantity_in_stock">Quantity</label>
-                            <input name="part_quantity_in_stock" id="part_quantity_in_stock" type="text"
-                                   class="form-control" required>
+                        <div class="modal-split" id="add-materials-to-part">
+                            <div>
+                                <button type="button" class="btn btn-primary" onClick="add_field_materials_part()">Add Material(+)</button>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label>Material Name</label>
+                                </div>
+                            </div>
+                            <div id="input_mat_grp1" class="row">
+                                <div class="col-sm">
+                                    <div class="form-group">
+
+                                        <select id="MAT_PART1" class="form-control" name="MAT_PART1" required>
+                                            <option value="">-- SELECT MATERIAL --</option>
+                                            @foreach($materials as $material)
+                                                <option value={{$material->id}}>{{$material->material_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="create part">
-                        </div>
+                        <div class="modal-footer"></div>
                     </form>
                 </div>
             </div>
@@ -888,6 +921,26 @@
 
                 cloned_input.querySelector('[name ="ODR_QTY1"]').setAttribute('id', qty_input_str)
                 cloned_input.querySelector('[name ="ODR_QTY1"]').setAttribute('name', qty_input_str)
+
+                form.append(cloned_input)
+
+
+            }
+
+            function add_field_materials_part() {
+                input_row_count++;
+                var form = document.getElementById('add-materials-to-part');
+                var input_row = document.getElementById('input_mat_grp1');
+
+                var input_row_grp_str = 'input_mat_grp' + input_row_count
+                var mat_input_str = 'MAT_PART' + input_row_count
+
+
+                var cloned_input = input_row.cloneNode(true);
+                cloned_input.setAttribute('id', input_row_grp_str)
+
+                cloned_input.querySelector('[name ="MAT_PART1"]').setAttribute('id', mat_input_str)
+                cloned_input.querySelector('[name ="MAT_PART1"]').setAttribute('name', mat_input_str)
 
                 form.append(cloned_input)
 

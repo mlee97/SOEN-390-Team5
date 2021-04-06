@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Models\Part;
+use App\Models\Material;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +24,7 @@ class PartController extends Controller
         $validator = Validator::make($request->all(), [
             'part_name' => 'required|string|max:255',
             'part_quantity_in_stock' => 'required|integer',
+            'category' => 'required|string|max:255'
         ]);
 
         //If the validation fails, log an error message.
@@ -48,9 +50,21 @@ class PartController extends Controller
        $newPart = Part::create([
             'part_name' => $request->part_name,
             'part_quantity_in_stock' => $request->part_quantity_in_stock,
+            'category' => $request->category
         ]);
 
         $msg_str = 'New part with ID ' . $newPart->id. ' successfully created';
+
+        $count = 1;
+
+        do {
+            $mat_key = 'MAT_PART' . $count;
+            $mat = Material::find($request->get($mat_key));
+
+            $newPart->materials()->save($mat);
+
+            $count++;
+        } while ($request->has('MAT_PART' . $count));
 
         //Log the results of the create operation.
         Log::create([

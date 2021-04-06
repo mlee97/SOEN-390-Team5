@@ -214,8 +214,11 @@ class BikeController extends Controller
         $bikes = Bike::all();
         $parts = Part::all();
         $materials = Material::all();
-        $orders =
-            Order::all();
+        $orders = Order::all();
+        $categories = DB::table('parts')
+                        ->select('category')
+                        ->distinct()
+                        ->get();
 
         //Log the results of the get request
         $msg_str = 'Inventory page accessed';
@@ -232,7 +235,8 @@ class BikeController extends Controller
             'bikes' => $bikes,
             'parts' => $parts,
             'materials' => $materials,
-            'orders' => $orders
+            'orders' => $orders,
+            'categories' => $categories
         ]);
     }
 
