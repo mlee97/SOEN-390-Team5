@@ -15,7 +15,7 @@ class LogController extends Controller
         return view('Logging.log-page', ['logs' => $logs]);
     }
 
-    public function exportLogs(Request $request){
+    public function exportLogsCSV(Request $request){
 
         $fileName = 'logs'.date('Y_m_d_H_i_s').'.csv';
         $logs = Log::all()->sortByDesc('created_at');
@@ -93,7 +93,7 @@ class LogController extends Controller
     //this function is called when the route /PDF/logs is accessed 
     //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_logs_to_html());' for the content in the PDF
     //and finally return the pdf 'return $pdf->stream();'
-    function pdf()
+    function exportLogsPDF()
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->convert_logs_to_html());

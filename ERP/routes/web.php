@@ -74,10 +74,10 @@ Route::group(['middleware' => ['auth', 'it.access.only']], function () {
     Route::get('/logging', [LogController::class, 'goToLogManagement'])
         ->name('logging.main');
 
-    Route::get('/logging-export', [LogController::class, 'exportLogs'])
+    Route::get('/logging-CSV-export', [LogController::class, 'exportLogsCSV'])
         ->name('logging.export');
 
-    Route::get('/PDF/logs', [LogController::class, 'pdf'])
+    Route::get('/logging-PDF-export', [LogController::class, 'exportLogsPDF'])
         ->name('loggingPDF.export');
 });
 
@@ -141,8 +141,16 @@ Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
 Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
     ->name('accountant');
 
-Route::get('/sale-export', [SaleController::class, 'exportSales'])
-    ->name('sale.export');
+// Executes "goToSalesView" method in the SaleController when the route is "/sales".
+Route::get('/sales', [SaleController::class, 'goToSalesView'])
+->name('sales');
 
-Route::get('/PDF/sales', [SaleController::class, 'pdf'])
+Route::post('/sales', [SaleController::class, 'saveSaleOrder'])
+->name('save.sale.order');
+
+// Executes Accountant export functions (csv and PDF)
+Route::get('/sales-CSV-export', [AccountantController::class, 'exportSalesCSV'])
+    ->name('saleCSV.export');
+
+Route::get('/sales-PDF-export', [AccountantController::class, 'exportSalesPDF'])
     ->name('salePDF.export');
