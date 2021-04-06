@@ -341,6 +341,7 @@
                             <tr>
                                 <th scope="col">PartID</th>
                                 <th scope="col">Part Name</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Quantity In Stock</th>
                                 <th scope="col">Stock Status</th>
                                 <td></td>
@@ -351,6 +352,7 @@
                                 <tr>
                                     <td>{{$part->id}}</td>
                                     <td>{{$part->part_name}}</td>
+                                    <td>{{$part->category}}</td>
                                     <td>{{$part->part_quantity_in_stock}}</td>
                                     @if($part->part_quantity_in_stock > 10)
                                         <td style="background-color:#00FF00">Good</td>
@@ -358,6 +360,9 @@
                                         <td style="background-color:#FF0000">Low</td>
                                     @endif
                                     <td>
+                                        <a type="button" class="btn btn-success"
+                                            data-target="#modal-show-materials{{ $part->id }}" data-toggle="modal"
+                                            id="modal-show-materials">Show Materials</a>
                                         <a class="btn btn-primary" data-placement="top"
                                            data-target="#modal-edit-part{{ $part->id }}" data-toggle="modal"
                                            id="modal-edit-part">Edit</a>
@@ -401,6 +406,31 @@
                                                         <input type="submit" class="btn btn-primary" value="Confirm">
                                                     </div>
                                                 </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="modal-show-materials{{ $part->id }}" tabindex="-1" role="dialog"
+                                     aria-labelledby="show_materials_modal_label" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="show_materials_modal_label">Showing Materials</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body"> <!-- Modal body for the input -->
+                                            <div class="form-group">
+                                                <ul>
+                                                @foreach($partmaterials as $partmaterial)
+                                                    @if($partmaterial->part_id == $part->id)
+                                                        <li>{{$partmaterial->material_name}}</li>
+                                                    @endif
+                                                @endforeach
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -990,7 +1020,7 @@
 
                         if(page_track == pages.length-2)
                         {
-                            $(n_button).text("Create Bike");  
+                            $(n_button).text("Create");  
                         }
 
                     if(page_track == pages.length-1)

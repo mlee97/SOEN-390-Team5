@@ -219,6 +219,9 @@ class BikeController extends Controller
                         ->select('category')
                         ->distinct()
                         ->get();
+        $partmaterials = DB::table('material_part')
+                        ->join('materials', 'material_part.material_id', '=', 'materials.id')
+                        ->get();
 
         //Log the results of the get request
         $msg_str = 'Inventory page accessed';
@@ -236,7 +239,8 @@ class BikeController extends Controller
             'parts' => $parts,
             'materials' => $materials,
             'orders' => $orders,
-            'categories' => $categories
+            'categories' => $categories,
+            'partmaterials' => $partmaterials
         ]);
     }
 
