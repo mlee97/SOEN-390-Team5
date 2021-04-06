@@ -9,6 +9,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AccountantController;
+use App\Http\Controllers\AssemblyController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\MachineController;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,7 @@ use App\Http\Controllers\DynamicPDFController;
 |
 */
 
-Route::get('/assembly', function () {
-    return view('assembly');
-})
+Route::get('/assembly', [AssemblyController::class, 'goToAssemblyView'])
     ->middleware('auth')
     ->name("assembly");
 
