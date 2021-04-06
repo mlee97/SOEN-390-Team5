@@ -15,7 +15,7 @@ class LogController extends Controller
         return view('Logging.log-page', ['logs' => $logs]);
     }
 
-    public function exportLogs(Request $request){
+    public function exportLogsCSV(Request $request){
 
         $fileName = 'logs'.date('Y_m_d_H_i_s').'.csv';
         $logs = Log::all()->sortByDesc('created_at');
@@ -52,51 +52,51 @@ class LogController extends Controller
 
     }
 
-    //functions to create PDF
-    function get_logs()
-    {
-     $logs = DB::table('logs')
-         ->limit(10)
-         ->get();
-     return $logs;
-    }
-
-    function pdf()
-    {
-     $pdf = \App::make('dompdf.wrapper');
-     $pdf->loadHTML($this->convert_logs_to_html());
-     return $pdf->stream();
-    }
-
+    //function to convert logs to html
     function convert_logs_to_html()
     {
-     $logs = $this->get_logs();
-     $output = '
-     <h3 align="center">logs</h3>
-     <table width="100%" style="border-collapse: collapse; border: 0px;">
-      <tr>
-      <th style="border: 1px solid; padding:12px;" width="10%">Type</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">TimeStamp</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">IP Address</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">Message</th>
-      <th style="border: 1px solid; padding:12px;" width="20%">Request Type</th>
-      </tr>
-      ';  
+        //$logs: variable that returns all the logs in logs table and sorts them in descending order of created time
+        $logs = Log::all()->sortByDesc('created_at'); 
 
-     foreach($logs as $log)
-        {
-        $output .= '
+        //$output below defines a table in html format and identifies the header of each column 
+        $output = '
+        <h3 align="center">Logs in PDF format</h3>
+        <table width="100%" style="border-collapse: collapse; border: 0px;">
         <tr>
-        <td style="border: 1px solid; padding:12px;">'.$log->log_type.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->created_at.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->ip_address.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->message.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$log->request_type.'</td>
+        <th style="border: 1px solid; padding:1px;" width="10%">Type</th>
+        <th style="border: 1px solid; padding:1px;" width="20%">TimeStamp</th>
+        <th style="border: 1px solid; padding:1px;" width="10%">IP Address</th>
+        <th style="border: 1px solid; padding:1px;" width="20%">Message</th>
+        <th style="border: 1px solid; padding:1px;" width="20%">Request Type</th>
         </tr>
-        ';
+        ';  
+
+        //this fills each row of the table with the specified elements from the logs table in each respective column
+        foreach($logs as $log) {
+            $output .= '
+            <tr>
+            <td style="border: 1px solid; padding:1px;">'.$log->log_type.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->created_at.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->ip_address.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->message.'</td>
+            <td style="border: 1px solid; padding:1px;">'.$log->request_type.'</td>
+            </tr>
+            ';
         }
 
-     $output .= '</table>';
-     return $output;
+        //this returns the table
+        $output .= '</table>';
+        return $output;
+    }
+
+    //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer 
+    //this function is called when the route /PDF/logs is accessed 
+    //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_logs_to_html());' for the content in the PDF
+    //and finally return the pdf 'return $pdf->stream();'
+    function exportLogsPDF()
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->convert_logs_to_html());
+        return $pdf->stream();
     }
 }
