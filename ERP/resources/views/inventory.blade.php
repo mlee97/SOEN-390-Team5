@@ -68,6 +68,9 @@
                                         <td style="background-color:#FF0000">Low</td>
                                     @endif
                                     <td>
+                                        <a type="button" class="btn btn-success"
+                                            data-target="#modal-show-parts{{ $bike->id }}" data-toggle="modal"
+                                            id="modal-show-parts">Show Parts</a>
                                         <a class="btn btn-primary" data-placement="top"
                                            data-target="#modal-edit-bike{{ $bike->id }}" data-toggle="modal"
                                            id="modal-edit-bike">Edit</a>
@@ -161,6 +164,160 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="modal fade" id="modal-show-parts{{ $bike->id }}" tabindex="-1" role="dialog"
+                                     aria-labelledby="show_parts_modal_label" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="show_parts_label">Showing Parts</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body"> <!-- Modal body for the input -->
+                                            <div class="form-group">
+                                                <label for="fork">Fork</label>
+                                                <input name="fork" id="fork" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Fork')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="seatpost">SeatPost</label><br>
+                                                <input name="seatpost" id="seatpost" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Seatpost')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="headset">Headset</label>
+                                                <input name="headset" id="headset" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Headset')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cranks">Crankset</label>
+                                                <input name="cranks" id="cranks" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Crankset')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pedals">Pedals</label>
+                                                <input name="pedals" id="pedals" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Pedals')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="handlebar">Handlebar</label><br>
+                                                <input name="handlebar" id="handlebar" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Handlebar')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="stem">Stem</label><br>
+                                                <input name="stem" id="stem" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Stem')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label for="saddle">Saddle</label><br>
+                                                <input name="saddle" id="saddle" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Saddle')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="brakes">Brakes</label><br>
+                                                <input name="brakes" id="brakes" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Brakes')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="shock">Shock</label><br>
+                                                <input name="shock" id="shock" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Shock')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="rim">Rim</label><br>
+                                                <input name="rim" id="rim" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Rim')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tire">Tire</label><br>
+                                                <input name="tire" id="tire" type="text" class="form-control" 
+                                                    value ="{{ DB::table('bike_part')
+                                                        ->join('parts', 'bike_part.part_id', '=', 'parts.id')
+                                                        ->where('bike_id', '=', $bike->id)
+                                                        ->where('category', '=', 'Tire')
+                                                        ->value('part_name')}}"
+                                                        readonly>
+                                                </input>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             @endforeach
                             </tbody>
@@ -439,59 +596,203 @@
                 <div class="modal-body"> <!-- Modal body for the input -->
                     <form action={{route('create.bike')}} method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="type">Type</label>
-                            <select id="type" name="type" class="form-control" required>
-                                <option value="Mountain">Mountain</option>
-                                <option value="Racing">Racing</option>
-                                <option value="Recreational">Recreational</option>
-                            </select>
+                        <div class="modal-split">
+                            <div class="form-group">
+                                <label for="type">Type</label>
+                                <select id="type" name="type" class="form-control" required>
+                                    <option value="Mountain">Mountain</option>
+                                    <option value="Racing">Racing</option>
+                                    <option value="Recreational">Recreational</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="type">Price</label><br>
+                                <input id="price" name="price" class="form-control" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="size">Frame Size</label>
+                                <select id="size" name="size" class="form-control" required>
+                                    <option value="18">18"</option>
+                                    <option value="20">20"</option>
+                                    <option value="22">22"</option>
+                                    <option value="24">24"</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="color">Color</label>
+                                <select id="color" name="color" class="form-control" required>
+                                    <option value="Red">red</option>
+                                    <option value="Blue">blue</option>
+                                    <option value="Green">green</option>
+                                    <option value="Yellow">yellow</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="finish">Finishes</label>
+                                <select id="finish" name="finish" class="form-control" required>
+                                    <option value="Matt">Matt</option>
+                                    <option value="Chrome">Chrome</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="grade">Grade</label>
+                                <select id="grade" name="grade" class="form-control" required>
+                                    <option value="Aluminium">Aluminium</option>
+                                    <option value="Steel">Steel</option>
+                                    <option value="Carbon">Carbon</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity_in_stock">Quantity in Stock</label>
+                                <input id="quantity_in_stock" name="quantity_in_stock" class="form-control" type="text"
+                                    required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="type">Price</label>
-                            <input id="price" name="price" class="form-control" required/>
+                        <div class="modal-split">
+                            <div class="form-group">
+                                <label for="fork">Fork</label>
+                                <select id="fork" class="form-control" name="fork" required>
+                                    <option value="">-- SELECT FORK --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Fork")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="seatpost">SeatPost</label><br>
+                                <select id="seatpost" class="form-control" name="seatpost" required>
+                                <option value="">-- SELECT SEATPOST --</option>
+                                @foreach($parts as $part)
+                                    @if($part->category == "Seatpost")
+                                        <option value={{$part->id}}>{{$part->part_name}}</option>
+                                    @endif
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="headset">Headset</label>
+                                <select id="headset" class="form-control" name="headset" required>
+                                    <option value="">-- SELECT HEADSET --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Headset")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cranks">cranks</label>
+                                <select id="cranks" class="form-control" name="cranks" required>
+                                    <option value="">-- SELECT CRANKSET --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Crankset")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pedals">Pedals</label>
+                                <select id="pedals" class="form-control" name="pedals" required>
+                                    <option value="">-- SELECT PEDALS --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Pedals")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="handlebar">Handlebar</label><br>
+                                <select id="handlebar" class="form-control" name="handlebar" required>
+                                    <option value="">-- SELECT HANDLEBAR --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Handlebar")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            
+                            </div>
+                            <div class="form-group">
+                                <label for="stem">Stem</label><br>
+                                <select id="stem" class="form-control" name="stem" required>
+                                    <option value="">-- SELECT STEM --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Stem")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                
+                                <label for="saddle">Saddle</label><br>
+                                <select id="saddle" class="form-control" name="saddle" required>
+                                    <option value="">-- SELECT SADDLE --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Saddle")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="brakes">Brakes</label><br>
+                                <select id="brakes" class="form-control" name="brakes" required>
+                                    <option value="">-- SELECT BRAKES --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Brakes")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="shock">Shock</label><br>
+                                <select id="shock" class="form-control" name="shock" required>
+                                    <option>-- SELECT SHOCK --</option>
+                                    @foreach($parts as $part)
+                                        @if($part->category == "Shock")
+                                            <option value={{$part->id}}>{{$part->part_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="rim">Rim</label><br>
+                                <select id="rim" class="form-control" name="rim" required>
+                                <option value="">-- SELECT RIM --</option>
+                                @foreach($parts as $part)
+                                    @if($part->category == "Rim")
+                                        <option value={{$part->id}}>{{$part->part_name}}</option>
+                                    @endif
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tire">Tire</label><br>
+                                <select id="tire" class="form-control" name="tire" required>
+                                <option value="">-- SELECT TIRE --</option>
+                                @foreach($parts as $part)
+                                    @if($part->category == "Tire")
+                                        <option value={{$part->id}}>{{$part->part_name}}</option>
+                                    @endif
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="size">Frame Size</label>
-                            <select id="size" name="size" class="form-control" required>
-                                <option value="18">18"</option>
-                                <option value="20">20"</option>
-                                <option value="22">22"</option>
-                                <option value="24">24"</option>
-                            </select>
+                        <div class="modal-footer">
+                               
                         </div>
-                        <div class="form-group">
-                            <label for="color">Color</label>
-                            <select id="color" name="color" class="form-control" required>
-                                <option value="Red">red</option>
-                                <option value="Blue">blue</option>
-                                <option value="Green">green</option>
-                                <option value="Yellow">yellow</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="finish">Finishes</label>
-                            <select id="finish" name="finish" class="form-control" required>
-                                <option value="Matt">Matt</option>
-                                <option value="Chrome">Chrome</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="grade">Grade</label>
-                            <select id="grade" name="grade" class="form-control" required>
-                                <option value="Aluminium">Aluminium</option>
-                                <option value="Steel">Steel</option>
-                                <option value="Carbon">Carbon</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity_in_stock">Quantity in Stock</label>
-                            <input id="quantity_in_stock" name="quantity_in_stock" class="form-control" type="text"
-                                   required>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="create bike">
+                        
                 </div>
                 </form>
             </div>
@@ -591,6 +892,96 @@
                 form.append(cloned_input)
 
 
+            }
+
+            $(document).ready(function() {
+                prep_modal();
+            });
+
+            function prep_modal()
+            {
+            $(".modal").each(function() {
+
+            var element = this;
+                var pages = $(this).find('.modal-split');
+
+            if (pages.length != 0)
+            {
+                    pages.hide();
+                    pages.eq(0).show();
+
+                    var b_button = document.createElement("button");
+                            b_button.setAttribute("type","button");
+                                b_button.setAttribute("class","btn btn-primary");
+                                b_button.setAttribute("style","display: none;");
+                                b_button.innerHTML = "Back";
+
+                    var n_button = document.createElement("button");
+                            n_button.setAttribute("type","button");
+                                n_button.setAttribute("class","btn btn-primary");
+                                n_button.innerHTML = "Next";
+
+                    $(this).find('.modal-footer').append(b_button).append(n_button);
+
+
+                    var page_track = 0;
+
+                    $(n_button).click(function() {
+                    
+                    this.blur();
+
+                        if(page_track == 0)
+                        {
+                            $(b_button).show();
+                        }
+
+                        if(page_track == pages.length-2)
+                        {
+                            $(n_button).text("Create Bike");  
+                        }
+
+                    if(page_track == pages.length-1)
+                    {
+                    $(element).find("form").submit();
+                    }
+
+                        if(page_track < pages.length-1)
+                        {
+                            page_track++;
+
+                            pages.hide();
+                            pages.eq(page_track).show();
+                        }
+
+
+                    });
+
+                    $(b_button).click(function() {
+
+                        if(page_track == 1)
+                        {
+                            $(b_button).hide();
+                        }
+
+                        if(page_track == pages.length-1)
+                        {
+                            $(n_button).text("Next");
+                        }
+
+                        if(page_track > 0)
+                        {
+                            page_track--;
+
+                            pages.hide();
+                            pages.eq(page_track).show();
+                        }
+
+
+                    });
+
+            }
+
+            });
             }
 
         </script>

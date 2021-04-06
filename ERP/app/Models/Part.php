@@ -16,7 +16,8 @@ class Part extends Model
      */
     protected $fillable = [
         'part_name',
-        'part_quantity_in_stock'
+        'part_quantity_in_stock',
+        'category'
     ];
 
     //relates Parts to materials
