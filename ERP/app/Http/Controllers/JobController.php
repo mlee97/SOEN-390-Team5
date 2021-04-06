@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobIssueWarning;
 use App\Models\Bike;
 use App\Models\Log;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
@@ -26,7 +29,6 @@ class JobController extends Controller
             'status' => 'required',
             'order_qty' => 'required',
             'bike' => 'required',
-            'user' => 'required'
         ]);
 
         //If validation fails user is redirected to inventory
@@ -54,7 +56,7 @@ class JobController extends Controller
             'status' => $request->status,
             'quantity' => $request->order_qty,
             'bike_id' => $request->bike,
-            'user_id' =>$request->user
+            'user_id' => ($request->user) == "" ? null: $request->user
         ]);
 
         //Log results
@@ -103,35 +105,54 @@ class JobController extends Controller
      * @param $job_id, $request
      * @return redirect()->route('jobs')
      */
-    public function updateJobStatus($job_id, Request $request){
+    public function updateJobStatus(Request $request){
+
 
         //Find status of job id
-        $status = Job::find($job_id);
+        $job = Job::find($request->get('jobID'));
 
-        //If job status id queued, change to complete and vice-versa
-        if($status->status == "Queued") {
-            $status->status = "Complete";
+        $oldStatus = $job->status;
+        $newStatus = $request->get('status');
+
+
+            $job->status = $request->get('status');
+            $job->user_id = $request->get('user');
+
+            //Save the status of job id
+            $job->save();
+
+            $jobAssignee = User::find($job->user_id);
+            $bike = Bike::find($job->bike_id);
+
+        if($newStatus == 'Issue') {
+            if(strcmp($oldStatus, $newStatus) !=0) {
+
+                $productManagers = DB::table('users')
+                    ->where('user_type', '=', 7)
+                    ->get();
+
+                foreach($productManagers as $pUser){
+                    Mail::to($pUser->email)->send(new JobIssueWarning($job, $jobAssignee==null ? "": $jobAssignee->first_name . " ". $jobAssignee->last_name, $bike->type, new User((array)$pUser)));
+                }
+
+            }
         }
-        else {
-            $status->status = "Queued";
-        }
 
-        //Save the status of job id
-        $status->save();
 
-        //Log results
-        $msg_str = 'Job status with ID '. $status->id. ' updated successfully';
-        Log::create([
-            'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
-            'log_type' => 'INFO',
-            'request_type' => 'POST',
-            'message' => $msg_str,
-        ]);
+            //Log results
+            $msg_str = 'Job status with ID ' . $job->id . ' updated successfully to ' . $job->status;
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'log_type' => 'INFO',
+                'request_type' => 'POST',
+                'message' => $msg_str,
+            ]);
 
-        //Redirect user to jobs page
-        return redirect()->route('jobs')
-            ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+            //Redirect user to jobs page
+            return redirect()->route('jobs')
+                ->with('success_msg', 'Changes have been successfully saved'); //Send a temporary success message. This is saved in the session
+
     }
 
     /**
@@ -175,6 +196,9 @@ class JobController extends Controller
         //Retrieve job model
         $jobs = Job::all();
         $orders = Order::all();
+        $users = DB::table('users')
+            ->where('user_type', '=', 5)
+            ->get();
 
         //Get results and returns view for jobs
         $msg_str = 'Job management page accessed';
@@ -187,6 +211,6 @@ class JobController extends Controller
         ]);
 
         //Redirect user to jobs page and returns jobs list
-        return view('jobs', ['jobs' => $jobs, 'orders' => $orders]);
+        return view('jobs', ['jobs' => $jobs, 'orders' => $orders, 'users' =>$users]);
     }
 }

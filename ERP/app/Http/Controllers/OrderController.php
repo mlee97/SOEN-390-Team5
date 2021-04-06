@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\MaterialOrderConfirmation;
 use App\Models\Material;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -26,8 +30,9 @@ class OrderController extends Controller
             'ETA' => $rand_deliver_date
         ]);
 
-        //for every material ordered, plaec the order
+        //for every material ordered, link it to $newOrder
         $count = 1;
+        $totalCost = 0.0;
         do {
             $mat_key = 'MAT' . $count;
             $odr_qty_key = 'ODR_QTY' . $count;
@@ -36,8 +41,16 @@ class OrderController extends Controller
 
             $newOrder->materials()->save($mat, ['order_quantity' => $odr_qty]);
 
+            $totalCost = $totalCost + ($mat->cost * $odr_qty);
             $count++;
         } while ($request->has('MAT' . $count));
+
+
+        //Send email to all accountants that an order has been placed with order details
+        $accountantUsers = DB::table('users')->where('user_type', '=', 6)->get();
+        foreach ($accountantUsers as $aUser) {
+            Mail::to($aUser->email)->send(new MaterialOrderConfirmation($newOrder, $totalCost, new User( (array)$aUser)));
+        }
 
         return redirect('/inventory');
     }
