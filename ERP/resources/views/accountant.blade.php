@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('inside-body-tag')
     <div class="container-fluid">
+
+    <!----------------------------------------------Start of Sales Cards------------------------------------------------->
+        <h1>Sales</h1>
         <div class="card text-center mt-4">
             
             <!--Card header-->
@@ -220,5 +223,74 @@
             </div>
             <!--End of card body-->             
         </div>
+        
+    <!----------------------------------------------End of Sales Cards------------------------------------------------->
+    <!---------------------------------------------Start of Orders Cards------------------------------------------------->
+
+        <br>
+        <h1>Orders</h1>
+        <div class="card text-center mt-4">
+            
+            <!--Card header-->
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#all_orders">All Orders</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!--Card body-->
+            <div class="card-body tab-content">
+
+                <!--All orders tab-->
+                <div class="tab-pane fade show active table-responsive" id="all_orders"> <!--"table-responsive" makes the table adjustable to window size-->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" rowspan = "2">Order ID</th>
+                                <th scope="col" colspan = "3">Material Specifications</th>
+                                <th scope="col" rowspan = "2">Order Cost (CAD)</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Material</th>
+                                <th scope="col">Quantity Ordered</th>
+                                <th scope="col">Unit Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>     
+                            <div style="display:none">{{$total_cost = 0}}</div><!--Variable to contain total cost of all order-->
+
+                            @foreach($orders as $order)
+                                @foreach($order->materials as $mats)
+                                    <tr>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$mats->material_name}}</td>
+                                        <td>{{$mats->material_order_pivot->order_quantity}}</td>
+                                        <td>{{$mats->cost}}</td>
+                                        <td>{{$order_cost = ($mats->cost)*($mats->material_order_pivot->order_quantity)}}</td>
+                                    </tr>
+
+                                    <div style="display:none">{{$total_cost = $total_cost + $order_cost}}</div><!--Calculating the total cost of all orders-->
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">                   
+                        <tbody>
+                            <tr>
+                                <th scope="col">Total Cost (CAD)</th>      
+
+                                <td>{{$total_cost}}</td>
+                            </tr>   
+                        </tbody>
+                    </table>
+                </div>
+                <!--End of all orders tab-->               
+            </div>
+            <!--End of card body-->             
+        </div>
+    <!----------------------------------------------End of Orders Cards------------------------------------------------->
+    
     </div>
 @endsection
