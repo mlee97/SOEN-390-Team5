@@ -17,6 +17,7 @@ class CreatePartsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('part_name');
+            $table->string('category');
             $table->integer('part_quantity_in_stock');
         });
     }
