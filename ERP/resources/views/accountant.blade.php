@@ -72,6 +72,14 @@
                     </table>
                     <table class="table table-bordered">                   
                         <tbody>
+                            <th scope="col">Profit (CAD)</th>
+                            <tr>
+                                <td id="sale-chart-container" style="height: 300px;"></td>
+                            </tr>   
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">                   
+                        <tbody>
                             <tr>
                                 <th scope="col">Total Profit (CAD)</th>      
 
@@ -221,4 +229,16 @@
             <!--End of card body-->             
         </div>
     </div>
+
+    <!--Js function for creating charts-->    
+    <script>
+      const chart = new Chartisan({
+        el: '#sale-chart-container',
+        url: "@chart('sale_chart')",
+        hooks: new ChartisanHooks()
+             .colors(['#4299E1','#FE0045','#C07EF1','#67C560','#ECC94B'])
+                .datasets('line')
+                .axis(true)
+      });
+    </script>
 @endsection
