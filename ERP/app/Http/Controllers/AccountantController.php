@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Models\Bike;
+use App\Models\Order;
+use App\Models\Material;
 use PDF;
 use Exception;
 
@@ -17,12 +19,24 @@ class AccountantController extends Controller
     public function goToAccoutantView()
     {
         $sales = Sale::all(); // Getting all data from Sale.    
+        $orders = Order::all(); // Getting all data from Order.   
+        $materials = Material::all(); // Getting all data from Material. 
+
         $totalSalesProfit = collect($sales)->sum('profit'); // Sums all values in the 'profit' colomn in the sales table.
 
         $currentMonth = now()->month;
         $currentYear = now()->year;
 
-        return view('accountant', ['sales' => $sales, 'totalSalesProfit' => $totalSalesProfit, 'currentMonth' => $currentMonth, 'currentYear' => $currentYear]);
+        return view('accountant', 
+            [
+                'sales' => $sales, 
+                'orders' => $orders, 
+                'materials' => $materials, 
+                'totalSalesProfit' => $totalSalesProfit, 
+                'currentMonth' => $currentMonth, 
+                'currentYear' => $currentYear
+            ]
+        );
     }
     
     //export the sales in csv
