@@ -8,11 +8,11 @@ use App\Models\Part;
 use Illuminate\Support\Facades\DB;
 
 /**
- *  Takes care of the logics in the accountant view.
+ *  Takes care of the logics in the assembly view.
  */
 class AssemblyController extends Controller
 {
-    // Redirects to the accountant view.
+    // Redirects to the assembly view.
     public function goToAssemblyView()
     {
         $bikes = Bike::all();
