@@ -53,7 +53,7 @@ class PartController extends Controller
             'category' => $request->category
         ]);
 
-        $msg_str = 'New part with ID ' . $newPart->id. ' successfully created';
+        
         
         //initialize count variable to 1
         $count = 1;
@@ -68,7 +68,9 @@ class PartController extends Controller
             $count++;
         } while ($request->has('MAT_PART' . $count));
 
+       
         //Log the results of the create operation.
+        $msg_str = 'New part with ID ' . $newPart->id. ' successfully created';
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request ->ip(),

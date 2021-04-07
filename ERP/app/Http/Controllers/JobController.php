@@ -141,7 +141,7 @@ class JobController extends Controller
 
 
             //Log results
-            $msg_str = 'Job status with ID ' . $job->id . ' updated successfully to ' . $job->status;
+            $msg_str = 'Job with ID ' . $job->id . ' successfully updated';
             Log::create([
                 'user_id' => Auth::user()->id,
                 'ip_address' => $request->ip(),
