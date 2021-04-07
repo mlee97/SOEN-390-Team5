@@ -7,5 +7,6 @@
     <option value="5" @if(isset($user) && $user->user_type ==5) selected @endif>Manufacturer Worker</option>
     <option value="6" @if(isset($user) && $user->user_type ==6) selected @endif>Accountant</option>
     <option value="7" @if(isset($user) && $user->user_type ==7) selected @endif>Product Manager</option>
+    <option value="8" @if(isset($user) && $user->user_type ==8) selected @endif>Sales Worker</option>
 
 </select>

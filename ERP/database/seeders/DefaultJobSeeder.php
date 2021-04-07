@@ -24,6 +24,7 @@ class DefaultJobSeeder extends Seeder
             $defaultJob = new Job();
             $defaultJob->status = 'Queued';
             $defaultJob->quantity = rand(1, 25);
+            $defaultJob->quality = 'Not Inspected';
             $defaultJob->bike_id = $bike->id;
             $defaultJob->save();
         }
