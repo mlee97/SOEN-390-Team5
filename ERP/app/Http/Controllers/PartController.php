@@ -54,9 +54,11 @@ class PartController extends Controller
         ]);
 
         $msg_str = 'New part with ID ' . $newPart->id. ' successfully created';
-
+        
+        //initialize count variable to 1
         $count = 1;
-
+        
+        //For each material we add to the part, add the newPart ID and material ID to material_part
         do {
             $mat_key = 'MAT_PART' . $count;
             $mat = Material::find($request->get($mat_key));
