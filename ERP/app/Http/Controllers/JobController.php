@@ -215,6 +215,10 @@ class JobController extends Controller
             ->where('user_type', '=', 5)
             ->get();
 
+        $jobsWithBikeDetails = DB::table('jobs')
+            ->join('bikes', 'jobs.bike_id', '=', 'bikes.id')
+            ->get();
+
         //Get results and returns view for jobs
         $msg_str = 'Job management page accessed';
         Log::create([
@@ -227,6 +231,7 @@ class JobController extends Controller
 
         //Redirect user to jobs page and returns jobs list
         return view('jobs', ['jobs' => $jobs, 
+        'jobsWithBikeDetails' => $jobsWithBikeDetails,
         'jobsInProgress' => $jobsInProgress, 
         'jobsIssue' => $jobsIssue, 
         'jobsCompleted' => $jobsCompleted, 
