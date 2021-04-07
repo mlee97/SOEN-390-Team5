@@ -34,9 +34,8 @@
                                 <th>Operations</th>
                             </tr>
                             </thead>
-
                             <tbody class="list">
-                            @foreach ($jobs as $job)
+                            @foreach ($jobs->sortByDesc('status') as $job)
                                 <tr>
                                     <td>{{$job->id}}</td>
                                     <td>{!!($job->user_id)==null ? html_entity_decode("<p class=text-muted><em>NONE</em></p>"): DB::table('users')->where('id',$job->user_id)->value('first_name'). " ". DB::table('users')->where('id',$job->user_id)->value('last_name') !!}</td>
@@ -71,7 +70,7 @@
                                                         <option value={{$user->id}}@if($job->user_id == $user->id) selected @endif> {{$user->first_name. " ". $user->last_name}} </option>
                                                     @endforeach
                                                 </select>
-<br>
+                                                <br>
                                                 <label for="status" class="form-label">Job Status</label>
                                                 <select id="status" name="status" class="form-control py-1" required>
                                                     <option value="Queued" @if($job->status == "Queued") selected @endif>Queued</option>
