@@ -296,6 +296,16 @@
                             </tr>   
                         </tbody>
                     </table>
+                    <br>
+                    <!--Order Graph-->
+                    <table class="table table-bordered">                   
+                        <tbody>
+                            <th scope="col">Orders Cost By Date</th>
+                            <tr>
+                                <td id="order-chart-container" style="height: 300px;"></td>
+                            </tr>   
+                        </tbody>
+                    </table>
                 </div>
                 <!--End of all orders tab-->               
             </div>
@@ -307,11 +317,21 @@
 
     <!--Js function for creating charts-->    
     <script>
-      const chart = new Chartisan({
+      //sales chart
+      const SalesChart = new Chartisan({
         el: '#sale-chart-container',
         url: "@chart('sale_chart')",
         hooks: new ChartisanHooks()
              .colors(['#4299E1','#FE0045','#C07EF1','#67C560','#ECC94B'])
+                .datasets('line')
+                .axis(true)
+      });
+      //orders chart
+      const OrderChart = new Chartisan({
+        el: '#order-chart-container',
+        url: "@chart('order_chart')",
+        hooks: new ChartisanHooks()
+             .colors(['#DC143C','#FE0045','#C07EF1','#67C560','#ECC94B'])
                 .datasets('line')
                 .axis(true)
       });
