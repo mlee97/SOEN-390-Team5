@@ -46,6 +46,15 @@
                             <option value="Completed">Completed</option>
                         </select>
                     </div>
+                    <div class="py-2">
+                        <label for="quality" class="form-label">Job Quality</label>
+                        <select id="quality" name="quality" class="form-control py-1" required>
+                        <option value="Not Inspected">Not Inspected</option>
+                        <option value="Under Inspection">Under Inspection</option>
+                        <option value="Passed Inspection">Passed Inspection</option>
+                        <option value="Failed Inspection">Failed Inspection</option>
+                        </select>
+                    </div>
                 </div>
 
                 {{csrf_field()}}

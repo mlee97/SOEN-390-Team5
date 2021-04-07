@@ -31,6 +31,7 @@
                                 <th class="sort pointer-cursor" data-sort="jobid">Quantity</th>
                                 <th class="sort pointer-cursor" data-sort="status">Date Created</th>
                                 <th class="sort pointer-cursor" data-sort="status">Status</th>
+                                <th class="sort pointer-cursor" data-sort="status">Quality</th>
                                 <th>Operations</th>
                             </tr>
                             </thead>
@@ -43,6 +44,7 @@
                                     <td>{{$job->quantity}}</td>
                                     <td>{{$job->created_at}}</td>
                                     <td>{{$job->status}}</td>
+                                    <td>{{$job->quality}}</td>
                                     <td><a type="button" data-toggle="modal" data-target="#jobStatusModal{{$job->id}}" class="btn btn-primary">Edit Job
                                         </a> <a type="button" class="btn btn-danger"
                                                           href="delete-job/{{$job->id}}">Delete</a></td>
@@ -62,7 +64,7 @@
                                             <div class="modal-body">
                                                 <label for="status" class="form-label">Job ID</label>
                                                 <input class="form-control" name="jobID" type="text" value="{{$job->id}}" readonly>
-<br>
+                                                <br>
                                                 <label for="user" class="form-label">Edit Assignee</label>
                                                 <select id="user" name="user" class="form-control py-1">
                                                     <option value=""> -- SELECT ASSIGNEE --</option>
@@ -77,6 +79,14 @@
                                                     <option value="In Progress" @if($job->status == "In Progress") selected @endif>In Progress</option>
                                                     <option value="Issue" @if($job->status == "Issue") selected @endif>Issue</option>
                                                     <option value="Completed" @if($job->status == "Completed") selected @endif>Completed</option>
+                                                </select>
+                                                <br>
+                                                <label for="quality" class="form-label">Job Quality</label>
+                                                <select id="quality" name="quality" class="form-control py-1" required>
+                                                    <option value="Not Inspected" @if($job->quality == "Not Inspected") selected @endif>Not Inspected</option>
+                                                    <option value="Under Inspection" @if($job->quality == "Under Inspection") selected @endif>Under Inspection</option>
+                                                    <option value="Passed Inspection" @if($job->quality == "Passed Inspection") selected @endif>Passed Inspection</option>
+                                                    <option value="Failed Inspection" @if($job->quality == "Failed Inspection") selected @endif>Failed Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="modal-footer">

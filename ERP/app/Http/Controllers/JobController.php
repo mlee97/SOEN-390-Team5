@@ -27,6 +27,7 @@ class JobController extends Controller
 
         $validator = Validator::make($request->all(), [
             'status' => 'required',
+            'quality' => 'required',
             'order_qty' => 'required',
             'bike' => 'required',
         ]);
@@ -55,6 +56,7 @@ class JobController extends Controller
         $newJob= Job::create([
             'status' => $request->status,
             'quantity' => $request->order_qty,
+            'quality' => $request->quality,
             'bike_id' => $request->bike,
             'user_id' => ($request->user) == "" ? null: $request->user
         ]);
