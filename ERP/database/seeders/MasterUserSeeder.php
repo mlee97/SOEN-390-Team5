@@ -79,7 +79,7 @@ class MasterUserSeeder extends Seeder
         $salesPerson = new User();
         $salesPerson -> first_name = 'Sale';
         $salesPerson -> last_name = 'Person';
-        $salesPerson -> email = 'salesworker@gmail.com';
+        $salesPerson -> email = 'sales@gmail.com';
         $salesPerson -> password = Hash::make('password');
         $salesPerson -> user_type = 8;
 
@@ -111,14 +111,22 @@ class MasterUserSeeder extends Seeder
 
         $user8 = User::where('email', '=', $manufacturerWorker3->email)->first();
 
-        if($user8== null)
+        if($user8 == null)
             $manufacturerWorker3->save();
 
         $user9 = User::where('email', '=', $productManager->email)->first();
 
-        if($user9== null)
+        if($user9 == null)
             $productManager->save();
+        
+        $user10 = User::where('email', '=', $accountant->email)->first();
+        
+        if($user10 == null)
+            $accountant->save();
+            
+        $user11 = User::where('email', '=', $salesPerson->email)->first();
 
-
+        if($user11 == null)
+            $salesPerson->save();
     }
 }
