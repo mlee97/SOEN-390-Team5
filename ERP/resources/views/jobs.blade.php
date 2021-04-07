@@ -60,7 +60,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action={{route('change.job.status')}} method="POST">
+                                            <form action={{route('change.job.info')}} method="POST">
                                             <div class="modal-body">
                                                 <label for="status" class="form-label">Job ID</label>
                                                 <input class="form-control" name="jobID" type="text" value="{{$job->id}}" readonly>

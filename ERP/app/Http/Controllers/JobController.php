@@ -107,8 +107,7 @@ class JobController extends Controller
      * @param $job_id, $request
      * @return redirect()->route('jobs')
      */
-    public function updateJobStatus(Request $request){
-
+    public function updateJobInfo(Request $request){
 
         //Find status of job id
         $job = Job::find($request->get('jobID'));
@@ -116,9 +115,9 @@ class JobController extends Controller
         $oldStatus = $job->status;
         $newStatus = $request->get('status');
 
-
             $job->status = $request->get('status');
             $job->user_id = $request->get('user');
+            $job->quality = $request->get('quality');
 
             //Save the status of job id
             $job->save();
