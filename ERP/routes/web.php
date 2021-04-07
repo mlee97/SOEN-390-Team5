@@ -49,7 +49,7 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
-//Machine Routes given `manufacturer.access.only` middleware (prevents non-manufacturing or non-IT personal from accessing this route)
+//Machine Routes given `manufacturer.access.only` middleware (prevents non-manufacturing from accessing this route)
 Route::group(['middleware' => ['auth', 'manufacturer.access.only']], function () {
     Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
         ->name('machine.status');
@@ -93,7 +93,7 @@ Route::post('/logout', [UserController::class, 'logoutUser'])
     ->name('logout');
 
 
-//Inventory Routes given `inventory.access.only` middleware (prevents non-inventory or non-IT personal from accessing this route)
+//Inventory Routes given `inventory.access.only` middleware (prevents non-inventory from accessing this route)
 Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
     Route::get('/inventory', [BikeController::class, 'goToInventory'])
         ->name('inventory');
@@ -137,7 +137,7 @@ Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
         ->name('toggle.order.status');
 });
 
-//Accountant Routes given `Accountant.access.only` middleware (prevents non-accountant or non-IT personal from accessing this route)
+//Accountant Routes given `Accountant.access.only` middleware (prevents non-accountant from accessing this route)
 Route::group(['middleware' => ['auth', 'accountant.access.only']], function () {
 
     // Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
@@ -152,7 +152,7 @@ Route::group(['middleware' => ['auth', 'accountant.access.only']], function () {
         ->name('salePDF.export');
 });
 
-//Sales Routes given `Sales.access.only` middleware (prevents non-sales or non-IT personal from accessing this route)
+//Sales Routes given `Sales.access.only` middleware (prevents non-sales from accessing this route)
 Route::group(['middleware' => ['auth', 'sales.access.only']], function () {
 
     // Executes "goToSalesView" method in the SaleController when the route is "/sales".
