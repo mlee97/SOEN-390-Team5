@@ -137,20 +137,26 @@ Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
         ->name('toggle.order.status');
 });
 
-// Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
-Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
-    ->name('accountant');
+//Sales Routes given `Accountant.access.only` middleware (prevents non-accountant or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth', 'accountant.access.only']], function () {
 
-// Executes "goToSalesView" method in the SaleController when the route is "/sales".
-Route::get('/sales', [SaleController::class, 'goToSalesView'])
-->name('sales');
+    // Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
+    Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
+        ->name('accountant');
 
-Route::post('/sales', [SaleController::class, 'saveSaleOrder'])
-->name('save.sale.order');
+    // Executes "goToSalesView" method in the SaleController when the route is "/sales".
+    Route::get('/sales', [SaleController::class, 'goToSalesView'])
+        ->name('sales');
 
-// Executes Accountant export functions (csv and PDF)
-Route::get('/sales-CSV-export', [AccountantController::class, 'exportSalesCSV'])
-    ->name('saleCSV.export');
+    Route::post('/sales', [SaleController::class, 'saveSaleOrder'])
+        ->name('save.sale.order');
 
-Route::get('/sales-PDF-export', [AccountantController::class, 'exportSalesPDF'])
-    ->name('salePDF.export');
+    // Executes Accountant export functions (csv and PDF)
+    Route::get('/sales-CSV-export', [AccountantController::class, 'exportSalesCSV'])
+        ->name('saleCSV.export');
+
+    Route::get('/sales-PDF-export', [AccountantController::class, 'exportSalesPDF'])
+        ->name('salePDF.export');
+});
+
+
