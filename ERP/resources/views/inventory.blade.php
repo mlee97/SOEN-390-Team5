@@ -956,19 +956,22 @@
 
 
             }
-
+            
+            //Add functionality to the Add Materials button
             function add_field_materials_part() {
                 input_row_count++;
                 var form = document.getElementById('add-materials-to-part');
                 var input_row = document.getElementById('input_mat_grp1');
-
+                
+                //Set variables to new field id and name
                 var input_row_grp_str = 'input_mat_grp' + input_row_count
                 var mat_input_str = 'MAT_PART' + input_row_count
 
 
                 var cloned_input = input_row.cloneNode(true);
                 cloned_input.setAttribute('id', input_row_grp_str)
-
+                
+                //Clone the original element but change the name and id to the new element
                 cloned_input.querySelector('[name ="MAT_PART1"]').setAttribute('id', mat_input_str)
                 cloned_input.querySelector('[name ="MAT_PART1"]').setAttribute('name', mat_input_str)
 
