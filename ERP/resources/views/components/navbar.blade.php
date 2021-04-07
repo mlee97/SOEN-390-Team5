@@ -63,7 +63,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('accountant')}}">Accountant</a>
                 </li>
-
+                @endif
+                
+                @if(Auth::user()->user_type==8)
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('sales')}}">Sales</a>
                 </li>

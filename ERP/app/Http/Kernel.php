@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'inventory.access.only' => \App\Http\Middleware\InventoryAccessOnly::class,
         'manufacturer.access.only' => \App\Http\Middleware\ManufacturerAccessOnly::class,
         'accountant.access.only' => \App\Http\Middleware\AccountantAccessOnly::class,
+        'sales.access.only' => \App\Http\Middleware\SalesAccessOnly::class,
         'it.access.only' => \App\Http\Middleware\ITAccessOnly::class,
         'shipping.access.only' => \App\Http\Middleware\ShippingAccessOnly::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

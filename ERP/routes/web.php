@@ -137,19 +137,12 @@ Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
         ->name('toggle.order.status');
 });
 
-//Sales Routes given `Accountant.access.only` middleware (prevents non-accountant or non-IT personal from accessing this route)
+//Accountant Routes given `Accountant.access.only` middleware (prevents non-accountant or non-IT personal from accessing this route)
 Route::group(['middleware' => ['auth', 'accountant.access.only']], function () {
 
     // Executes "goToAccoutantView" method in the AccountantController when the route is "/accountant".
     Route::get('/accountant', [AccountantController::class, 'goToAccoutantView'])
         ->name('accountant');
-
-    // Executes "goToSalesView" method in the SaleController when the route is "/sales".
-    Route::get('/sales', [SaleController::class, 'goToSalesView'])
-        ->name('sales');
-
-    Route::post('/sales', [SaleController::class, 'saveSaleOrder'])
-        ->name('save.sale.order');
 
     // Executes Accountant export functions (csv and PDF)
     Route::get('/sales-CSV-export', [AccountantController::class, 'exportSalesCSV'])
@@ -157,6 +150,17 @@ Route::group(['middleware' => ['auth', 'accountant.access.only']], function () {
 
     Route::get('/sales-PDF-export', [AccountantController::class, 'exportSalesPDF'])
         ->name('salePDF.export');
+});
+
+//Sales Routes given `Sales.access.only` middleware (prevents non-sales or non-IT personal from accessing this route)
+Route::group(['middleware' => ['auth', 'sales.access.only']], function () {
+
+    // Executes "goToSalesView" method in the SaleController when the route is "/sales".
+    Route::get('/sales', [SaleController::class, 'goToSalesView'])
+        ->name('sales');
+
+    Route::post('/sales', [SaleController::class, 'saveSaleOrder'])
+        ->name('save.sale.order');
 });
 
 
