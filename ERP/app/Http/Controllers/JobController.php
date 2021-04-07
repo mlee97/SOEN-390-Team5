@@ -196,6 +196,20 @@ class JobController extends Controller
 
         //Retrieve job model
         $jobs = Job::all();
+
+        $jobsInProgress = DB::table('jobs')
+        ->where('status', '=', 'In Progress')
+        ->get();
+        $jobsQueued = DB::table('jobs')
+        ->where('status', '=', 'Queued')
+        ->get();
+        $jobsIssue = DB::table('jobs')
+        ->where('status', '=', 'Issue')
+        ->get();
+        $jobsCompleted = DB::table('jobs')
+        ->where('status', '=', 'Completed')
+        ->get();
+
         $orders = Order::all();
         $users = DB::table('users')
             ->where('user_type', '=', 5)
@@ -212,6 +226,12 @@ class JobController extends Controller
         ]);
 
         //Redirect user to jobs page and returns jobs list
-        return view('jobs', ['jobs' => $jobs, 'orders' => $orders, 'users' =>$users]);
+        return view('jobs', ['jobs' => $jobs, 
+        'jobsInProgress' => $jobsInProgress, 
+        'jobsIssue' => $jobsIssue, 
+        'jobsCompleted' => $jobsCompleted, 
+        'jobsQueued' => $jobsQueued, 
+        'orders' => $orders, 
+        'users' =>$users]);
     }
 }
