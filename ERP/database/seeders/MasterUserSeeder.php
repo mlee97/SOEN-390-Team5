@@ -62,6 +62,13 @@ class MasterUserSeeder extends Seeder
         $manufacturerWorker3 -> password = Hash::make('password');
         $manufacturerWorker3 -> user_type = 5;
 
+        $accountant = new User();
+        $accountant -> first_name = 'Acc';
+        $accountant -> last_name = 'Ountant';
+        $accountant -> email = 'accountant@gmail.com';
+        $accountant -> password = Hash::make('password');
+        $accountant -> user_type = 6;
+
         $productManager = new User();
         $productManager -> first_name = 'ThankYou';
         $productManager -> last_name = 'Essam';
@@ -69,6 +76,12 @@ class MasterUserSeeder extends Seeder
         $productManager -> password = Hash::make('password');
         $productManager -> user_type = 7;
 
+        $salesPerson = new User();
+        $salesPerson -> first_name = 'Sale';
+        $salesPerson -> last_name = 'Person';
+        $salesPerson -> email = 'sales@gmail.com';
+        $salesPerson -> password = Hash::make('password');
+        $salesPerson -> user_type = 8;
 
 
         //The code below verifies that the users we are adding to the database as a seed does not already exist in the database.
@@ -98,14 +111,22 @@ class MasterUserSeeder extends Seeder
 
         $user8 = User::where('email', '=', $manufacturerWorker3->email)->first();
 
-        if($user8== null)
+        if($user8 == null)
             $manufacturerWorker3->save();
 
         $user9 = User::where('email', '=', $productManager->email)->first();
 
-        if($user9== null)
+        if($user9 == null)
             $productManager->save();
+        
+        $user10 = User::where('email', '=', $accountant->email)->first();
+        
+        if($user10 == null)
+            $accountant->save();
+            
+        $user11 = User::where('email', '=', $salesPerson->email)->first();
 
-
+        if($user11 == null)
+            $salesPerson->save();
     }
 }
