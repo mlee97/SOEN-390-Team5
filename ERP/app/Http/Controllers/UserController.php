@@ -173,9 +173,13 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Updating a user's details.
+     */
     public function updateUser(Request $request)
     {
 
+        // Validates received data are correct.
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
