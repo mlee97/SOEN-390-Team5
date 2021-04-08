@@ -143,6 +143,7 @@ class PartController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer',
             'part_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'part_quantity_in_stock' => 'required|integer',
         ]);
 
@@ -169,6 +170,7 @@ class PartController extends Controller
         //Find the specified part to update and update all of its fields.
         $part = Part::find($request->id);
         $part->part_name = $request->part_name;
+        $part->category = $request->category;
         $part->part_quantity_in_stock = $request->part_quantity_in_stock;
 
         //Save this instance of the the Part Model.
