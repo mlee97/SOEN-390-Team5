@@ -26,9 +26,11 @@ use App\Http\Controllers\DynamicPDFController;
 |
 */
 
-Route::get('/assembly', [AssemblyController::class, 'goToAssemblyView'])
-    ->middleware('auth')
-    ->name("assembly");
+Route::group(['middleware' => ['auth', 'assembly.access.only']], function () {
+    Route::get('/assembly', [AssemblyController::class, 'goToAssemblyView'])
+        ->middleware('auth')
+        ->name("assembly");
+});
 
 //Jobs routes to see, create, delete and update jobs
 Route::get('/jobs', [JobController::class, 'goToJobManagement'])
