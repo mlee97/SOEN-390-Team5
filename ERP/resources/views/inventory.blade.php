@@ -36,9 +36,10 @@
             </div>
             <div class="panel-body"> <!-- Beginning of the button panel body -->
                 <div class="row">
-                    <div class="col-10" id="bicycles">
+                    <div class="col" id="bicycles">
                         <h3>Bicycles</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">Type</th>
@@ -49,7 +50,7 @@
                                 <th scope="col">Grade</th>
                                 <th scope="col">Quantity In Stock</th>
                                 <th scope="col">Stock Status</th>
-                                <td></td>
+                                <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -567,6 +568,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                             @if(Auth::user()-> user_type == 7)
                                 <!--new bicycle Button-->
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bicycle_modal">
@@ -579,9 +581,10 @@
                 <br>
                 <div class="row">
                     <!-- Parts Table-->
-                    <div class="col-10" id="parts">
+                    <div class="col" id="parts">
                         <h3>Parts</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">PartID</th>
@@ -698,7 +701,7 @@
                             @endforeach
                             </tbody>
                         </table>
-
+</div>
                     @if(Auth::user()-> user_type == 7)
                         <!-- New Part button-->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#part_modal">
@@ -710,9 +713,10 @@
                 <br>
                 <div class="row">
                     <!-- Materials Table-->
-                    <div class="col-10" id="materials">
+                    <div class="col" id="materials">
                         <h3>Materials</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">MaterialID</th>
@@ -793,7 +797,7 @@
                             @endforeach
                             </tbody>
                         </table>
-
+                    </div>
                         @if(Auth::user()-> user_type == 7)
                             <!-- Materials Button-->
                             <button type="button" class="btn btn-success" data-toggle="modal"

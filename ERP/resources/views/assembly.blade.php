@@ -13,10 +13,10 @@
             <div class="row">
 
             <!-- Bicycles Tables-->
-                <div class="col-10" id="bicycles">
+                <div class="col" id="bicycles">
                     <h3>Bicycle Requirements</h3>
-
-                    <table class="table table-bordered">
+                    <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                             <th scope="col">BikeId</th>
                             <th scope="col">Fork</th>
@@ -100,15 +100,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
 
             <!-- Parts Table-->
-                <div class="col-10" id="parts">
+                <div class="col" id="parts">
                     <h3>Parts Requirements</h3>
-                    <table class="table table-bordered">
+                    <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                             <th scope="col">PartID</th>
                             <th scope="col">Part Name</th>
@@ -132,6 +134,7 @@
                             @endforeach
                         </tbody>
                     </table> 
+                    </div>
                 </div>
             </div>
             <br>
