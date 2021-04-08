@@ -91,7 +91,7 @@ class AccountantController extends Controller
             fclose($file);
         };
 
-        $msg_str = 'Accounting Reports exported as CSV with filename "' . $fileName . '"';
+        $msg_str = 'Sales Accounting Reports exported as CSV with filename "' . $fileName . '"';
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request->ip(),
@@ -166,7 +166,7 @@ class AccountantController extends Controller
         $pdf->loadHTML($this->convert_sales_to_html());
         $fileName = 'sales'.date('Y_m_d_H_i_s').'.pdf';
       
-        $msg_str = 'Accounting Reports exported as PDF';
+        $msg_str = 'Sales Accounting Reports exported as PDF';
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request->ip(),
@@ -211,6 +211,16 @@ class AccountantController extends Controller
             }
             fclose($file);
         };
+
+        $msg_str = 'Orders Accounting Reports exported as CSV with filename "' . $fileName . '"';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
+
         return response()->stream($callback, 200, $headers);
     }
 
@@ -261,6 +271,16 @@ class AccountantController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->convert_orders_to_html());
         $fileName = 'orders'.date('Y_m_d_H_i_s').'.pdf';
+
+        $msg_str = 'Orders Accounting Reports exported as CSV with filename "' . $fileName . '"';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
+
         return $pdf->download($fileName);
     }    
 }
