@@ -150,6 +150,12 @@ Route::group(['middleware' => ['auth', 'accountant.access.only']], function () {
 
     Route::get('/sales-PDF-export', [AccountantController::class, 'exportSalesPDF'])
         ->name('salePDF.export');
+
+    Route::get('/orders-CSV-export', [AccountantController::class, 'exportOrdersCSV'])
+        ->name('orderCSV.export');
+
+    Route::get('/orders-PDF-export', [AccountantController::class, 'exportOrdersPDF'])
+        ->name('orderPDF.export');
 });
 
 //Sales Routes given `Sales.access.only` middleware (prevents non-sales from accessing this route)

@@ -15,8 +15,8 @@ class LogController extends Controller
         return view('Logging.log-page', ['logs' => $logs]);
     }
 
-    public function exportLogsCSV(Request $request){
-
+    public function exportLogsCSV(Request $request)
+    {
         $fileName = 'logs'.date('Y_m_d_H_i_s').'.csv';
         $logs = Log::all()->sortByDesc('created_at');
 
@@ -44,12 +44,9 @@ class LogController extends Controller
 
                 fputcsv($file, array($row['Type'], $row['Timestamp'], $row['User'], $row['IP Address'], $row['Message'], $row['Request Type']));
             }
-
             fclose($file);
         };
-
         return response()->stream($callback, 200, $headers);
-
     }
 
     //function to convert logs to html
@@ -83,20 +80,19 @@ class LogController extends Controller
             </tr>
             ';
         }
-
         //this returns the table
         $output .= '</table>';
         return $output;
     }
 
     //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer 
-    //this function is called when the route /PDF/logs is accessed 
     //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_logs_to_html());' for the content in the PDF
     //and finally return the pdf 'return $pdf->stream();'
     function exportLogsPDF()
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->convert_logs_to_html());
-        return $pdf->stream();
+        $fileName = 'logs'.date('Y_m_d_H_i_s').'.pdf';
+        return $pdf->download($fileName);
     }
 }

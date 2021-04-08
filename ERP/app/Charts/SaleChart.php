@@ -8,7 +8,6 @@ use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
 use App\Models\Sale;
-use Illuminate\Support\Facades\DB;
 
 class SaleChart extends BaseChart
 {
@@ -20,7 +19,7 @@ class SaleChart extends BaseChart
     public function handler(Request $request): Chartisan
     {
         //labels is the x axis and dataset is the y axis
-        $sales = Sale::all(); // Getting all data from Sale.    
+        $sales = Sale::all()->sortBy('created_at'); // Getting all data from Sale.    
         $labels = [];
         $dataset = [];
         //populates the axises with date as x axis and profit as y axis from sales tables in db

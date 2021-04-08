@@ -20,8 +20,7 @@ class OrderChart extends BaseChart
     public function handler(Request $request): Chartisan
     {
         //labels is the x axis and dataset is the y axis
-        $orders = Order::all(); // Getting all data from Order.   
-        $materials = Material::all(); // Getting all data from Material. 
+        $orders = Order::all()->sortBy('created_at'); // Getting all data from Order.    
         $labels = [];
         $dataset = [];
         //populates the axises with date as x axis and profit as y axis from order and material tables in db

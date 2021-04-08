@@ -35,7 +35,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" rowspan = "2">Sales ID</th>
+                                <th scope="col" rowspan = "2">Sale ID</th>
                                 <th scope="col" colspan = "7">Bicycle Specifications</th>
                                 <th scope="col" rowspan = "2">Quantity Sold</th>
                                 <th scope="col" rowspan = "2">Date Sold</th>
@@ -87,7 +87,7 @@
                     <!--Sales Graph-->
                     <table class="table table-bordered">                   
                         <tbody>
-                            <th scope="col">Sales Profit By Date</th>
+                            <th scope="col">Sale Profit By Date</th>
                             <tr>
                                 <td id="sale-chart-container" style="height: 300px;"></td>
                             </tr>   
@@ -119,7 +119,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" rowspan = "2">Sales ID</th>
+                                <th scope="col" rowspan = "2">Sale ID</th>
                                 <th scope="col" colspan = "7">Bicycle Specifications</th>
                                 <th scope="col" rowspan = "2">Quantity Sold</th>
                                 <th scope="col" rowspan = "2">Date Sold</th>
@@ -187,7 +187,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" rowspan = "2">Sales ID</th>
+                                <th scope="col" rowspan = "2">Sale ID</th>
                                 <th scope="col" colspan = "7">Bicycle Specifications</th>
                                 <th scope="col" rowspan = "2">Quantity Sold</th>
                                 <th scope="col" rowspan = "2">Date Sold</th>
@@ -248,6 +248,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#all_orders">All Orders</a>
                     </li>
+                    <li class="nav-item ml-auto">
+                        <span data-href="/orders-CSV-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export into CSV</span>           
+                    </li>
+                    <li class="col-md-5" align="right">
+                        <a href="{{ url('/orders-PDF-export') }}" target="_blank" class="btn btn-danger">Export into PDF</a>
+                    </li>
                 </ul>
             </div>
             
@@ -300,7 +306,7 @@
                     <!--Order Graph-->
                     <table class="table table-bordered">                   
                         <tbody>
-                            <th scope="col">Orders Cost By Date</th>
+                            <th scope="col">Order Cost By Date</th>
                             <tr>
                                 <td id="order-chart-container" style="height: 300px;"></td>
                             </tr>   
