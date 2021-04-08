@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ManufacturerAccessOnly
+class ManufacturerAndQualityAccessOnly
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class ManufacturerAccessOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()-> user_type != 5)
+        if(Auth::user()-> user_type != 5 && Auth::user()-> user_type != 9)
             return redirect('/'); //redirects user to main page if they are not manufacturing personnel
         else {
             return $next($request); //allows request to proceed as usual

@@ -51,8 +51,8 @@ Route::get('/', function () {
     ->middleware('auth')
     ->name('home');
 
-//Machine Routes given `manufacturer.access.only` middleware (prevents non-manufacturing from accessing this route)
-Route::group(['middleware' => ['auth', 'manufacturer.access.only']], function () {
+//Machine Routes given `manufacturer.quality.access.only` middleware (prevents non-manufacturing from accessing this route)
+Route::group(['middleware' => ['auth', 'manufacturer.quality.access.only']], function () {
     Route::get('/machine-status', [MachineController::class, 'goToMachineManagement'])
         ->name('machine.status');
 
