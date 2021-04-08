@@ -3,15 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\DB;
 
 class LogController extends Controller
 {
-    public function goToLogManagement()
+    public function goToLogManagement(Request $request)
     {
         $logs = Log::all()->sortByDesc('created_at');
+
+        $msg_str = 'Logging page accessed';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request ->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'GET',
+            'message' => $msg_str,
+             ]);
         return view('Logging.log-page', ['logs' => $logs]);
     }
 
@@ -46,6 +56,16 @@ class LogController extends Controller
             }
             fclose($file);
         };
+
+        $msg_str = 'System logs exported as CSV with filename "' . $fileName . '"';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request ->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+             ]);
+
         return response()->stream($callback, 200, $headers);
     }
 
@@ -88,11 +108,21 @@ class LogController extends Controller
     //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer 
     //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_logs_to_html());' for the content in the PDF
     //and finally return the pdf 'return $pdf->stream();'
-    function exportLogsPDF()
+    function exportLogsPDF(Request $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->convert_logs_to_html());
         $fileName = 'logs'.date('Y_m_d_H_i_s').'.pdf';
+        
+        $msg_str = 'System logs exported as PDF';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request ->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+             ]);
+      
         return $pdf->download($fileName);
     }
 }
