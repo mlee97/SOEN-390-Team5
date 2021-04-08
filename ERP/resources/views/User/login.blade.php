@@ -29,8 +29,8 @@
     </div>
 @endif
 <div class="container">
-    <div class="row h-100 justify-content-center">
-        <div class="col-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
             <form action={{route('login')}} method="POST">
 
                 <div class="d-flex flex-column border rounded shadow mt-5 p-2 ">

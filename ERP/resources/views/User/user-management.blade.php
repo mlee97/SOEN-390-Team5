@@ -96,13 +96,14 @@ for the list of user types-->
     @endforeach
 
         <form action="{{route('create.user')}}">
-            <div class="d-grid gap-2 col-3 mx-auto mt-5">
+            <div class="col-sm-3 mx-auto mt-5">
             <button class="btn btn-primary btn-block" type="submit">Create User</button>
             </div>
         </form>
 
 
     <div class="container mt-3 shadow border rounded">
+    <div class="table-responsive">
         <table class="table">
             <thead>
             <tr>
@@ -131,6 +132,7 @@ for the list of user types-->
             @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 
 

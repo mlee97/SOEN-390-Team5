@@ -9,9 +9,10 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-10" id="orders">
+                    <div class="col" id="orders">
                         <h3>Order Backlog</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <th class="sort pointer-cursor" data-sort="jobid">OrderID</th>
                             <th class="sort pointer-cursor" data-sort="status">ETA</th>
@@ -43,6 +44,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
                 @foreach($orders as $order)
@@ -95,9 +97,10 @@
             <br>
 
             <div class="row">
-                    <div class="col-10">
+                    <div class="col">
                         <h3>Order History</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <th class="sort pointer-cursor" data-sort="jobid">OrderID</th>
                             <th class="sort pointer-cursor" data-sort="status">ETA</th>
@@ -122,6 +125,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
                 @foreach($orders as $order)

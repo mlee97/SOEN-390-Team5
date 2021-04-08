@@ -17,10 +17,11 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-10" id="jobs">
+                    <div class="col" id="jobs">
                         <!-- Jobs In Progress -->
                         <h3>Jobs In Progress</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th class="sort pointer-cursor" data-sort="jobid">JobID</th>
@@ -252,9 +253,11 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                         <!-- Jobs Queued -->
                         <h3>Jobs Queued</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th class="sort pointer-cursor" data-sort="jobid">JobID</th>
@@ -486,9 +489,11 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                         <!-- Jobs Completed -->
                         <h3>Jobs Completed</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th class="sort pointer-cursor" data-sort="jobid">JobID</th>
@@ -720,9 +725,11 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                         <!-- Jobs Issues -->
                         <h3>Job Issues</h3>
-                        <table class="table table-bordered">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th class="sort pointer-cursor" data-sort="jobid">JobID</th>
@@ -954,6 +961,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
                         <!-- we dont need to use form, because we are not
                          sending any data to the server, we just wanna go to another
                          page that it's easily possible using <a> tag.

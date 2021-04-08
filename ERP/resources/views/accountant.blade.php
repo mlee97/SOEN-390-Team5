@@ -14,9 +14,7 @@
                     </li>
                     <li class="nav-item ml-auto">
                         <span data-href="/sales-CSV-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export into CSV</span>           
-                    </li>
-                    <li class="col-md-5" align="right">
-                        <a href="{{ url('/sales-PDF-export') }}" target="_blank" class="btn btn-danger">Export into PDF</a>
+                        <a href="{{ url('/sales-PDF-export') }}" target="_blank" class="btn btn-danger btn-sm">Export into PDF</a>
                     </li>
                 </ul>
             </div>
@@ -26,6 +24,7 @@
 
                 <!--All sales tab-->
                 <div class="tab-pane fade show active table-responsive" id="all_sales"> <!--"table-responsive" makes the table adjustable to window size-->
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -67,6 +66,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
+                    <div class="table-responsive">
                     <table class="table table-bordered">                   
                         <tbody>
                             <tr>
@@ -76,8 +77,10 @@
                             </tr>   
                         </tbody>
                     </table>
+                    </div>
                     <br>
                     <!--Sales Graph-->
+                    <div class="table-responsive">
                     <table class="table table-bordered">                   
                         <tbody>
                             <th scope="col">Sale Profit By Date</th>
@@ -86,6 +89,7 @@
                             </tr>   
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
             <!--End of card body-->             
@@ -106,9 +110,7 @@
                     </li>
                     <li class="nav-item ml-auto">
                         <span data-href="/orders-CSV-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export into CSV</span>           
-                    </li>
-                    <li class="col-md-5" align="right">
-                        <a href="{{ url('/orders-PDF-export') }}" target="_blank" class="btn btn-danger">Export into PDF</a>
+                        <a href="{{ url('/orders-PDF-export') }}" target="_blank" class="btn btn-danger btn-sm">Export into PDF</a>
                     </li>
                 </ul>
             </div>
@@ -118,6 +120,7 @@
 
                 <!--All orders tab-->
                 <div class="tab-pane fade show active table-responsive" id="all_orders"> <!--"table-responsive" makes the table adjustable to window size-->
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -149,6 +152,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
+                    <div class="table-responsive">
                     <table class="table table-bordered">                   
                         <tbody>
                             <tr>
@@ -158,8 +163,10 @@
                             </tr>   
                         </tbody>
                     </table>
+                    </div>
                     <br>
                     <!--Order Graph-->
+                    <div class="table-responsive">
                     <table class="table table-bordered">                   
                         <tbody>
                             <th scope="col">Order Cost By Date</th>
@@ -168,6 +175,7 @@
                             </tr>   
                         </tbody>
                     </table>
+                    </div>
                 </div>
                 <!--End of all orders tab-->               
             </div>

@@ -2,6 +2,7 @@
 @section('inside-body-tag')
 <div class="container-fluid table-responsive"> <!--"table-responsive" makes the table adjustable to window size-->
     <!-- table for showing all the sales  -->
+    <div class="table-responsive">
     <table class="table table-bordered text-center mt-5"> <!-- mt-5 is for adding margin top -->
 
         <thead>
@@ -44,6 +45,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sales_modal">
         Add Sales
