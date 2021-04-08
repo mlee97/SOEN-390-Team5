@@ -20,7 +20,7 @@ class OrderController extends Controller
         $todays_date = Carbon::now();
         $rand_deliver_date = $todays_date->addDays(rand(1,5));
 
-        $status_array = array('Submitted', 'In Transit', "Delivered");
+        $status_array = array('Submitted', 'In Transit');
         $status = $status_array[array_rand($status_array, 1)];
 
 
