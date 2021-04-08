@@ -8,14 +8,6 @@
                 IT Department
                 @break
 
-                @case(1)
-                Human Resources
-                @break
-
-                @case(2)
-                Floor Worker
-                @break
-
                 @case(3)
                 Shipping Department
                 @break
@@ -38,6 +30,10 @@
 
                 @case(8)
                 Sales Worker
+                @break
+
+                @case(9)
+                Quality Worker
                 @break
 
                 @default
