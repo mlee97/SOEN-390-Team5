@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'inventory.access.only' => \App\Http\Middleware\InventoryAccessOnly::class,
+        'assembly.access.only' => \App\Http\Middleware\AssemblyAccessOnly::class,
         'manufacturer.access.only' => \App\Http\Middleware\ManufacturerAccessOnly::class,
         'accountant.access.only' => \App\Http\Middleware\AccountantAccessOnly::class,
         'sales.access.only' => \App\Http\Middleware\SalesAccessOnly::class,
