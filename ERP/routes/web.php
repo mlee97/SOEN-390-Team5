@@ -133,8 +133,8 @@ Route::group(['middleware' => ['auth', 'inventory.access.only']], function () {
 Route::group(['middleware' => ['auth' ,'shipping.access.only']], function () {
     Route::get('/shipping', [ShippingController::class, 'goToShipping'])
         ->name('shipping');
-    Route::get('/toggle-order-status/{id}', [ShippingController::class, 'toggleOrderStatus'])
-        ->name('toggle.order.status');
+    Route::post('/mark-received', [ShippingController::class, 'markReceived'])
+        ->name('mark.received');
 });
 
 //Accountant Routes given `Accountant.access.only` middleware (prevents non-accountant from accessing this route)
