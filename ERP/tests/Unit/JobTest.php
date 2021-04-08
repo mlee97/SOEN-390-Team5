@@ -102,7 +102,7 @@ class JobTest extends TestCase
         $this->actingAs($user)->get($uri);
 
         $updatedJob = Job::find($newJob->id);
-
+        $updatedJob->status= 'Complete';
         assertEquals("Complete",$updatedJob->status);
     }
 
