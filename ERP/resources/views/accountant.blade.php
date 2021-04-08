@@ -137,28 +137,34 @@
                         </thead>
                         <tbody>
                             <!--Dummy values, make them dynamic in the future-->
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Mountain</td>
-                                <td>24</td>
-                                <td>Blue</td>
-                                <td>Matt</td>
-                                <td>Aluminium</td>
-                                <td>150</td>
-                                <td>1</td>
-                                <td>2021-03-03 00:00:00</td>
-                                <td>150</td>
-                            </tr>    
+                            @foreach ($sales as $sale)
+                                @foreach ($sale->bikes as $bikeSale)
+                                <tr>
+                                    <td>{{$sale->id}}</td>
+                                    
+                                    <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td> <!--We need to use bike_sale_pivot to get the bike_id in the bike_sale table-->
+                                    <td>{{$bikeSale->type}}</td>
+                                    <td>{{$bikeSale->size}}</td>
+                                    <td>{{$bikeSale->color}}</td>
+                                    <td>{{$bikeSale->finish}}</td>
+                                    <td>{{$bikeSale->grade}}</td>
+                                    <td>{{$bikeSale->price}}</td>
+
+                                    <td>{{$bikeSale->bike_sale_pivot->quantity_sold}}</td>
+                                    <td>{{$sale->created_at}}</td>
+                                    <td>{{$sale->profit}}</td>
+                                </tr>
+                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
-                    <table class="table table-bordered">                   
+                    <table class="table table-bordered">
                         <tbody>
-                            <!--Dummy values, make them dynamic in the future-->
                             <tr>
-                                <th scope="col">Total Profit (CAD)</th>      
-                                <td>150</th>                
-                            </tr>   
+                                <th scope="col">Total Profit (CAD)</th>
+
+                                <td>{{$totalSalesProfit}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -205,28 +211,34 @@
                         </thead>
                         <tbody>
                             <!--Dummy values, make them dynamic in the future-->
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Mountain</td>
-                                <td>24</td>
-                                <td>Blue</td>
-                                <td>Matt</td>
-                                <td>Aluminium</td>
-                                <td>150</td>
-                                <td>1</td>
-                                <td>2021-06-03 00:00:00</td>
-                                <td>150</td>
-                            </tr>    
+                            @foreach ($sales as $sale)
+                                @foreach ($sale->bikes as $bikeSale)
+                                <tr>
+                                    <td>{{$sale->id}}</td>
+                                    
+                                    <td>{{$bikeSale->bike_sale_pivot->bike_id}}</td> <!--We need to use bike_sale_pivot to get the bike_id in the bike_sale table-->
+                                    <td>{{$bikeSale->type}}</td>
+                                    <td>{{$bikeSale->size}}</td>
+                                    <td>{{$bikeSale->color}}</td>
+                                    <td>{{$bikeSale->finish}}</td>
+                                    <td>{{$bikeSale->grade}}</td>
+                                    <td>{{$bikeSale->price}}</td>
+
+                                    <td>{{$bikeSale->bike_sale_pivot->quantity_sold}}</td>
+                                    <td>{{$sale->created_at}}</td>
+                                    <td>{{$sale->profit}}</td>
+                                </tr>
+                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
-                    <table class="table table-bordered">                   
+                    <table class="table table-bordered">
                         <tbody>
-                            <!--Dummy values, make them dynamic in the future-->
                             <tr>
-                                <th scope="col">Total Profit (CAD)</th>      
-                                <td>150</th>                
-                            </tr>   
+                                <th scope="col">Total Profit (CAD)</th>
+
+                                <td>{{$totalSalesProfit}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
