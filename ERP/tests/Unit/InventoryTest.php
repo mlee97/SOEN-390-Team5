@@ -31,7 +31,7 @@ class InventoryTest extends TestCase
         $user2 = User::factory()->create();
         do{
             $user_type = rand(0,10);
-        } while(in_array($user_type, array(4)));
+        } while(in_array($user_type, array(4, 7)));
         $user2->user_type = $user_type;
         $response2 = $this->actingAs($user2)->get('/inventory');
 
