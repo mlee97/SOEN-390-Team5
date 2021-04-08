@@ -186,6 +186,33 @@ class BikeController extends Controller
         //Save this instance of the the Bike Model.
         $bike->save();
 
+        DB::delete('delete from bike_part where bike_id = ?', [$bike->id]);
+
+        $fork = Part::find($request->fork);
+        $bike->parts()->save($fork);
+        $seatpost = Part::find($request->seatpost);
+        $bike->parts()->save($seatpost);
+        $headset = Part::find($request->headset);
+        $bike->parts()->save($headset);
+        $cranks = Part::find($request->cranks);
+        $bike->parts()->save($cranks);
+        $pedals = Part::find($request->pedals);
+        $bike->parts()->save($pedals);
+        $handlebar = Part::find($request->handlebar);
+        $bike->parts()->save($handlebar);
+        $stem = Part::find($request->stem);
+        $bike->parts()->save($stem);
+        $saddle = Part::find($request->saddle);
+        $bike->parts()->save($saddle);
+        $brakes = Part::find($request->brakes);
+        $bike->parts()->save($brakes);
+        $shock = Part::find($request->shock);
+        $bike->parts()->save($shock);
+        $rim = Part::find($request->rim);
+        $bike->parts()->save($rim);
+        $tire = Part::find($request->tire);
+        $bike->parts()->save($tire);
+
         //Log the results of the edit operation.
         $msg_str = 'Bicycle with ID ' . $bike->id . ' updated successfully';
 
@@ -214,8 +241,14 @@ class BikeController extends Controller
         $bikes = Bike::all();
         $parts = Part::all();
         $materials = Material::all();
-        $orders =
-            Order::all();
+        $orders = Order::all();
+        $categories = DB::table('parts')
+                        ->select('category')
+                        ->distinct()
+                        ->get();
+        $partmaterials = DB::table('material_part')
+                        ->join('materials', 'material_part.material_id', '=', 'materials.id')
+                        ->get();
 
         //Log the results of the get request
         $msg_str = 'Inventory page accessed';
@@ -232,7 +265,9 @@ class BikeController extends Controller
             'bikes' => $bikes,
             'parts' => $parts,
             'materials' => $materials,
-            'orders' => $orders
+            'orders' => $orders,
+            'categories' => $categories,
+            'partmaterials' => $partmaterials
         ]);
     }
 

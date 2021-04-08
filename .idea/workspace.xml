@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PhpIncludePathManager">
+  <component name="ChangeListManager">
+    <list default="true" id="065dcbd2-1cf0-423c-914d-00e0b0f96e7a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SOEN-390-Team5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SOEN-390-Team5.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ERP/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ERP/app/Http/Controllers/ShippingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/app/Http/Controllers/ShippingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ERP/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/config/session.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/ERP/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/ERP/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/ERP/vendor/laravel/tinker" />
@@ -125,12 +159,67 @@
       <path value="$PROJECT_DIR$/ERP/vendor/laravel/sail" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
-    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/ERP/vendor/autoload.php" />
-    </phpunit_settings>
+  <component name="ProjectId" id="1pwtF3Oyw0ooFF5Sj1oHXTYEy2O" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="Z:\home\pira\SOEN-390-Team5\ERP\resources\views\email" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="065dcbd2-1cf0-423c-914d-00e0b0f96e7a" name="Default Changelist" comment="" />
+      <created>1616105879049</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616105879049</updated>
+      <workItem from="1616105884829" duration="3478000" />
+      <workItem from="1616449828675" duration="824000" />
+      <workItem from="1616611927657" duration="1190000" />
+      <workItem from="1617111531095" duration="5595000" />
+      <workItem from="1617370830976" duration="23222000" />
+      <workItem from="1617631300689" duration="30563000" />
+      <workItem from="1617748495961" duration="1972000" />
+      <workItem from="1617830130635" duration="1926000" />
+      <workItem from="1617832802688" duration="550000" />
+      <workItem from="1617833591049" duration="137000" />
+      <workItem from="1617833824389" duration="2984000" />
+      <workItem from="1617837734278" duration="1001000" />
+      <workItem from="1617838856308" duration="911000" />
+      <workItem from="1617839849083" duration="3359000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

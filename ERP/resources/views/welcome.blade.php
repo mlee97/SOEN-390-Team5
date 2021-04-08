@@ -36,6 +36,10 @@
                 Product Manager
                 @break
 
+                @case(8)
+                Sales Worker
+                @break
+
                 @default
                 Undefined User Type
             @endswitch</h1>

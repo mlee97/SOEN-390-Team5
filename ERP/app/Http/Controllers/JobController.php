@@ -27,6 +27,7 @@ class JobController extends Controller
 
         $validator = Validator::make($request->all(), [
             'status' => 'required',
+            'quality' => 'required',
             'order_qty' => 'required',
             'bike' => 'required',
         ]);
@@ -55,6 +56,7 @@ class JobController extends Controller
         $newJob= Job::create([
             'status' => $request->status,
             'quantity' => $request->order_qty,
+            'quality' => $request->quality,
             'bike_id' => $request->bike,
             'user_id' => ($request->user) == "" ? null: $request->user
         ]);
@@ -105,8 +107,7 @@ class JobController extends Controller
      * @param $job_id, $request
      * @return redirect()->route('jobs')
      */
-    public function updateJobStatus(Request $request){
-
+    public function updateJobInfo(Request $request){
 
         //Find status of job id
         $job = Job::find($request->get('jobID'));
@@ -114,9 +115,9 @@ class JobController extends Controller
         $oldStatus = $job->status;
         $newStatus = $request->get('status');
 
-
             $job->status = $request->get('status');
             $job->user_id = $request->get('user');
+            $job->quality = $request->get('quality');
 
             //Save the status of job id
             $job->save();
@@ -140,7 +141,7 @@ class JobController extends Controller
 
 
             //Log results
-            $msg_str = 'Job status with ID ' . $job->id . ' updated successfully to ' . $job->status;
+            $msg_str = 'Job with ID ' . $job->id . ' successfully updated';
             Log::create([
                 'user_id' => Auth::user()->id,
                 'ip_address' => $request->ip(),
@@ -195,9 +196,27 @@ class JobController extends Controller
 
         //Retrieve job model
         $jobs = Job::all();
+
+        $jobsInProgress = DB::table('jobs')
+        ->where('status', '=', 'In Progress')
+        ->get();
+        $jobsQueued = DB::table('jobs')
+        ->where('status', '=', 'Queued')
+        ->get();
+        $jobsIssue = DB::table('jobs')
+        ->where('status', '=', 'Issue')
+        ->get();
+        $jobsCompleted = DB::table('jobs')
+        ->where('status', '=', 'Completed')
+        ->get();
+
         $orders = Order::all();
         $users = DB::table('users')
             ->where('user_type', '=', 5)
+            ->get();
+
+        $jobsWithBikeDetails = DB::table('jobs')
+            ->join('bikes', 'jobs.bike_id', '=', 'bikes.id')
             ->get();
 
         //Get results and returns view for jobs
@@ -211,6 +230,13 @@ class JobController extends Controller
         ]);
 
         //Redirect user to jobs page and returns jobs list
-        return view('jobs', ['jobs' => $jobs, 'orders' => $orders, 'users' =>$users]);
+        return view('jobs', ['jobs' => $jobs, 
+        'jobsWithBikeDetails' => $jobsWithBikeDetails,
+        'jobsInProgress' => $jobsInProgress, 
+        'jobsIssue' => $jobsIssue, 
+        'jobsCompleted' => $jobsCompleted, 
+        'jobsQueued' => $jobsQueued, 
+        'orders' => $orders, 
+        'users' =>$users]);
     }
 }

@@ -41,15 +41,6 @@
                 </li>
                 @endif
 
-                <!--Redirects to Accountant page if the user has permission-->
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{route('accountant')}}">Accountant</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{route('sales')}}">Sales</a>
-                </li>
-
                 @if(Auth::user()->user_type==5)
                 <!--Redirects to Job page if the user has permission-->
                 <li class="nav-item">
@@ -64,6 +55,19 @@
                 <!--Redirects to Machine page if the user has permission-->
                 <li class="nav-item">
                     <a class="nav-link active" href="/machine-status">Machine Status</a>
+                </li>
+                @endif
+                
+                @if(Auth::user()->user_type==6)
+                <!--Redirects to Accountant page if the user has permission-->
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('accountant')}}">Accountant</a>
+                </li>
+                @endif
+                
+                @if(Auth::user()->user_type==8)
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('sales')}}">Sales</a>
                 </li>
                 @endif
 

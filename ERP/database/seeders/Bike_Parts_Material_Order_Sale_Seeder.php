@@ -378,7 +378,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         //ORDER SEEDS =======================================
         $order1 = new Order();
         $order1 -> ETA = '2021-06-21';
-        $order1 -> status = 'Delivered';
+        $order1 -> status = 'In Transit';
         $order1->save();
         $order1->materials()->save($aluminum_alloy, ['order_quantity' => 100]);
         $order1->materials()->save($carbon_fiber, ['order_quantity' => 150]);
@@ -394,7 +394,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
 
         $order3 = new Order();
         $order3 -> ETA = '2021-08-13';
-        $order3 -> status = 'Delivered';
+        $order3 -> status = 'In Transit';
         $order3->save();
         $order3->materials()->save($carbon_fiber, ['order_quantity' => 50]);
         $order3->materials()->save($magnesium, ['order_quantity' => 10]);

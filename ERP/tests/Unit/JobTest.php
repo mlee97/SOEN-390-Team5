@@ -59,6 +59,7 @@ class JobTest extends TestCase
 
         $this->actingAs($user)->post('/create-job', [
             'quantity' => 12,
+            'quality'=> 'Passed Inspection',
             'status' => 'Queued',
             'bike_id' => $test_bike->id
         ]);
@@ -88,6 +89,7 @@ class JobTest extends TestCase
         $newJob = new Job();
         $newJob->status = "Queued";
         $newJob->quantity = 69;
+        $newJob->quality="Passed Inspection";
         $newJob->bike_id = $test_bike->id;
         $newJob->save();
         $uri = '/toggle-job-status/'.$newJob->id;
@@ -121,6 +123,7 @@ class JobTest extends TestCase
         $newJob = new Job();
         $newJob->status = "Complete";
         $newJob->quantity = 69;
+        $newJob->quality = "Passed Inspection";
         $newJob->bike_id = $test_bike->id;
         $newJob->save();
 

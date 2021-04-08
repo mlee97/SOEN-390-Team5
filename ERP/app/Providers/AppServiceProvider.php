@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $charts->register([
-            \App\Charts\SaleChart::class
+            \App\Charts\SaleChart::class,
+            \App\Charts\OrderChart::class
         ]);
     }
 }
