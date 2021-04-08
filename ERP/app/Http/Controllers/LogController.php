@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class LogController extends Controller
 {
+
+    /**
+     * Redirects to log management view.
+     */
     public function goToLogManagement(Request $request)
     {
         $logs = Log::all()->sortByDesc('created_at');
@@ -22,14 +26,19 @@ class LogController extends Controller
             'request_type' => 'GET',
             'message' => $msg_str,
              ]);
+
         return view('Logging.log-page', ['logs' => $logs]);
     }
 
+    /**
+     * Exports the log table in a CSV file.
+     */
     public function exportLogsCSV(Request $request)
     {
         $fileName = 'logs'.date('Y_m_d_H_i_s').'.csv';
         $logs = Log::all()->sortByDesc('created_at');
 
+        // Name of the headers in the CSV file.
         $headers = array(
             "Content-type"        => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -38,9 +47,11 @@ class LogController extends Controller
             "Expires"             => "0"
         );
 
+        // Name of the columns in the CSV file.
         $columns = array('Type', 'Timestamp', 'User', 'IP Address', 'Message', 'Request Type');
 
         $callback = function() use($logs, $columns) {
+            
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
@@ -58,6 +69,7 @@ class LogController extends Controller
         };
 
         $msg_str = 'System logs exported as CSV with filename "' . $fileName . '"';
+        
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request ->ip(),
