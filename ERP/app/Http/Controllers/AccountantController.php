@@ -9,6 +9,8 @@ use App\Models\Order;
 use App\Models\Material;
 use PDF;
 use Exception;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 
 /**
  *  Takes care of the logics in the accountant view.
@@ -16,35 +18,44 @@ use Exception;
 class AccountantController extends Controller
 {
     // Redirects to the accountant view.
-    public function goToAccoutantView()
+    public function goToAccoutantView(Request $request)
     {
-        $sales = Sale::all(); // Getting all data from Sale.    
-        $orders = Order::all(); // Getting all data from Order.   
-        $materials = Material::all(); // Getting all data from Material. 
+        $sales = Sale::all(); // Getting all data from Sale.
+        $orders = Order::all(); // Getting all data from Order.
+        $materials = Material::all(); // Getting all data from Material.
 
         $totalSalesProfit = collect($sales)->sum('profit'); // Sums all values in the 'profit' colomn in the sales table.
 
         $currentMonth = now()->month;
         $currentYear = now()->year;
 
-        return view('accountant', 
+        $msg_str = 'Accountant page accessed';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'GET',
+            'message' => $msg_str,
+        ]);
+
+        return view('accountant',
             [
-                'sales' => $sales, 
-                'orders' => $orders, 
-                'materials' => $materials, 
-                'totalSalesProfit' => $totalSalesProfit, 
-                'currentMonth' => $currentMonth, 
+                'sales' => $sales,
+                'orders' => $orders,
+                'materials' => $materials,
+                'totalSalesProfit' => $totalSalesProfit,
+                'currentMonth' => $currentMonth,
                 'currentYear' => $currentYear
             ]
         );
     }
-    
+
     //export the sales in csv
     public function exportSalesCSV(Request $request){
 
         $fileName = 'sales'.date('Y_m_d_H_i_s').'.csv';
         $sales = Sale::all()->sortByDesc('created_at');
-    
+
         $headers = array(
             "Content-type"        => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -52,13 +63,13 @@ class AccountantController extends Controller
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
-    
+
         $columns = array('Sales ID', 'ID', 'Type', 'Size', 'Color', 'Finish', 'Grade', 'Price', 'Quantity Sold', 'Date Sold', 'Profit');
-    
+
         $callback = function() use($sales, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
-    
+
             foreach ($sales as $sale) {
                 foreach ($sale->bikes as $bikeSale) {
                     $row['Sales ID']  = $sale->id;
@@ -72,25 +83,34 @@ class AccountantController extends Controller
                     $row['Quantity Sold']  = $bikeSale->bike_sale_pivot->quantity_sold;
                     $row['Date Sold']  = $sale->created_at;
                     $row['Profit']  = $sale->profit;
-    
+
                     fputcsv($file, array($row['Sales ID'], $row['ID'], $row['Type'], $row['Size'], $row['Color'], $row['Finish'], $row['Grade'], $row['Price'], $row['Quantity Sold'], $row['Date Sold'], $row['Profit']));
                 }
             }
-    
+
             fclose($file);
         };
-    
+
+        $msg_str = 'Accounting Reports exported as CSV with filename "' . $fileName . '"';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
+
         return response()->stream($callback, 200, $headers);
-    
-    } 
-    
+
+    }
+
     //function to convert sales to html
     function convert_sales_to_html()
     {
         //$sales: variable that returns all the sales in sale table and sorts them in descending order of created time
         $sales = Sale::all()->sortByDesc('created_at');
 
-       //$output below defines a table in html format and identifies the header of each column 
+       //$output below defines a table in html format and identifies the header of each column
         $output = '
         <h3 align="center">Sales in PDF format</h3>
         <table width="100%" style="border-collapse: collapse; border: 0px;">
@@ -107,7 +127,7 @@ class AccountantController extends Controller
         <th style="border: 1px solid; padding:1px;" width="10%">Date Sold</th>
         <th style="border: 1px solid; padding:1px;" width="10%">Profit</th>
         </tr>
-        ';  
+        ';
 
         //this fills each row of the table with the specified elements from the sales table in each respective column
         //nested foreach with bikes as well to define what element from the bikes table will be put in each column for each sale
@@ -130,20 +150,29 @@ class AccountantController extends Controller
                 ';
                 }
             }
-        
+
         //this returns the table
         $output .= '</table>';
         return $output;
-    }  
+    }
 
-    //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer 
-    //this function is called when the route /PDF/sales is accessed 
+    //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer
+    //this function is called when the route /PDF/sales is accessed
     //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_sales_to_html());' for the content in the PDF
     //and finally return the pdf 'return $pdf->stream();'
-    function exportSalesPDF()
+    function exportSalesPDF(Request $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->convert_sales_to_html());
+
+        $msg_str = 'Accounting Reports exported as PDF';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
         return $pdf->stream();
     }
 }

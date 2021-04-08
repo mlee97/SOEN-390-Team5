@@ -9,6 +9,8 @@ use App\Models\Bike;
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -53,15 +55,33 @@ class SaleController extends Controller
         fclose($file);
     };
 
+    $msg_str = 'Sales Reports exported as CSV with filename "' . $fileName . '"';
+    Log::create([
+        'user_id' => Auth::user()->id,
+        'ip_address' => $request->ip(),
+        'log_type' => 'INFO',
+        'request_type' => 'POST',
+        'message' => $msg_str,
+    ]);
+
     return response()->stream($callback, 200, $headers);
 
     }
 
     // Redirects to the sales view.
-    public function goToSalesView()
+    public function goToSalesView(Request $request)
     {
         $sales = Sale::all(); // Getting all data from Sale.
         $bicycles = Bike::all();
+
+        $msg_str = 'Sales page accessed';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'GET',
+            'message' => $msg_str,
+        ]);
 
         return view('sales', ['sales' => $sales, 'bicycles' => $bicycles]);
     }

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -51,6 +53,15 @@ class OrderController extends Controller
         foreach ($accountantUsers as $aUser) {
             Mail::to($aUser->email)->send(new MaterialOrderConfirmation($newOrder, $totalCost, new User( (array)$aUser)));
         }
+
+        $msg_str = 'Order with ID '. $newOrder->id . ' has been successfully created';
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'ip_address' => $request->ip(),
+            'log_type' => 'INFO',
+            'request_type' => 'POST',
+            'message' => $msg_str,
+        ]);
 
         return redirect('/inventory');
     }
