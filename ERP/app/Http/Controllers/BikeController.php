@@ -36,6 +36,19 @@ class BikeController extends Controller
             'finish' => 'required|string|max:255',
             'grade' => 'required|string|max:255',
             'quantity_in_stock' => 'required|integer',
+
+            'fork' => 'required|integer',
+            'seatpost' => 'required|integer',
+            'headset' => 'required|integer',
+            'cranks' => 'required|integer',
+            'pedals' => 'required|integer',
+            'handlebar' => 'required|integer',
+            'stem' => 'required|integer',
+            'saddle' => 'required|integer',
+            'brakes' => 'required|integer',
+            'shock' => 'required|integer',
+            'rim' => 'required|integer',
+            'tire' => 'required|integer'
         ]);
 
         //If the validation fails, log an error message.
@@ -58,7 +71,7 @@ class BikeController extends Controller
         }
 
         //Create a new bike and associate each input with its appropriate field in the Bike model.
-        $newBike = Bike::create([
+        $bike = Bike::create([
             'type' => $request->type,
             'size' => $request->size,
             'color' => $request->color,
@@ -68,7 +81,32 @@ class BikeController extends Controller
             'quantity_in_stock' => $request->quantity_in_stock,
         ]);
 
-        $msg_str = 'New bicycle with ID ' . $newBike->id . ' successfully created';
+        $fork = Part::find($request->fork);
+        $bike->parts()->save($fork);
+        $seatpost = Part::find($request->seatpost);
+        $bike->parts()->save($seatpost);
+        $headset = Part::find($request->headset);
+        $bike->parts()->save($headset);
+        $cranks = Part::find($request->cranks);
+        $bike->parts()->save($cranks);
+        $pedals = Part::find($request->pedals);
+        $bike->parts()->save($pedals);
+        $handlebar = Part::find($request->handlebar);
+        $bike->parts()->save($handlebar);
+        $stem = Part::find($request->stem);
+        $bike->parts()->save($stem);
+        $saddle = Part::find($request->saddle);
+        $bike->parts()->save($saddle);
+        $brakes = Part::find($request->brakes);
+        $bike->parts()->save($brakes);
+        $shock = Part::find($request->shock);
+        $bike->parts()->save($shock);
+        $rim = Part::find($request->rim);
+        $bike->parts()->save($rim);
+        $tire = Part::find($request->tire);
+        $bike->parts()->save($tire);
+
+        $msg_str = 'New bicycle with ID ' . $bike->id . ' successfully created';
 
         //Log the results of the create operation.
         Log::create([
@@ -102,6 +140,19 @@ class BikeController extends Controller
             'finish' => 'required|string|max:255',
             'grade' => 'required|string|max:255',
             'quantity_in_stock' => 'required|integer',
+
+            'fork' => 'required|integer',
+            'seatpost' => 'required|integer',
+            'headset' => 'required|integer',
+            'cranks' => 'required|integer',
+            'pedals' => 'required|integer',
+            'handlebar' => 'required|integer',
+            'stem' => 'required|integer',
+            'saddle' => 'required|integer',
+            'brakes' => 'required|integer',
+            'shock' => 'required|integer',
+            'rim' => 'required|integer',
+            'tire' => 'required|integer'
         ]);
 
         //If the validation fails, log an error message.
@@ -135,8 +186,36 @@ class BikeController extends Controller
         //Save this instance of the the Bike Model.
         $bike->save();
 
+        DB::delete('delete from bike_part where bike_id = ?', [$bike->id]);
+
+        $fork = Part::find($request->fork);
+        $bike->parts()->save($fork);
+        $seatpost = Part::find($request->seatpost);
+        $bike->parts()->save($seatpost);
+        $headset = Part::find($request->headset);
+        $bike->parts()->save($headset);
+        $cranks = Part::find($request->cranks);
+        $bike->parts()->save($cranks);
+        $pedals = Part::find($request->pedals);
+        $bike->parts()->save($pedals);
+        $handlebar = Part::find($request->handlebar);
+        $bike->parts()->save($handlebar);
+        $stem = Part::find($request->stem);
+        $bike->parts()->save($stem);
+        $saddle = Part::find($request->saddle);
+        $bike->parts()->save($saddle);
+        $brakes = Part::find($request->brakes);
+        $bike->parts()->save($brakes);
+        $shock = Part::find($request->shock);
+        $bike->parts()->save($shock);
+        $rim = Part::find($request->rim);
+        $bike->parts()->save($rim);
+        $tire = Part::find($request->tire);
+        $bike->parts()->save($tire);
+
         //Log the results of the edit operation.
         $msg_str = 'Bicycle with ID ' . $bike->id . ' updated successfully';
+
         Log::create([
             'user_id' => Auth::user()->id,
             'ip_address' => $request->ip(),
@@ -162,8 +241,14 @@ class BikeController extends Controller
         $bikes = Bike::all();
         $parts = Part::all();
         $materials = Material::all();
-        $orders =
-            Order::all();
+        $orders = Order::all();
+        $categories = DB::table('parts')
+                        ->select('category')
+                        ->distinct()
+                        ->get();
+        $partmaterials = DB::table('material_part')
+                        ->join('materials', 'material_part.material_id', '=', 'materials.id')
+                        ->get();
 
         //Log the results of the get request
         $msg_str = 'Inventory page accessed';
@@ -180,7 +265,9 @@ class BikeController extends Controller
             'bikes' => $bikes,
             'parts' => $parts,
             'materials' => $materials,
-            'orders' => $orders
+            'orders' => $orders,
+            'categories' => $categories,
+            'partmaterials' => $partmaterials
         ]);
     }
 
@@ -209,7 +296,7 @@ class BikeController extends Controller
 
         //Redirect the user to the inventory page
         return redirect('/inventory')
-            ->with('success_msg', 'Bike Deleted'); //Send a temporary success message. This is saved in the session
+            ->with('success_msg', 'Bike Has Been Successfully Deleted'); //Send a temporary success message. This is saved in the session
     }
 
 }

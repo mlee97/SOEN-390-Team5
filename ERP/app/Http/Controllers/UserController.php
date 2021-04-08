@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\LowMaterialWarning;
 use App\Models\Log;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -31,7 +34,7 @@ class UserController extends Controller
 
             Log::create([
                 'user_id' => Auth::user()->id,
-                'ip_address' => $request ->ip(),
+                'ip_address' => $request->ip(),
                 'log_type' => 'ERROR',
                 'request_type' => 'POST',
                 'message' => $msg_str,
@@ -55,7 +58,7 @@ class UserController extends Controller
 
             Log::create([
                 'user_id' => Auth::user()->id,
-                'ip_address' => $request ->ip(),
+                'ip_address' => $request->ip(),
                 'log_type' => 'INFO',
                 'request_type' => 'POST',
                 'message' => $msg_str,
@@ -73,7 +76,7 @@ class UserController extends Controller
         $msg_str = 'User creation page accessed';
         Log::create([
             'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
+            'ip_address' => $request->ip(),
             'log_type' => 'INFO',
             'request_type' => 'GET',
             'message' => $msg_str,
@@ -86,7 +89,7 @@ class UserController extends Controller
         $msg_str = 'User Management page accessed';
         Log::create([
             'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
+            'ip_address' => $request->ip(),
             'log_type' => 'INFO',
             'request_type' => 'GET',
             'message' => $msg_str,
@@ -105,7 +108,7 @@ class UserController extends Controller
         $msg_str = 'User has logged out of the ERP System';
         Log::create([
             'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
+            'ip_address' => $request->ip(),
             'log_type' => 'INFO',
             'request_type' => 'POST',
             'message' => $msg_str,
@@ -135,19 +138,31 @@ class UserController extends Controller
             $msg_str = 'User successfully logged in';
             Log::create([
                 'user_id' => Auth::user()->id,
-                'ip_address' => $request ->ip(),
+                'ip_address' => $request->ip(),
                 'log_type' => 'INFO',
                 'request_type' => 'POST',
                 'message' => $msg_str,
             ]);
 
+            $user = User::find(Auth::user()->id);
+            //If the person who logged on is an Inventory Manager, then they will get an email with a low material report.
+            if (Auth::user()->user_type == 4) {
+                $materialWithLowStock = DB::table('materials')
+                    ->where('material_quantity_in_stock', '<=', 10)
+                    ->get();
+
+                if ($materialWithLowStock->count() > 0) {
+                    Mail::to($user->email)->send(new LowMaterialWarning($materialWithLowStock, $user));
+                }
+            }
+
             return redirect(RouteServiceProvider::HOME);
         }
 
         $msg_str = 'Failed Log in attempt with email: ';
-        $msg_str.= $request->input('email');
+        $msg_str .= $request->input('email');
         Log::create([
-            'ip_address' => $request ->ip(),
+            'ip_address' => $request->ip(),
             'log_type' => 'ERROR',
             'request_type' => 'POST',
             'message' => $msg_str,
@@ -158,8 +173,13 @@ class UserController extends Controller
         ]);
     }
 
-    public function updateUser(Request $request){
+    /**
+     * Updating a user's details.
+     */
+    public function updateUser(Request $request)
+    {
 
+        // Validates received data are correct.
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -173,7 +193,7 @@ class UserController extends Controller
 
             Log::create([
                 'user_id' => Auth::user()->id,
-                'ip_address' => $request ->ip(),
+                'ip_address' => $request->ip(),
                 'log_type' => 'ERROR',
                 'request_type' => 'POST',
                 'message' => $msg_str,
@@ -188,7 +208,7 @@ class UserController extends Controller
 
             Log::create([
                 'user_id' => Auth::user()->id,
-                'ip_address' => $request ->ip(),
+                'ip_address' => $request->ip(),
                 'log_type' => 'INFO',
                 'request_type' => 'POST',
                 'message' => $msg_str,

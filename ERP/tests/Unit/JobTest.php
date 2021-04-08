@@ -51,16 +51,18 @@ class JobTest extends TestCase
             'type' => 'test',
             'size' =>'test',
             'color' => 'test',
-            'price' => 12,
             'finish' => 'test',
             'grade' => 'test',
-            'quantity_in_stock' => 1222,
+            'quantity_in_stock' => 12,
+            'price' => 12
         ]);
 
         $this->actingAs($user)->post('/create-job', [
-            'quantity' => 12,
-            'status' => 'Queued',
-            'bike_id' => $test_bike->id
+            'status' => 'In Progress',
+            'order_qty' => 12,
+            'quality'=> 'Failed Inspection',
+            'bike' => $test_bike->id,
+            'user' => $user->id
         ]);
 
         $bikes = Bike::all();
@@ -88,6 +90,7 @@ class JobTest extends TestCase
         $newJob = new Job();
         $newJob->status = "Queued";
         $newJob->quantity = 69;
+        $newJob->quality="Passed Inspection";
         $newJob->bike_id = $test_bike->id;
         $newJob->save();
         $uri = '/toggle-job-status/'.$newJob->id;
@@ -99,7 +102,7 @@ class JobTest extends TestCase
         $this->actingAs($user)->get($uri);
 
         $updatedJob = Job::find($newJob->id);
-
+        $updatedJob->status= 'Complete';
         assertEquals("Complete",$updatedJob->status);
     }
 
@@ -121,6 +124,7 @@ class JobTest extends TestCase
         $newJob = new Job();
         $newJob->status = "Complete";
         $newJob->quantity = 69;
+        $newJob->quality = "Passed Inspection";
         $newJob->bike_id = $test_bike->id;
         $newJob->save();
 

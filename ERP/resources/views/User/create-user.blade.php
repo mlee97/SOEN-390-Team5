@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('inside-body-tag')
+
+    <!-- Display temporary error message when redirected to this page by controller due to an error-->
     @if(count($errors->all()))
         <div class="alert alert-danger" role="alert">
             <ul>
@@ -9,6 +11,7 @@
             </ul>
         </div>
     @endif
+
     <form action={{route('create.user')}} method="POST">
         <div class="d-flex justify-content-center mt-5">
             <div class="d-flex flex-column border rounded shadow p-2">
@@ -40,16 +43,8 @@
                 </div>
 
                 <div class="p-2">
-                    <select name="user_type" class="form-control" required>
-                        <option value="">-- SELECT USER TYPE --</option>
-                        <option value="0">IT Department</option>
-                        <option value="1">Human Resources (HR)</option>
-                        <option value="2">Floor Worker</option>
-                        <option value="3">Shipping Department</option>
-                        <option value="4">Inventory</option>
-                        <option value="5">Manufacturer Worker</option>
-                        <option value="6">Accountant</option>
-                    </select>
+                    <!-- If you want to modify the user type dropdown, see the user-type-dropdown blade file -->
+                    @include('components.user-type-dropdown')
                 </div>
 
                 {{csrf_field()}}

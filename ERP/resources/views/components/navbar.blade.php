@@ -3,7 +3,7 @@
 
         <a class="navbar-brand" href="/">ERP System</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -35,26 +35,16 @@
 
                 <!--Redirects to Inventory page if the user has permission--><!--Permissions to be implemented-->
 
-                @if(Auth::user()->user_type==4)
+                @if(Auth::user()->user_type==4 || Auth::user()->user_type==7 )
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('inventory')}}">Inventory</a>
                 </li>
                 @endif
 
-                <!--Redirects to Accountant page if the user has permission-->
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{route('accountant')}}">Sales</a>
-                </li>
-
-                @if(Auth::user()->user_type==5)
+                @if(Auth::user()->user_type==5 || Auth::user()->user_type==9)
                 <!--Redirects to Job page if the user has permission-->
                 <li class="nav-item">
                     <a class="nav-link active" href="/jobs">Jobs</a>
-                </li>
-
-                <!--Redirects to Assembly page if the user has permission-->
-                <li class="nav-item">
-                    <a class="nav-link active" href="/assembly">Assembly</a>
                 </li>
 
                 <!--Redirects to Machine page if the user has permission-->
@@ -63,7 +53,31 @@
                 </li>
                 @endif
 
+                @if(Auth::user()->user_type==5)
+                <!--Redirects to Assembly page if the user has permission-->
+                <li class="nav-item">
+                    <a class="nav-link active" href="/assembly">Assembly</a>
+                </li>
+                @endif
+                
+                @if(Auth::user()->user_type==6)
+                <!--Redirects to Accountant page if the user has permission-->
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('accountant')}}">Accountant</a>
+                </li>
+                @endif
+                
+                @if(Auth::user()->user_type==8)
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('sales')}}">Sales</a>
+                </li>
+                @endif
+
                 @if(Auth::user() != null)
+
+               
+
+
                 <!--Logs users out-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{url("/logout")}}" onclick="event.preventDefault();

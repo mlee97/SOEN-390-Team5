@@ -77,22 +77,41 @@ class MaterialController extends Controller
     */
     public function destroy($id, Request $request) {
 
-        //Take the id parameter and insert it into the following query
-        DB::delete('delete from materials where id = ?',[$id]);
+        //Find all parts associated with the material
+        $partMaterialRelationship = DB::table('material_part')->where('material_id', '=', $id);
 
-        //Log the results of the post request
-        $msg_str = 'Material with ID '. $id . ' successfully deleted';
-        Log::create([
-            'user_id' => Auth::user()->id,
-            'ip_address' => $request ->ip(),
-            'log_type' => 'INFO',
-            'request_type' => 'POST',
-            'message' => $msg_str,
-        ]);
 
-        //Redirect the user to the inventory page
-        return redirect('/inventory')
-            ->with('success_msg', 'Material Deleted'); //Send a temporary success message. This is saved in the session
+        if($partMaterialRelationship->count() == 0) {
+            //Take the id parameter and insert it into the following query
+            DB::delete('delete from materials where id = ?', [$id]);
+
+            //Log the results of the post request
+            $msg_str = 'Material with ID ' . $id . ' successfully deleted';
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'log_type' => 'INFO',
+                'request_type' => 'POST',
+                'message' => $msg_str,
+            ]);
+
+            //Redirect the user to the inventory page
+            return redirect('/inventory')
+                ->with('success_msg', 'Material has been Successfully Deleted'); //Send a temporary success message. This is saved in the session
+        } else {
+
+            $msg_str = 'Failed to delete material with ID ' . $id. ' due to it being used by a part';
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'log_type' => 'ERROR',
+                'request_type' => 'POST',
+                'message' => $msg_str,
+            ]);
+            //Redirect the user to the inventory page with errors
+            return redirect('/inventory')->withErrors(['This material can not be deleted since there is 1 or more part that is built using this material']);
+
+        }
      }
 
     /**

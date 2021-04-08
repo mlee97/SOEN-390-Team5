@@ -48,18 +48,20 @@ class ShippingController extends Controller
     * @param  $id       the order id of the order in which the status should be updated.
     * @return view      the shipping view.
     */
-    public function toggleOrderStatus($id, Request $request) {
+    public function markReceived(Request $request) {
 
         //Find the particular row in the Order table that we want to update
-        $order = Order::find($id);
+        $order = Order::find($request->orderID);
 
+
+        //Update material quantities
+        foreach($order->materials as $mat){
+            $mat->material_quantity_in_stock = $mat->material_quantity_in_stock + $mat->material_order_pivot->order_quantity;
+            $mat->save();
+        }
+        
         //Apply the status changes depending on the current status of the order.
-        if($order->status == "received") {
-            $order->status = "in transit";
-        }
-        else {
-            $order->status = "received";
-        }
+        $order->status = "Received";
 
         //Save the changes.
         $order->save();

@@ -14,16 +14,15 @@
                         <a class="nav-link" data-toggle="tab" href="#post_logs">Action Logs</a>
                     </li>
                     <li class="nav-item ml-auto">
-                        <span data-href="/logging-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export into csv</span>
-                    </li>
-                    <li class="col-md-5" align="right">
-                        <a href="{{ url('/PDF/logs') }}" class="btn btn-danger">Export into PDF</a>
+                        <span data-href="/logging-CSV-export" id="export" class="btn btn-primary btn-sm" onclick="exportToCSV(event.target);">Export into csv</span>
+                        <a href="{{ url('/logging-PDF-export') }}" target="_blank" class="btn btn-danger btn-sm">Export into PDF</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body tab-content">
                 <div class="tab-pane fade show active" id="all_logs">
-                    <table class="table table-borderless">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -46,10 +45,12 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <div class="tab-pane fade" id="get_logs">
-                    <table class="table table-borderless">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -74,9 +75,11 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="post_logs">
-                    <table class="table table-borderless">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -101,6 +104,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

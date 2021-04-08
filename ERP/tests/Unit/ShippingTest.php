@@ -51,14 +51,9 @@ class ShippingTest extends TestCase
         //Get order
         $order = Order::find($order_id);
 
-        $this->actingAs($user)->get('toggle-order-status/' . $order_id);
+        $this->actingAs($user)->get('/mark-received');
 
-        $this->assertDatabaseHas('orders', ['id' => $order_id, 'status' => 'in transit']);
-
-        $this->actingAs($user)->get('toggle-order-status/' . $order_id);
-
-        $this->assertDatabaseHas('orders', ['id' => $order_id, 'status' => 'received']);
-
+        $this->assertDatabaseHas('orders', ['id' => $order_id, 'status' => 'Received']);
     }
 
 }

@@ -113,6 +113,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $carbon_fiber_fork = new Part();
         $carbon_fiber_fork->part_name = 'Carbon Fiber Fork';
         $carbon_fiber_fork->part_quantity_in_stock = '1';
+        $carbon_fiber_fork->category = 'Fork';
         $partFromDB = Part::where('part_name', '=', $carbon_fiber_fork->part_name)->first();
         if ($partFromDB == null)
             $carbon_fiber_fork->save();
@@ -122,6 +123,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $titanium_fork = new Part();
         $titanium_fork->part_name = 'Titanium Fork';
         $titanium_fork->part_quantity_in_stock = '1';
+        $titanium_fork->category = 'Fork';
         $partFromDB = Part::where('part_name', '=', $titanium_fork->part_name)->first();
         if ($partFromDB == null)
             $titanium_fork->save();
@@ -131,6 +133,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $magnesium_fork = new Part();
         $magnesium_fork->part_name = 'Magnesium Fork';
         $magnesium_fork->part_quantity_in_stock = '1';
+        $magnesium_fork->category = 'Fork';
         $partFromDB = Part::where('part_name', '=', $magnesium_fork->part_name)->first();
         if ($partFromDB == null)
             $magnesium_fork->save();
@@ -139,6 +142,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
 
         $threaded_headset = new Part();
         $threaded_headset->part_name = 'Threaded Headset';
+        $threaded_headset->category = 'Headset';
         $threaded_headset->part_quantity_in_stock = '1';
         $partFromDB = Part::where('part_name', '=', $threaded_headset->part_name)->first();
         if ($partFromDB == null)
@@ -149,6 +153,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
 
         $seatpost = new Part();
         $seatpost->part_name = 'Seatpost';
+        $seatpost->category = 'Seatpost';
         $seatpost->part_quantity_in_stock = '1';
         $partFromDB = Part::where('part_name', '=', $seatpost->part_name)->first();
         if ($partFromDB == null)
@@ -158,6 +163,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $threadless_headset = new Part();
         $threadless_headset->part_name = 'Threadless Headset';
         $threadless_headset->part_quantity_in_stock = '1';
+        $threadless_headset->category = 'Headset';
         $partFromDB = Part::where('part_name', '=', $threadless_headset->part_name)->first();
         if ($partFromDB == null)
             $threadless_headset->save();
@@ -169,6 +175,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $aluminum_crankset = new Part();
         $aluminum_crankset->part_name = 'Aluminum Crankset';
         $aluminum_crankset->part_quantity_in_stock = '1';
+        $aluminum_crankset->category = 'Crankset';
         $partFromDB = Part::where('part_name', '=', $aluminum_crankset->part_name)->first();
         if ($partFromDB == null)
             $aluminum_crankset->save();
@@ -178,6 +185,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $titanium_crankset = new Part();
         $titanium_crankset->part_name = 'Titanium Crankset';
         $titanium_crankset->part_quantity_in_stock = '1';
+        $titanium_crankset->category = 'Crankset';
         $partFromDB = Part::where('part_name', '=', $titanium_crankset->part_name)->first();
         if ($partFromDB == null)
             $titanium_crankset->save();
@@ -187,6 +195,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $plastic_pedals = new Part();
         $plastic_pedals->part_name = 'Plastic Pedals (pair)';
         $plastic_pedals->part_quantity_in_stock = '1';
+        $plastic_pedals->category = 'Pedals';
         $partFromDB = Part::where('part_name', '=', $plastic_pedals->part_name)->first();
         if ($partFromDB == null)
             $plastic_pedals->save();
@@ -195,14 +204,16 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $metal_pedals = new Part();
         $metal_pedals->part_name = 'Metal Pedals (pair)';
         $metal_pedals->part_quantity_in_stock = '1';
+        $metal_pedals->category = 'Pedals';
         $partFromDB = Part::where('part_name', '=', $metal_pedals->part_name)->first();
         if ($partFromDB == null)
             $metal_pedals->save();
         $metal_pedals->materials()->save($stainless_steel);
-
+        
         $standard_handlebar = new Part();
         $standard_handlebar->part_name = 'Standard Handlebar';
         $standard_handlebar->part_quantity_in_stock = '1';
+        $standard_handlebar->category = 'Handlebar';
         $partFromDB = Part::where('part_name', '=', $standard_handlebar->part_name)->first();
         if ($partFromDB == null)
             $standard_handlebar->save();
@@ -212,6 +223,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $stem = new Part();
         $stem->part_name = 'Stem';
         $stem->part_quantity_in_stock = '1';
+        $stem->category = 'Stem';
         $partFromDB = Part::where('part_name', '=', $stem->part_name)->first();
         if ($partFromDB == null)
             $stem->save();
@@ -220,6 +232,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $plastic_saddle = new Part();
         $plastic_saddle->part_name = 'Plastic Saddle';
         $plastic_saddle->part_quantity_in_stock = '1';
+        $plastic_saddle->category = 'Saddle';
         $partFromDB = Part::where('part_name', '=', $plastic_saddle->part_name)->first();
         if ($partFromDB == null)
             $plastic_saddle->save();
@@ -230,6 +243,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $carbon_fiber_saddle = new Part();
         $carbon_fiber_saddle->part_name = 'Carbon Fiber Saddle';
         $carbon_fiber_saddle->part_quantity_in_stock = '1';
+        $carbon_fiber_saddle->category = 'Saddle';
         $partFromDB = Part::where('part_name', '=', $carbon_fiber_saddle->part_name)->first();
         if ($partFromDB == null)
             $carbon_fiber_saddle->save();
@@ -240,6 +254,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $rim_brake_assembly = new Part();
         $rim_brake_assembly->part_name = 'Rim Brake Assembly';
         $rim_brake_assembly->part_quantity_in_stock = '1';
+        $rim_brake_assembly->category = 'Brakes';
         $partFromDB = Part::where('part_name', '=', $rim_brake_assembly->part_name)->first();
         if ($partFromDB == null)
             $rim_brake_assembly->save();
@@ -250,6 +265,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $disk_brake_assembly = new Part();
         $disk_brake_assembly->part_name = 'Disk Brake Assembly';
         $disk_brake_assembly->part_quantity_in_stock = '1';
+        $disk_brake_assembly->category = 'Brakes';
         $partFromDB = Part::where('part_name', '=', $disk_brake_assembly->part_name)->first();
         if ($partFromDB == null)
             $disk_brake_assembly->save();
@@ -261,6 +277,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $shock = new Part();
         $shock->part_name = 'Shock';
         $shock->part_quantity_in_stock = '1';
+        $shock->category = 'Shock';
         $partFromDB = Part::where('part_name', '=', $shock->part_name)->first();
         if ($partFromDB == null)
             $shock->save();
@@ -270,6 +287,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $rim = new Part();
         $rim->part_name = 'Rim';
         $rim->part_quantity_in_stock = '1';
+        $rim->category = 'Rim';
         $partFromDB = Part::where('part_name', '=', $rim->part_name)->first();
         if ($partFromDB == null)
             $rim->save();
@@ -279,6 +297,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         $tire = new Part();
         $tire->part_name = 'Tire';
         $tire->part_quantity_in_stock = '1';
+        $tire->category = 'Tire';
         $partFromDB = Part::where('part_name', '=', $tire->part_name)->first();
         if ($partFromDB == null)
             $tire->save();
@@ -359,7 +378,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
         //ORDER SEEDS =======================================
         $order1 = new Order();
         $order1 -> ETA = '2021-06-21';
-        $order1 -> status = 'Delivered';
+        $order1 -> status = 'In Transit';
         $order1->save();
         $order1->materials()->save($aluminum_alloy, ['order_quantity' => 100]);
         $order1->materials()->save($carbon_fiber, ['order_quantity' => 150]);
@@ -375,7 +394,7 @@ class Bike_Parts_Material_Order_Sale_Seeder extends Seeder
 
         $order3 = new Order();
         $order3 -> ETA = '2021-08-13';
-        $order3 -> status = 'Delivered';
+        $order3 -> status = 'In Transit';
         $order3->save();
         $order3->materials()->save($carbon_fiber, ['order_quantity' => 50]);
         $order3->materials()->save($magnesium, ['order_quantity' => 10]);
