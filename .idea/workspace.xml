@@ -9,9 +9,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ERP/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/app/Http/Controllers/OrderController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ERP/app/Http/Controllers/ShippingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/app/Http/Controllers/ShippingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ERP/resources/views/shipping.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/resources/views/shipping.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ERP/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/ERP/config/session.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +203,7 @@
       <workItem from="1617833824389" duration="2984000" />
       <workItem from="1617837734278" duration="1001000" />
       <workItem from="1617838856308" duration="911000" />
-      <workItem from="1617839849083" duration="1332000" />
+      <workItem from="1617839849083" duration="3359000" />
     </task>
     <servers />
   </component>
