@@ -62,7 +62,7 @@ class AccountantTest extends TestCase
         $response->assertStatus(200);
 
 
-        //Any User except IT
+        //Any User except accountant
         $user2 = User::factory()->create();
         $user2->user_type = 4;
 
