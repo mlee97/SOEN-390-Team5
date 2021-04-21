@@ -266,7 +266,7 @@ class AccountantController extends Controller
     //pdf function to converts the html table above to pdf using a PDF plugin called domPDF that was added with composer 
     //$pdf will first make a pdf '$pdf = \App::make('dompdf.wrapper');', then use the conversion function above '$pdf-> loadHTML($this->convert_orders_to_html());' for the content in the PDF
     //and finally return the pdf 'return $pdf->stream();'
-    function exportOrdersPDF()
+    function exportOrdersPDF(Request $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->convert_orders_to_html());
